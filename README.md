@@ -25,7 +25,7 @@ Examples: `physicalExamination.template.json   physicalExamination.template.xml`
 
 The following Handlebars expressions are used:
 
-| Handlers Expression       | Description |
+| Handlebars&nbsp;Expression       | Description |
 |---------------------|-------------|
 | `{{getUUID 'key'}}` | This will generate a new UUID and associate it with a key. If this is called again with the same key in the same template the UUID associated with the key will be returned. Note key values are case sensitive. |
 
