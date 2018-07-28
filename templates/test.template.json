@@ -1,6 +1,6 @@
 {
   "resourceType": "Bundle",
-  "id": "{{getUUID true}}",
+  "id": "{{getUUID 'bundle'}}",
   "meta": {
     "profile": [
       "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"
@@ -9,10 +9,10 @@
   "type": "message",
   "entry": [
     {
-      "fullUrl": "urn:uuid:{{getUUID true}}",
+      "fullUrl": "urn:uuid:{{getUUID 'message'}}",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "{{getUUID false}}",
+        "id": "{{getUUID 'message'}}",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"

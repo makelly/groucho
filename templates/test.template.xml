@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Test XML template-->
 <Bundle xmlns="http://hl7.org/fhir">
-	<id value="{{getUUID true}}"/>
+	<id value="{{getUUID 'bundle'}}"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
 	<entry>
-		<fullUrl value="urn:uuid:{{getUUID true}}"/>
+		<fullUrl value="urn:uuid:{{getUUID 'message'}}"/>
 		<resource>
 			<MessageHeader>
-				<id value="{{getUUID false}}"/>
+				<id value="{{getUUID 'message'}}"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
 				</meta>

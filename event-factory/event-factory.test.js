@@ -6,14 +6,51 @@ const fs = require('fs');
 const path = require('path');
 const uuidv4 = require('uuid/v4');
 
-const utils = require('./event-factory.js');
+const factory = require('./event-factory.js');
+
+describe('Class UUID tests', () => {
+  it('should create UUID class instance', () => {
+      const uuid = new factory.UUID();
+
+      expect(uuid).toExist();
+    });
+
+    it('should create new uuid object', () => {
+      const uuid = new factory.UUID();
+      const obj = uuid.getUUID('test');
+
+      expect(obj).toExist();
+    });
+
+    it('should retrieve existing uuid object', () => {
+      const uuid = new factory.UUID();
+      uuid.getUUID('test');
+
+      expect(uuid.getUUID('test')).toExist();
+    });
+
+    it('should be the same, created and stored uuid object', () => {
+      const uuid = new factory.UUID();
+      const obj = uuid.getUUID('test');
+
+      expect(obj).toBe(uuid.getUUID('test'));
+    });
+
+    it('should clear all uuid objects', () => {
+      const uuid = new factory.UUID();
+      uuid.getUUID('test');
+      uuid.clear();
+
+      expect(uuid.getSize()).toBe(0);
+    });
+});
 
 
 it('handlebars experiment', () => {
   const res = true;
 
   // Register helpers
-  var uuid;
+  var uuid = new factory.UUID();
 
   hbs.registerHelper('publishDate', () => {
     const date = new Date();
@@ -21,11 +58,8 @@ it('handlebars experiment', () => {
     return date.toISOString();
   });
 
-  hbs.registerHelper('getUUID', (create) => {
-    if (create) {
-      uuid = uuidv4();
-    }
-    return uuid;
+  hbs.registerHelper('getUUID', (key) => {
+    return uuid.getUUID(key);
   });
 
 
