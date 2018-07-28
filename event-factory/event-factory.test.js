@@ -4,7 +4,6 @@ const expect = require('expect');
 const hbs = require('handlebars');
 const fs = require('fs');
 const path = require('path');
-const uuidv4 = require('uuid/v4');
 
 const factory = require('./event-factory.js');
 
@@ -45,6 +44,42 @@ describe('Class UUID tests', () => {
     });
 });
 
+describe('Class DataBuilder tests', () => {
+  it('should create DataBuilder class instance', () => {
+      const db = new factory.DataBuilder();
+
+      expect(db).toExist();
+    });
+
+    it('should throw error for missing publisher data file', () => {
+      expect(factory.DataBuilder.build('publishermissing', 'providermissing', 'encountermissing', 'patientmissing', 'eventmissing')).toThrow();
+    });
+
+/*    it('should retrieve existing uuid object', () => {
+      const uuid = new factory.UUID();
+      uuid.getUUID('test');
+
+      expect(uuid.getUUID('test')).toExist();
+    });
+
+    it('should be the same, created and stored uuid object', () => {
+      const uuid = new factory.UUID();
+      const obj = uuid.getUUID('test');
+
+      expect(obj).toBe(uuid.getUUID('test'));
+    });
+
+    it('should clear all uuid objects', () => {
+      const uuid = new factory.UUID();
+      uuid.getUUID('test');
+      uuid.clear();
+
+      expect(uuid.getSize()).toBe(0);
+    }); */
+});
+
+//console.log('Here');
+//factory.DataBuilder.build('publishermissing', 'providermissing', 'encountermissing', 'patientmissing', 'eventmissing');
 
 it('handlebars experiment', () => {
   const res = true;
