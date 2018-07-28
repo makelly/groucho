@@ -19,6 +19,7 @@ Template files live in the directory `/templates`. A template file is a complete
 are marked up using the [Handlebars templating language](http://handlebarsjs.com/), which is an extension to the well known Mustache templating language.
 
 Template files use the following naming convention: `<event name and version if required>.template.<json | xml>`
+
 Examples: `physicalExamination.template.json   physicalExamination.template.xml`
 
 Under construction!
