@@ -41,30 +41,25 @@ class DataBuilder {
 
   // Build the data context
   static build(publisher, provider, encounter, patient, event) {
-    try {
-      // Get the data
-      const publisherData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', publisher), 'utf8'));
-      const providerData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', provider), 'utf8'));
-      const encounterData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', encounter), 'utf8'));
-      const patientData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', patient), 'utf8'));
-      const eventData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', event), 'utf8'));
-
-      // Build the data context
-      let data = {
-        publisher: {},
-        provider: {},
-        encounter: {},
-        patient: {},
-        event: {}
-      };
-      data.publisher = publisherData;
-      data.provider = providerData;
-      data.encounter = encounterData;
-      data.patient = patientData;
-      data.event = eventData;
-    } catch(e) {
-      throw e.message;
+    const data = {
+      publisher: {},
+      provider: {},
+      encounter: {},
+      patient: {},
+      event: {}
     };
+
+    try {
+      // Get and build the data context
+      data.publisher = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', publisher), 'utf8'));
+      data.provider = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', provider), 'utf8'));
+      data.encounter = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', encounter), 'utf8'));
+      data.patient = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', patient), 'utf8'));
+      data.event = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', event), 'utf8'));
+    } catch(e) {
+      throw new Error(e.message);
+    };
+
     return data;
   }
 }

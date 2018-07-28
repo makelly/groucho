@@ -7,146 +7,151 @@ const path = require('path');
 
 const factory = require('./event-factory.js');
 
+const missingFile = 'missing';
+const invalidFile = 'invalid.data.json';
+const publisherFile = 'test.publisher.data.json';
+const providerFile = 'test.provider.data.json';
+const encounterFile = 'test.encounter.data.json';
+const patientFile = 'test.patient.data.json';
+const eventFile = 'test.event.data.json';
+
 describe('Class UUID tests', () => {
   it('should create UUID class instance', () => {
-      const uuid = new factory.UUID();
+    const uuid = new factory.UUID();
 
-      expect(uuid).toExist();
-    });
+    expect(uuid).toExist();
+  });
 
-    it('should create new uuid object', () => {
-      const uuid = new factory.UUID();
-      const obj = uuid.getUUID('test');
+  it('should create new uuid object', () => {
+    const uuid = new factory.UUID();
+    const obj = uuid.getUUID('test');
 
-      expect(obj).toExist();
-    });
+    expect(obj).toExist();
+  });
 
-    it('should retrieve existing uuid object', () => {
-      const uuid = new factory.UUID();
-      uuid.getUUID('test');
+  it('should retrieve existing uuid object', () => {
+    const uuid = new factory.UUID();
+    uuid.getUUID('test');
 
-      expect(uuid.getUUID('test')).toExist();
-    });
+    expect(uuid.getUUID('test')).toExist();
+  });
 
-    it('should be the same, created and stored uuid object', () => {
-      const uuid = new factory.UUID();
-      const obj = uuid.getUUID('test');
+  it('should be the same, created and stored uuid object', () => {
+    const uuid = new factory.UUID();
+    const obj = uuid.getUUID('test');
 
-      expect(obj).toBe(uuid.getUUID('test'));
-    });
+    expect(obj).toBe(uuid.getUUID('test'));
+  });
 
-    it('should clear all uuid objects', () => {
-      const uuid = new factory.UUID();
-      uuid.getUUID('test');
-      uuid.clear();
+  it('should clear all uuid objects', () => {
+    const uuid = new factory.UUID();
+    uuid.getUUID('test');
+    uuid.clear();
 
-      expect(uuid.getSize()).toBe(0);
-    });
+    expect(uuid.getSize()).toBe(0);
+  });
 });
 
 describe('Class DataBuilder tests', () => {
   it('should create DataBuilder class instance', () => {
-      const db = new factory.DataBuilder();
+    const db = new factory.DataBuilder();
 
-      expect(db).toExist();
-    });
+    expect(db).toExist();
+  });
 
-    it('should throw error for missing publisher data file', () => {
-      expect(factory.DataBuilder.build('publishermissing', 'providermissing', 'encountermissing', 'patientmissing', 'eventmissing')).toThrow();
-    });
+  it('should throw error for missing publisher data file', () => {
+    expect(() => {factory.DataBuilder.build(missingFile, missingFile, missingFile, missingFile, missingFile);}).toThrow();
+  });
 
-/*    it('should retrieve existing uuid object', () => {
-      const uuid = new factory.UUID();
-      uuid.getUUID('test');
+  it('should throw error for missing provider data file', () => {
+    expect(() => {factory.DataBuilder.build(publisherFile, missingFile, missingFile, missingFile, missingFile);}).toThrow();
+  });
 
-      expect(uuid.getUUID('test')).toExist();
-    });
+  it('should throw error for missing encounter data file', () => {
+    expect(() => {factory.DataBuilder.build(publisherFile, providerFile, missingFile, missingFile, missingFile);}).toThrow();
+  });
 
-    it('should be the same, created and stored uuid object', () => {
-      const uuid = new factory.UUID();
-      const obj = uuid.getUUID('test');
+  it('should throw error for missing patient data file', () => {
+    expect(() => {factory.DataBuilder.build(publisherFile, providerFile, encounterFile, missingFile, missingFile);}).toThrow();
+  });
 
-      expect(obj).toBe(uuid.getUUID('test'));
-    });
+  it('should throw error for missing event data file', () => {
+    expect(() => {factory.DataBuilder.build(publisherFile, providerFile, encounterFile, patientFile, missingFile);}).toThrow();
+  });
 
-    it('should clear all uuid objects', () => {
-      const uuid = new factory.UUID();
-      uuid.getUUID('test');
-      uuid.clear();
+  it('should return build', () => {
+    const data = factory.DataBuilder.build(publisherFile, providerFile, encounterFile, patientFile, eventFile);
 
-      expect(uuid.getSize()).toBe(0);
-    }); */
+    expect(data).toExist();
+  })
+
+  it('should throw error for invalid publisher data file', () => {
+    expect(() => {factory.DataBuilder.build(invalidFile, missingFile, missingFile, missingFile, missingFile);}).toThrow();
+  });
+
+  it('should throw error for invalid provider data file', () => {
+    expect(() => {factory.DataBuilder.build(publisherFile, invalidFile, missingFile, missingFile, missingFile);}).toThrow();
+  });
+
+  it('should throw error for invalid encounter data file', () => {
+    expect(() => {factory.DataBuilder.build(publisherFile, providerFile, invalidFile, missingFile, missingFile);}).toThrow();
+  });
+
+  it('should throw error for invalid patient data file', () => {
+    expect(() => {factory.DataBuilder.build(publisherFile, providerFile, encounterFile, invalidFile, missingFile);}).toThrow();
+  });
+
+  it('should throw error for invalid event data file', () => {
+    expect(() => {factory.DataBuilder.build(publisherFile, providerFile, encounterFile, patientFile, invalidFile);}).toThrow();
+  });
 });
 
-//console.log('Here');
-//factory.DataBuilder.build('publishermissing', 'providermissing', 'encountermissing', 'patientmissing', 'eventmissing');
+describe('Handlebars playing', () => {
+  it('handlebars experiment', () => {
+    const res = true;
 
-it('handlebars experiment', () => {
-  const res = true;
+    // Register helpers
+    var uuid = new factory.UUID();
 
-  // Register helpers
-  var uuid = new factory.UUID();
+    hbs.registerHelper('publishDate', () => {
+      const date = new Date();
 
-  hbs.registerHelper('publishDate', () => {
-    const date = new Date();
+      return date.toISOString();
+    });
 
-    return date.toISOString();
-  });
-
-  hbs.registerHelper('getUUID', (key) => {
-    return uuid.getUUID(key);
-  });
+    hbs.registerHelper('getUUID', (key) => {
+      return uuid.getUUID(key);
+    });
 
 
-  try {
+    try {
+      const data = factory.DataBuilder.build(publisherFile, providerFile, encounterFile, patientFile, eventFile);
+      console.log(JSON.stringify(data, null, 2));
 
+      // Get the JSON template source file
+      let source = fs.readFileSync(path.join(__dirname, '..', 'templates', 'test.template.json'), 'utf8');
+      // Compile the template
+      let template = hbs.compile(source);
+      // Render template
+      let result = template(data);
+      // Save rendered template
+      fs.writeFileSync(path.join(__dirname, '..', 'temp', 'testresult.json'), result);
 
+      // Get the XML template source file
+      source = fs.readFileSync(path.join(__dirname, '..', 'templates', 'test.template.xml'), 'utf8');
+      // Compile the template
+      template = hbs.compile(source);
+      // Render template
+      result = template(data);
+      // Save rendered template
+      fs.writeFileSync(path.join(__dirname, '..', 'temp', 'testresult.xml'), result);
 
-    // Get the data
-    const publisherData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'test.publisher.data.json'), 'utf8'));
-    const providerData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'test.provider.data.json'), 'utf8'));
-    const encounterData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'test.encounter.data.json'), 'utf8'));
-    const patientData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'test.patient.data.json'), 'utf8'));
-    const eventData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'test.event.data.json'), 'utf8'));
-
-    let data = {
-      publisher: {},
-      provider: {},
-      encounter: {},
-      patient: {},
-      event: {}
+      //return JSON.parse(notesString);
+    } catch(e) {
+      console.log(e);
+      res = false;
     };
-    data.publisher = publisherData;
-    data.provider = providerData;
-    data.encounter = encounterData;
-    data.patient = patientData;
-    data.event = eventData;
 
-    console.log(JSON.stringify(data, null, 2));
-
-    // Get the JSON template source file
-    let source = fs.readFileSync(path.join(__dirname, '..', 'templates', 'test.template.json'), 'utf8');
-    // Compile the template
-    let template = hbs.compile(source);
-    // Render template
-    let result = template(data);
-    // Save rendered template
-    fs.writeFileSync(path.join(__dirname, '..', 'temp', 'testresult.json'), result);
-
-    // Get the XML template source file
-    source = fs.readFileSync(path.join(__dirname, '..', 'templates', 'test.template.xml'), 'utf8');
-    // Compile the template
-    template = hbs.compile(source);
-    // Render template
-    result = template(data);
-    // Save rendered template
-    fs.writeFileSync(path.join(__dirname, '..', 'temp', 'testresult.xml'), result);
-
-    //return JSON.parse(notesString);
-  } catch(e) {
-    console.log(e);
-    res = false;
-  };
-
-  expect(res).toBeTruthy();
+    expect(res).toBeTruthy();
+  });
 });
