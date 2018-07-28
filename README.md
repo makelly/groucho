@@ -21,13 +21,15 @@ Template files live in the directory `/templates`.
 
 Template files use the following naming convention: `<event name and version if required>.template.<json | xml>`
 
+Examples: `physicalExamination.template.json   physicalExamination.template.xml`
+
 The following Handlebars markup elements are used:
 
-| Element | Description |
-|---------|-------------|
+| Element             | Description |
+|---------------------|-------------|
 | `{{getUUID 'key'}}` | This will generate a new UUID and associate it with a key. If this is called again within the same key in the same template the UUID associated with the key will be returned. |
 
-Examples: `physicalExamination.template.json   physicalExamination.template.xml`
+
 
 Under construction!
 
