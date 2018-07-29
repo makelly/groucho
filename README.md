@@ -62,7 +62,7 @@ Groucho supports multiple output channels through which events can be published.
 
 Each output channel is configured by editing values in an associated configuration file. Configuration files are defined using JSON.
 
-Template files live in the directory `/config`
+Configuration files live in the directory `/config`
 
 ### Sink output channel
 The sink output channel discards all events. Therefore there is no need for a configuration file.
