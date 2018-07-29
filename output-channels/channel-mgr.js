@@ -3,10 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const sinkOut = require('./channel-sink.js');
-const fileOut = require('./channel-file.js');
-const intersystemsOut = require('./channel-intersystems.js');
-const meshOut = require('./channel-mesh.js');
+const sinkOut = require('./sink-channel.js');
+const fileOut = require('./file-channel.js');
+const intersystemsOut = require('./intersystems-channel.js');
+const meshOut = require('./mesh-channel.js');
 
 // Class to load channel configuration information
 class ChannelConfig {
@@ -14,9 +14,9 @@ class ChannelConfig {
   constructor() {
     const folder = 'config';
     const fileEncoding = 'utf8';
-    const fileFileName = 'channel-file.json';
-    const intersystemsFileName = 'channel-intersystems.json';
-    const meshFileName = 'channel-mesh.json';
+    const fileFileName = 'file-channel.json';
+    const intersystemsFileName = 'intersystems-channel.json';
+    const meshFileName = 'mesh-channel.json';
 
     try {
       // Get the config files for each channel

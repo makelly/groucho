@@ -1,8 +1,8 @@
-// channel-mesh.test.js - mesh channel tests
+// mesh-channel.test.js - mesh channel tests
 
 const expect = require('expect');
 
-const channel = require('./channel-mesh.js');
+const channel = require('./mesh-channel.js');
 
 describe('Class MeshChannel tests', () => {
   it('should throw error for create MeshChannel object undefined config argument', () => {

@@ -1,4 +1,4 @@
-// channel-sink.js - sink output channel
+// sink-channel.js - sink output channel
 
 // Class to discard event sent to it
 class SinkChannel {

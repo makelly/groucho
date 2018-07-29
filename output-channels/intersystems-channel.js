@@ -1,13 +1,13 @@
-// channel-mesh.js - MESH output channel
+// intersystems-channel.js - InterSystems output channel
 
-// Class to send event using MESH
-class MeshChannel {
+// Class to send event using InterSystems API
+class InterSystemsChannel {
   // constructor
   constructor(config) {
     // config is a json object that defines the configuration values
     // Validate
     if (config == undefined) {
-      throw new Error('MeshChannel.constructor(config) - config argument undefined.')
+      throw new Error('InterSystemsChannel.constructor(config) - config argument undefined.')
     }
 
     try {
@@ -21,10 +21,10 @@ class MeshChannel {
   publish(data, format) {
     // Check arguments
     if (data == undefined) {
-      throw new Error('MeshChannel.publish(data, format) - data argument undefined.');
+      throw new Error('InterSystemsChannel.publish(data, format) - data argument undefined.');
     }
     if (format == undefined) {
-      throw new Error('MeshChannel.publish(data, format) - format argument undefined.')
+      throw new Error('InterSystemsChannel.publish(data, format) - format argument undefined.')
     }
     switch (format) {
       case 'json':
@@ -40,5 +40,5 @@ class MeshChannel {
 
 // Export modules
 module.exports = {
-  MeshChannel
+  InterSystemsChannel
 }

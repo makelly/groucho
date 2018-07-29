@@ -1,8 +1,8 @@
-// channel-sink.test.js - sink channel tests
+// sink-channel.test.js - sink channel tests
 
 const expect = require('expect');
 
-const channel = require('./channel-sink.js');
+const channel = require('./sink-channel.js');
 
 describe('Class SinkChannel tests', () => {
   it('should create SinkChannel object', () => {

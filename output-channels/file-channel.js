@@ -1,4 +1,4 @@
-// channel-file.js - file output channel
+// file-channel.js - file output channel
 
 // Class to save event as a file
 class FileChannel {

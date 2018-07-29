@@ -70,15 +70,24 @@ The sink output channel discards all events. Therefore there is no need for a co
 ### File output channel
 The file output channel writes each event to a separate file.
 
+Saved files use the following naming convention: `evt<datetime stamp><random number>.<json | xml>`
+
+Examples: `TBD` `TBD`
+
 The configuration file is named `channel-file.json`
 
 Configuration file contents:
 
 | Configuration Item | Description |
 |--------------------|-------------|
-| TBD | TBD |
+| fullPath | The full path to the directory in which to save event files. If the directory does not exist it is created. |
 
-Example configuration file: TBD
+Example configuration file:
+```JSON
+{
+  "fullPath": "C:/published-events"
+}
+```
 
 ### InterSystems output channel
 The InterSystems output channel writes each event, via an API, to an instance of an InterSystems EMS.

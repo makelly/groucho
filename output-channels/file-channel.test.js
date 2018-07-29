@@ -1,9 +1,9 @@
-// channel-file.test.js - file channel tests
+// file-channel.test.js - file channel tests
 
 const expect = require('expect');
 const path = require('path');
 
-const channel = require('./channel-file.js');
+const channel = require('./file-channel.js');
 
 describe('Class FileChannel tests', () => {
   it('should throw error for create FileChannel object undefined config argument', () => {

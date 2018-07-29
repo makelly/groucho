@@ -1,8 +1,8 @@
-// channel-intersystems.test.js - InterSystems channel tests
+// intersystems-channel.test.js - InterSystems channel tests
 
 const expect = require('expect');
 
-const channel = require('./channel-intersystems.js');
+const channel = require('./intersystems-channel.js');
 
 describe('Class InterSystemsChannel tests', () => {
   it('should throw error for create InterSystemsChannel object undefined config argument', () => {

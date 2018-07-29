@@ -1,15 +1,13 @@
-// channel-intersystems.js - InterSystems output channel
+// mesh-channel.js - MESH output channel
 
-const _ = require('lodash');
-
-// Class to send event using InterSystems API
-class InterSystemsChannel {
+// Class to send event using MESH
+class MeshChannel {
   // constructor
   constructor(config) {
     // config is a json object that defines the configuration values
     // Validate
     if (config == undefined) {
-      throw new Error('InterSystemsChannel.constructor(config) - config argument undefined.')
+      throw new Error('MeshChannel.constructor(config) - config argument undefined.')
     }
 
     try {
@@ -23,10 +21,10 @@ class InterSystemsChannel {
   publish(data, format) {
     // Check arguments
     if (data == undefined) {
-      throw new Error('InterSystemsChannel.publish(data, format) - data argument undefined.');
+      throw new Error('MeshChannel.publish(data, format) - data argument undefined.');
     }
     if (format == undefined) {
-      throw new Error('InterSystemsChannel.publish(data, format) - format argument undefined.')
+      throw new Error('MeshChannel.publish(data, format) - format argument undefined.')
     }
     switch (format) {
       case 'json':
@@ -42,5 +40,5 @@ class InterSystemsChannel {
 
 // Export modules
 module.exports = {
-  InterSystemsChannel
+  MeshChannel
 }
