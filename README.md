@@ -1,20 +1,20 @@
 # Groucho
+- [ ] UNDER CONSTRUCTION :construction:
 A command line tool to test generating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS).
 
-- [ ] UNDER CONSTRUCTION :construction:
-
 ## Installation
+- [ ] UNDER CONSTRUCTION :construction:
 This is a Node.js application, therefore you need to first install Node.
 
-Under construction!
 
 ## Running
-Under construction!
+- [ ] UNDER CONSTRUCTION :construction:
 
 ## Scripts
-Under construction!
+- [ ] UNDER CONSTRUCTION :construction:
 
 ## Templates
+- [ ] UNDER CONSTRUCTION :construction:
 A template file is a FHIR event message bundle, in XML or JSON format, that has elements marked up that will be replaced by data values. The [Handlebars templating language](http://handlebarsjs.com/), which is an extension to the well known Mustache templating language, is used to markup elements.
 
 Template files live in the directory `/templates`
@@ -29,9 +29,8 @@ The following Handlebars expressions are used in all templates:
 |---------------------|-------------|
 | `{{getUUID 'key'}}` | This will generate a new UUID and associate it with a key. If this is called again with the same key in the same template the UUID associated with the key will be returned. Note key values are case sensitive. |
 
-Under construction!
-
 ## Data
+- [ ] UNDER CONSTRUCTION :construction:
 The data needed to be inserted into templates is organised into separate json files. Data files are defined for:
 * Publisher - the organisation which is publishing the event.
 * Provider - the health care provider which is the source, origin, of the event. In most situations publisher and provider will be the same, but can be different.
@@ -51,9 +50,8 @@ Data files use the following naming convention:
 | Patient |  `<name and version if required>.patient.data.json` | `GMarx.patient.data.json` |
 | Event |  `<name and version if required>.event.data.json` | `physicalExamination.event.data.json` |
 
-Under construction!
-
 ## Output Channels
+- [ ] UNDER CONSTRUCTION :construction:
 Groucho supports multiple output channels through which events can be published. These include:
 * Sink - events are simply discarded. Useful for testing.
 * File - events are saved as files in a designated directory.
@@ -125,7 +123,5 @@ Example configuration file:
 }
 ```
 
-Under construction!
-
 ## Logging
-Under construction!
+- [ ] UNDER CONSTRUCTION :construction:
