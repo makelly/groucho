@@ -53,7 +53,7 @@ Data files use the following naming convention:
 
 Under construction!
 
-## Output channels
+## Output Channels
 Groucho supports multiple output channels through which events can be published. These include:
 * Sink - events are simply discarded. Useful for testing.
 * File - events are saved as files in a designated directory.
@@ -64,10 +64,10 @@ Each output channel is configured by editing values in an associated configurati
 
 Configuration files live in the directory `/config`
 
-### Sink output channel
+### Sink Output Channel
 The sink output channel discards all events. Therefore there is no need for a configuration file.
 
-### File output channel
+### File Output Channel
 The file output channel writes each event to a separate file.
 
 Saved files use the following naming convention: `evt<datetime stamp><random number>.<json | xml>`
@@ -89,7 +89,7 @@ Example configuration file:
 }
 ```
 
-### InterSystems output channel
+### InterSystems Output Channel
 The InterSystems output channel writes each event, via an API, to an instance of an InterSystems EMS.
 
 The configuration file is named `intersystems-channel.json`
@@ -102,7 +102,7 @@ Configuration file contents:
 
 Example configuration file: TBD
 
-### MESH output channel
+### MESH Output Channel
 The MESH output channel writes each event to the MESH service.
 
 The configuration file is named `mesh-channel.json`
