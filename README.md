@@ -1,7 +1,7 @@
 # Groucho
 A command line tool to test generating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS).
 
-- [ ] Under construction!
+- [ ] UNDER CONSTRUCTION :construction:
 
 ## Installation
 This is a Node.js application, therefore you need to first install Node.
