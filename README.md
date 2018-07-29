@@ -1,9 +1,11 @@
 # Groucho
 - [ ] UNDER CONSTRUCTION :construction:
-A command line tool to test generating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS).
+
+Groucho is a command line tool to test generating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS).
 
 ## Installation
 - [ ] UNDER CONSTRUCTION :construction:
+
 This is a Node.js application, therefore you need to first install Node.
 
 
@@ -15,6 +17,7 @@ This is a Node.js application, therefore you need to first install Node.
 
 ## Templates
 - [ ] UNDER CONSTRUCTION :construction:
+
 A template file is a FHIR event message bundle, in XML or JSON format, that has elements marked up that will be replaced by data values. The [Handlebars templating language](http://handlebarsjs.com/), which is an extension to the well known Mustache templating language, is used to markup elements.
 
 Template files live in the directory `/templates`
@@ -31,6 +34,7 @@ The following Handlebars expressions are used in all templates:
 
 ## Data
 - [ ] UNDER CONSTRUCTION :construction:
+
 The data needed to be inserted into templates is organised into separate json files. Data files are defined for:
 * Publisher - the organisation which is publishing the event.
 * Provider - the health care provider which is the source, origin, of the event. In most situations publisher and provider will be the same, but can be different.
@@ -52,6 +56,7 @@ Data files use the following naming convention:
 
 ## Output Channels
 - [ ] UNDER CONSTRUCTION :construction:
+
 Groucho supports multiple output channels through which events can be published. These include:
 * Sink - events are simply discarded. Useful for testing.
 * File - events are saved as files in a designated directory.
