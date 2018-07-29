@@ -74,7 +74,7 @@ Saved files use the following naming convention: `evt<datetime stamp><random num
 
 Examples: `TBD` `TBD`
 
-The configuration file is named `channel-file.json`
+The configuration file is named `file-channel.json`
 
 Configuration file contents:
 
@@ -92,7 +92,7 @@ Example configuration file:
 ### InterSystems output channel
 The InterSystems output channel writes each event, via an API, to an instance of an InterSystems EMS.
 
-The configuration file is named `channel-intersystems.json`
+The configuration file is named `intersystems-channel.json`
 
 Configuration file contents:
 
@@ -105,7 +105,7 @@ Example configuration file: TBD
 ### MESH output channel
 The MESH output channel writes each event to the MESH service.
 
-The configuration file is named `channel-mesh.json`
+The configuration file is named `mesh-channel.json`
 
 Configuration file contents:
 
