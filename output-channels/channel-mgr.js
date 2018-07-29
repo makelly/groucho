@@ -12,14 +12,18 @@ const config = require('./channel-config.js');
 class ChannelManager {
   // constructor
   constructor() {
-    // Get channel config information
-    let cfg = new config.ChannelConfig();
+    try {
+      // Get channel config information
+      let cfg = new config.ChannelConfig();
 
-    // Create instances of all output channels, passing in config information
-    this.sink = new sinkOut.SinkChannel();
-    this.file = new fileOut.FileChannel(cfg.file);
-    this.intersystems = new intersystemsOut.InterSystemsChannel(cfg.intersystems);
-    this.mesh = new meshOut.MeshChannel(cfg.mesh);
+      // Create instances of all output channels, passing in config information
+      this.sink = new sinkOut.SinkChannel();
+      this.file = new fileOut.FileChannel(cfg.file);
+      this.intersystems = new intersystemsOut.InterSystemsChannel(cfg.intersystems);
+      this.mesh = new meshOut.MeshChannel(cfg.mesh);
+    } catch(e) {
+      throw new Error(e.message);
+    }
   }
 }
 

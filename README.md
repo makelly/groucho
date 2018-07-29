@@ -29,7 +29,6 @@ The following Handlebars expressions are used in all templates:
 |---------------------|-------------|
 | `{{getUUID 'key'}}` | This will generate a new UUID and associate it with a key. If this is called again with the same key in the same template the UUID associated with the key will be returned. Note key values are case sensitive. |
 
-
 Under construction!
 
 ## Data
@@ -55,6 +54,31 @@ Data files use the following naming convention:
 Under construction!
 
 ## Output channels
+Groucho supports multiple output channels through which events can be published. These include:
+* Sink - events are simply discarded. Useful for testing.
+* File - events are saved as files in a designated directory.
+* InterSystems - events are sent via an API to an InterSystems Events Management Service (EMS).
+* MESH - events are sent via the Message Exchange for Social Care and Health (MESH) messaging service.
+
+Each output channel is configured by editing values in an associated configuration file. Configuration files are defined using JSON.
+
+Template files live in the directory `/config`
+
+### Sink output channel
+The sink output channel discards all events. Therefore there is no need for a configuration file.
+
+### File output channel
+The file output channel writes each event to a separate file.
+
+The configuration file is named `channel-file.json`
+
+Configuration file contents:
+
+| Configuration Item | Description |
+|--------------------|-------------|
+| TBD | TBD |
+
+
 Under construction!
 
 ## Configuration

@@ -9,6 +9,11 @@ class InterSystemsChannel {
     // config is a json object that defines the configuration values
     // should validate and throw an error if there are any problems
     // TBD
+    try {
+
+    } catch(e) {
+      throw new Error(e.message);
+    }
   }
 
   // Publish event
@@ -27,7 +32,7 @@ class InterSystemsChannel {
       default:
         throw new Error('Format argument invalid');
     }
-    
+
     // To Do
   }
 }
