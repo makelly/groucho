@@ -1,7 +1,7 @@
 # Groucho
 A command line tool to test generating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS).
 
-Under construction!
+- [ ] Under construction!
 
 ## Installation
 This is a Node.js application, therefore you need to first install Node.
@@ -100,7 +100,12 @@ Configuration file contents:
 |--------------------|-------------|
 | TBD | TBD |
 
-Example configuration file: TBD
+Example configuration file:
+```JSON
+{
+
+}
+```
 
 ### MESH Output Channel
 The MESH output channel writes each event to the MESH service.
@@ -113,7 +118,12 @@ Configuration file contents:
 |--------------------|-------------|
 | TBD | TBD |
 
-Example configuration file: TBD
+Example configuration file:
+```JSON
+{
+
+}
+```
 
 Under construction!
 
