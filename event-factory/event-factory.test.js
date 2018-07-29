@@ -19,34 +19,34 @@ const jsonOutputFile = 'testresult.json';
 const xmlOutputFile = 'testresult.xml';
 
 describe('Class UUID tests', () => {
-  it('should create UUID class instance', () => {
+  it('should create UUID object', () => {
     let uuid = new factory.UUID();
 
     expect(uuid).toExist();
   });
 
-  it('should getUUID() create new uuid object', () => {
+  it('should getUUID() create new uuid', () => {
     let uuid = new factory.UUID();
     let obj = uuid.getUUID('test');
 
     expect(obj).toExist();
   });
 
-  it('should getUUID() retrieve existing uuid object', () => {
+  it('should getUUID() retrieve existing uuid', () => {
     let uuid = new factory.UUID();
     uuid.getUUID('test');
 
     expect(uuid.getUUID('test')).toExist();
   });
 
-  it('should getUUID() be the same; created and stored uuid object', () => {
+  it('should getUUID() be the same; created and stored uuid', () => {
     let uuid = new factory.UUID();
     let obj = uuid.getUUID('test');
 
     expect(obj).toBe(uuid.getUUID('test'));
   });
 
-  it('should clear() clear all uuid objects', () => {
+  it('should clear() clear all uuids', () => {
     let uuid = new factory.UUID();
     uuid.getUUID('test');
     uuid.clear();
@@ -56,7 +56,7 @@ describe('Class UUID tests', () => {
 });
 
 describe('Class DataBuilder tests', () => {
-  it('should create DataBuilder class instance', () => {
+  it('should create DataBuilder object', () => {
     let db = new factory.DataBuilder();
 
     expect(db).toExist();
@@ -130,7 +130,7 @@ describe('Class DataBuilder tests', () => {
 });
 
 describe('Class EventBuilder tests', () => {
-  it('should create EventBuilder class instance', () => {
+  it('should create EventBuilder object', () => {
     let db = new factory.EventBuilder();
 
     expect(db).toExist();

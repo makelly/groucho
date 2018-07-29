@@ -1,14 +1,15 @@
 // channel-mesh.js - MESH output channel
 
-const _ = require('lodash');
-
 // Class to send event using MESH
 class MeshChannel {
   // constructor
   constructor(config) {
     // config is a json object that defines the configuration values
-    // should validate and throw an error if there are any problems
-    // TBD
+    // Validate
+    if (config == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config argument undefined.')
+    }
+
     try {
 
     } catch(e) {
@@ -20,17 +21,17 @@ class MeshChannel {
   publish(data, format) {
     // Check arguments
     if (data == undefined) {
-      throw new Error('Data argument undefined.');
+      throw new Error('MeshChannel.publish(data, format) - data argument undefined.');
     }
     if (format == undefined) {
-      throw new Error('Format argument undefined.')
+      throw new Error('MeshChannel.publish(data, format) - format argument undefined.')
     }
     switch (format) {
       case 'json':
       case 'xml':
         break;
       default:
-        throw new Error('Format argument invalid');
+        throw new Error(`InterSystemsChannel.publish(data, format) - format argument invalid. Value = ${format} expected xml | json .`);
     }
 
     // To Do

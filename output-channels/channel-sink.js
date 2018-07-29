@@ -4,7 +4,7 @@
 class SinkChannel {
   // constructor
   constructor() {
-
+    // Empty
   }
 
   // Publish event

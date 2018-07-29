@@ -5,27 +5,42 @@ const expect = require('expect');
 const channel = require('./channel-intersystems.js');
 
 describe('Class InterSystemsChannel tests', () => {
-  it('should create InterSystemsChannel class instance', () => {
-    let api = new channel.InterSystemsChannel();
+  it('should throw error for create InterSystemsChannel object undefined config argument', () => {
+    expect(() => {new channel.InterSystemsChannel(undefined);}).toThrow();
+  });
 
-    expect(api).toExist();
+/*
+  it('should throw error for create FileChannel object missing config.fullPath argument', () => {
+    let config = {missing: 'missing'};
+
+    expect(() => {new channel.FileChannel(config);}).toThrow();
+  }); */
+
+  it('should create FileChannel object', () => {
+    let config = {};
+    let isys = new channel.InterSystemsChannel(config);
+
+    expect(isys).toExist();
   });
 
   it('should throw error for publish() undefined data argument', () => {
-    let api = new channel.InterSystemsChannel();
+    let config = {};
+    let isys = new channel.InterSystemsChannel(config);
 
-    expect(() => {api.publish(undefined, 'xml');}).toThrow();
+    expect(() => {isys.publish(undefined, 'xml');}).toThrow();
   });
 
   it('should throw error for publish() undefined format argument', () => {
-    let api = new channel.InterSystemsChannel();
+    let config = {};
+    let isys = new channel.InterSystemsChannel(config);
 
-    expect(() => {api.publish('Anything', undefined);}).toThrow();
+    expect(() => {isys.publish('Anything', undefined);}).toThrow();
   });
 
   it('should throw error for publish() invalid format argument', () => {
-    let api = new channel.InterSystemsChannel();
+    let config = {};
+    let isys = new channel.InterSystemsChannel(config);
 
-    expect(() => {api.publish('Anything', 'Anything');}).toThrow();
+    expect(() => {isys.publish('Anything', 'Anything');}).toThrow();
   });
 });
