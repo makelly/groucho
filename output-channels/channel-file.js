@@ -1,9 +1,7 @@
-// channel-intersystems.js - InterSystems output channel
+// channel-file.js - file output channel
 
-const _ = require('lodash');
-
-// Class to send event using InterSystems API
-class InterSystemsChannel {
+// Class to save event as a file
+class FileChannel {
   // constructor
   constructor(config) {
     // config is a json object that defines the configuration values
@@ -27,12 +25,11 @@ class InterSystemsChannel {
       default:
         throw new Error('Format argument invalid');
     }
-    
     // To Do
   }
 }
 
 // Export modules
 module.exports = {
-  InterSystemsChannel
+  FileChannel
 }
