@@ -33,8 +33,8 @@ Under construction!
 
 ## Data
 The data needed to be inserted into templates is organised into separate json files. Data files are defined for:
-* Publisher - the organisation who is publishing the event.
-* Provider - the health care provider who is the source, origin, of the event. In most situations publisher and provider will be the same, but can be different.
+* Publisher - the organisation which is publishing the event.
+* Provider - the health care provider which is the source, origin, of the event. In most situations publisher and provider will be the same, but can be different.
 * Encounter - the health care encounter associated with the event. This will include the type of health care service and delivery location.
 * Patient - the patient associated with the event.
 * Event - the actual event specific data.  
@@ -78,10 +78,34 @@ Configuration file contents:
 |--------------------|-------------|
 | TBD | TBD |
 
+Example configuration file: TBD
 
-Under construction!
+### InterSystems output channel
+The InterSystems output channel writes each event, via an API, to an instance of an InterSystems EMS.
 
-## Configuration
+The configuration file is named `channel-intersystems.json`
+
+Configuration file contents:
+
+| Configuration Item | Description |
+|--------------------|-------------|
+| TBD | TBD |
+
+Example configuration file: TBD
+
+### MESH output channel
+The MESH output channel writes each event to the MESH service.
+
+The configuration file is named `channel-mesh.json`
+
+Configuration file contents:
+
+| Configuration Item | Description |
+|--------------------|-------------|
+| TBD | TBD |
+
+Example configuration file: TBD
+
 Under construction!
 
 ## Logging
