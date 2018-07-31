@@ -1,5 +1,7 @@
 // mesh-channel.js - MESH output channel
 
+const axios = require('axios');
+
 // Class to send event using MESH
 class MeshChannel {
   // constructor

@@ -1,5 +1,7 @@
 // intersystems-channel.js - InterSystems output channel
 
+const axios = require('axios');
+
 // Class to send event using InterSystems API
 class InterSystemsChannel {
   // constructor
