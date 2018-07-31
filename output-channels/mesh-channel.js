@@ -11,12 +11,37 @@ class MeshChannel {
     if (config == undefined) {
       throw new Error('MeshChannel.constructor(config) - config argument undefined.')
     }
+    if (config.url == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.url undefined.');
+    }
+    if (config.sendersMailboxID == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.sendersMailboxID undefined.');
+    }
+    if (config.recipientMailboxID == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.recipientMailboxID undefined.');
+    }
+    if (config.workflowID == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.workflowID undefined.');
+    }
+    if (config.userID == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.userID undefined.');
+    }
+    if (config.password == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.password undefined.');
+    }
 
     try {
 
     } catch(e) {
       throw new Error(e.message);
     }
+  }
+
+  // Make Authorisation Token
+  makeToken(mailboxID) {
+    let token = 'NHSMESH ' + mailboxID.toUpperCase();
+
+    return token;
   }
 
   // Publish event
