@@ -1,5 +1,9 @@
 // mesh-channel.js - MESH output channel
 
+const validUrl = require('valid-url');
+const uuidv4 = require('uuid/v4');
+const dateFormat = require('dateformat');
+const crypto = require('crypto');
 const axios = require('axios');
 
 // Class to send event using MESH
@@ -13,6 +17,9 @@ class MeshChannel {
     }
     if (config.url == undefined) {
       throw new Error('MeshChannel.constructor(config) - config.url undefined.');
+    }
+    if (!validUrl.isUri(config.url)) {
+      throw new Error('MeshChannel.constructor(config) - config.url invalid.');
     }
     if (config.sendersMailboxID == undefined) {
       throw new Error('MeshChannel.constructor(config) - config.sendersMailboxID undefined.');
@@ -29,6 +36,9 @@ class MeshChannel {
     if (config.password == undefined) {
       throw new Error('MeshChannel.constructor(config) - config.password undefined.');
     }
+    if (config.sharedKey == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.sharedKey undefined.');
+    }
 
     try {
 
@@ -38,8 +48,17 @@ class MeshChannel {
   }
 
   // Make Authorisation Token
-  makeToken(mailboxID) {
-    let token = 'NHSMESH ' + mailboxID.toUpperCase();
+  makeToken(mailboxID, password, secret) {
+    // Check arguments
+    if (arguments.length != 3) {
+      throw new Error('MeshChannel.makeToken(mailboxID, password, secret) - invalid number of arguments.');
+    }
+    
+    let nonce = uuidv4();
+    let timeStamp = Date.now();
+    let hmac = crypto.createHmac('sha256', secret);
+    hmac.update(mailboxID.toUpperCase() + ':' + nonce + ':001:' + password + ':' + dateFormat(timeStamp, 'yyyymmddHHMM'));
+    let token = 'NHSMESH ' + mailboxID.toUpperCase() + ':' + nonce + ':001:' + dateFormat(timeStamp, 'yyyymmddHHMM') + ':' + hmac.digest('hex');
 
     return token;
   }

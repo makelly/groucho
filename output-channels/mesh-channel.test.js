@@ -15,6 +15,12 @@ describe('Class MeshChannel tests', () => {
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   })
 
+  it('should throw error for create MeshChannel object invalid config.url argument', () => {
+    let config = {url: 'some text'};
+
+    expect(() => {new channel.MeshChannel(config);}).toThrow();
+  })
+
   it('should throw error for create MeshChannel object missing config.sendersMailboxID argument', () => {
     let config = {url: 'https://127.0.0.1'};
 
@@ -55,13 +61,35 @@ describe('Class MeshChannel tests', () => {
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   })
 
-  it('should create MeshChannel object', () => {
+  it('should throw error for create MeshChannel object missing config.password argument', () => {
+    let config = {url: 'https://127.0.0.1',
+    sendersMailboxID: 'SENDER',
+    recipientMailboxID: 'RECIPIENT',
+    workflowID: 'WFID',
+    userID: 'UID'};
+
+    expect(() => {new channel.MeshChannel(config);}).toThrow();
+  })
+
+  it('should throw error for create MeshChannel object missing config.sharedKey argument', () => {
     let config = {url: 'https://127.0.0.1',
     sendersMailboxID: 'SENDER',
     recipientMailboxID: 'RECIPIENT',
     workflowID: 'WFID',
     userID: 'UID',
     password: 'PASSWORD'};
+
+    expect(() => {new channel.MeshChannel(config);}).toThrow();
+  })
+
+  it('should create MeshChannel object', () => {
+    let config = {url: 'https://127.0.0.1',
+    sendersMailboxID: 'SENDER',
+    recipientMailboxID: 'RECIPIENT',
+    workflowID: 'WFID',
+    userID: 'UID',
+    password: 'PASSWORD',
+    sharedKey: 'HMAC-SHA256'};
 
     let mesh = new channel.MeshChannel(config);
 
@@ -74,7 +102,8 @@ describe('Class MeshChannel tests', () => {
     recipientMailboxID: 'RECIPIENT',
     workflowID: 'WFID',
     userID: 'UID',
-    password: 'PASSWORD'};
+    password: 'PASSWORD',
+    sharedKey: 'HMAC-SHA256'};
     let mesh = new channel.MeshChannel(config);
 
     expect(() => {mesh.publish(undefined, 'xml');}).toThrow();
@@ -86,7 +115,8 @@ describe('Class MeshChannel tests', () => {
     recipientMailboxID: 'RECIPIENT',
     workflowID: 'WFID',
     userID: 'UID',
-    password: 'PASSWORD'};
+    password: 'PASSWORD',
+    sharedKey: 'HMAC-SHA256'};
     let mesh = new channel.MeshChannel(config);
 
     expect(() => {mesh.publish('Anything', undefined);}).toThrow();
@@ -98,7 +128,8 @@ describe('Class MeshChannel tests', () => {
     recipientMailboxID: 'RECIPIENT',
     workflowID: 'WFID',
     userID: 'UID',
-    password: 'PASSWORD'};
+    password: 'PASSWORD',
+    sharedKey: 'HMAC-SHA256'};
     let mesh = new channel.MeshChannel(config);
 
     expect(() => {mesh.publish('Anything', 'Anything');}).toThrow();
@@ -110,10 +141,12 @@ describe('Class MeshChannel tests', () => {
     recipientMailboxID: 'RECIPIENT',
     workflowID: 'WFID',
     userID: 'UID',
-    password: 'PASSWORD'};
+    password: 'PASSWORD',
+    sharedKey: 'HMAC-SHA256'};
     let mesh = new channel.MeshChannel(config);
-    let token = mesh.makeToken("MAILID");
+    let token = mesh.makeToken('MAILID', 'password', 'secret');
 
+    console.log('Token ', token);
     expect(token).toExist();
   });
 

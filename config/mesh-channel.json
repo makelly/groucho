@@ -4,5 +4,6 @@
   "recipientMailboxID": "RECIPIENT",
   "workflowID": "WFID",
   "userID": "UID",
-  "password": "PASSWORD"
+  "password": "PASSWORD",
+  "sharedKey": "HMAC-SHA256"
 }
