@@ -1,6 +1,6 @@
 {
   "resourceType": "Bundle",
-  "id": "a8ca980c-72aa-11e7-8cf7-a6006ad3dba0",
+  "id": "f8fe1013-39e4-43fa-9e05-fb8adc3ccb5f",
   "meta": {
     "profile": [
       "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"
@@ -9,10 +9,10 @@
   "type": "message",
   "entry": [
     {
-      "fullUrl": "urn:uuid:5b666bdf-6d85-44d1-bb14-cb24914813ae",
+      "fullUrl": "urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "5b666bdf-6d85-44d1-bb14-cb24914813ae",
+        "id": "9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"
@@ -34,29 +34,29 @@
         ],
         "event": {
           "system": "https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1",
-          "code": "CH001",
-          "display": "Additional Demographics"
+          "code": "CH034",
+          "display": "Blood Spot Card Received"
         },
         "timestamp": "2017-11-01T15:00:00+00:00",
         "source": {
-          "endpoint": "urn:nhs-uk:addressing:ods:A83627"
+          "endpoint": "urn:nhs-uk:addressing:ods:RX3EP"
         },
         "responsible": {
-          "reference": "urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
-          "display": "SILVERDALE FAMILY PRACTICE"
+          "reference": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
+          "display": "UNIVERSITY HOSPITAL OF NORTH DURHAM"
         },
         "focus": [
           {
-            "reference": "urn:uuid:12779557-9033-4213-876f-69a670cdf35d"
+            "reference": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
+      "fullUrl": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
       "resource": {
         "resourceType": "Organization",
-        "id": "3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
+        "id": "33a33b58-648a-4453-b981-e21ea9ebc6ea",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
@@ -65,44 +65,43 @@
         "identifier": [
           {
             "system": "https://fhir.nhs.uk/Id/ods-organization-code",
-            "value": "A83627"
+            "value": "RX3EP"
           }
         ],
-        "name": "SILVERDALE FAMILY PRACTICE",
+        "name": "UNIVERSITY HOSPITAL OF NORTH DURHAM",
         "address": [
           {
             "line": [
-              "FRONT STREET",
-              "SOUTH HETTON"
+              "NORTH ROAD"
             ],
             "city": "DURHAM",
             "district": "COUNTY DURHAM",
-            "postalCode": "DH6 2TH"
+            "postalCode": "DH1 5TW"
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:47032621-220a-433e-9b64-94056e988730",
+      "fullUrl": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb",
       "resource": {
         "resourceType": "HealthcareService",
-        "id": "47032621-220a-433e-9b64-94056e988730",
+        "id": "5a293df7-b22f-41b6-8bf1-44248ea59edb",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"
           ]
         },
         "providedBy": {
-          "reference": "urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
-          "display": "SILVERDALE FAMILY PRACTICE"
+          "reference": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
+          "display": "UNIVERSITY HOSPITAL OF NORTH DURHAM"
         },
         "type": [
           {
             "coding": [
               {
                 "system": "http://snomed.info/sct",
-                "code": "1060971000000108",
-                "display": "General practice service"
+                "code": "708196005",
+                "display": "Haematology service"
               }
             ]
           }
@@ -182,45 +181,48 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:12779557-9033-4213-876f-69a670cdf35d",
+      "fullUrl": "urn:uuid:f1f64944-8191-4730-8f0b-d0a43517085f",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "f1f64944-8191-4730-8f0b-d0a43517085f",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-NewbornBloodSpotScreening-Specimen-1"
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"
+        },
+        "receivedTime": "0900"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
       "resource": {
         "resourceType": "Encounter",
-        "id": "12779557-9033-4213-876f-69a670cdf35d",
+        "id": "1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"
           ]
         },
         "status": "finished",
-        "type": [
-          {
-            "coding": [
-              {
-                "system": "https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEncounterType-1",
-                "code": "0028",
-                "display": "GP Appointment"
-              }
-            ]
-          }
-        ],
         "subject": {
           "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
           "display": "DAWKINS, Jack"
         },
         "period": {
-          "start": "2017-10-01"
+          "start": "2018-01-29"
         },
         "location": [
           {
             "location": {
-              "reference": "urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7",
-              "display": "Silverdale Family Practice"
+              "reference": "urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"
             }
           }
         ],
         "serviceProvider": {
-          "reference": "urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
-          "display": "SILVERDALE FAMILY PRACTICE"
+          "reference": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"
         }
       }
     },
@@ -237,10 +239,9 @@
         "identifier": [
           {
             "system": "https://fhir.nhs.uk/Id/ods-site-code",
-            "value": "A83627"
+            "value": "RX3EP"
           }
-        ],
-        "name": "SILVERDALE FAMILY PRACTICE"
+        ]
       }
     }
   ]

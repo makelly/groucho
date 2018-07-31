@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
-	<id value="a8ca980c-72aa-11e7-8cf7-a6006ad3dba0"/>
+	<id value="f8fe1013-39e4-43fa-9e05-fb8adc3ccb5f"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
 	<entry>
-		<fullUrl value="urn:uuid:5b666bdf-6d85-44d1-bb14-cb24914813ae"/>
+		<fullUrl value="urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
 		<resource>
 			<MessageHeader>
-				<id value="5b666bdf-6d85-44d1-bb14-cb24914813ae"/>
+				<id value="9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
 				</meta>
@@ -24,65 +24,64 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="CH001"/>
-					<display value="Additional Demographics"/>
+					<code value="CH034"/>
+					<display value="Blood Spot Card Received"/>
 				</event>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
 				</source>
 				<responsible>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</responsible>
 				<focus>
-					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+					<reference value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 				</focus>
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible Org-->
+	<!--Responsible Org Blood Spot-->
 	<entry>
-		<fullUrl value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 		<resource>
 			<Organization>
-				<id value="3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="A83627"/>
+					<value value="RX3EP"/>
 				</identifier>
-				<name value="SILVERDALE FAMILY PRACTICE"/>
+				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				<address>
-					<line value="FRONT STREET"/>
-					<line value="SOUTH HETTON"/>
+					<line value="NORTH ROAD"/>
 					<city value="DURHAM"/>
 					<district value="COUNTY DURHAM"/>
-					<postalCode value="DH6 2TH"/>
+					<postalCode value="DH1 5TW"/>
 				</address>
 			</Organization>
 		</resource>
 	</entry>
 	<!--Healthcare service used e.g GP, trust, etc..-->
 	<entry>
-		<fullUrl value="urn:uuid:47032621-220a-433e-9b64-94056e988730"/>
+		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 		<resource>
 			<HealthcareService>
-				<id value="47032621-220a-433e-9b64-94056e988730"/>
+				<id value="5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
 				<providedBy>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</providedBy>
 				<type>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="1060971000000108"/>
-						<display value="General practice service"/>
+						<code value="708196005"/>
+						<display value="Haematology service"/>
 					</coding>
 				</type>
 				<location>
@@ -95,7 +94,7 @@
 			</HealthcareService>
 		</resource>
 	</entry>
-	<!-- Patient-->
+	<!--Child Details (Jack Dawkins)-->
 	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 		<resource>
@@ -137,44 +136,51 @@
 			</Patient>
 		</resource>
 	</entry>
-	<!--Additional Demographics Encounter details-->
+	<!--Blood Spot Received-->
 	<entry>
-		<fullUrl value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+		<fullUrl value="urn:uuid:f1f64944-8191-4730-8f0b-d0a43517085f"/>
+		<resource>
+			<Specimen>
+				<id value="f1f64944-8191-4730-8f0b-d0a43517085f"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-NewbornBloodSpotScreening-Specimen-1"/>
+				</meta>
+				<subject>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				</subject>
+				<receivedTime value="0900"/>
+			</Specimen>
+		</resource>
+	</entry>
+	<!--Blood Spot Encounter details-->
+	<entry>
+		<fullUrl value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 		<resource>
 			<Encounter>
-				<id value="12779557-9033-4213-876f-69a670cdf35d"/>
+				<id value="1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
 				<status value="finished"/>
-				<type>
-					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEncounterType-1"/>
-						<code value="0028"/>
-						<display value="GP Appointment"/>
-					</coding>
-				</type>
 				<subject>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 					<display value="DAWKINS, Jack"/>
 				</subject>
 				<period>
-					<start value="2017-10-01"/>
+					<start value="2018-01-29"/>
 				</period>
 				<location>
 					<location>
 						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="Silverdale Family Practice"/>
 					</location>
 				</location>
 				<serviceProvider>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 				</serviceProvider>
 			</Encounter>
 		</resource>
 	</entry>
-	<!--Location where event took place-->
+	<!--Location where event took place (Pathology Site)-->
 	<entry>
 		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
 		<resource>
@@ -185,9 +191,8 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="A83627"/>
+					<value value="RX3EP"/>
 				</identifier>
-				<name value="SILVERDALE FAMILY PRACTICE"/>
 			</Location>
 		</resource>
 	</entry>

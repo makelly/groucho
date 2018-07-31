@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
-	<id value="f14bbabb-0592-4b58-96b1-93dbb6631106"/>
+	<id value="aea21426-8d45-4dea-baec-5856fb6c0f40"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
-			<entry>
-		<fullUrl value="urn:uuid:b9c63b5e-a88e-47d3-9d45-081ebe9e48b5"/>
+	<entry>
+		<fullUrl value="urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
 		<resource>
 			<MessageHeader>
-				<id value="b9c63b5e-a88e-47d3-9d45-081ebe9e48b5"/>
+				<id value="9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
 				</meta>
@@ -24,29 +24,29 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="CH002"/>
-					<display value="Admission Details"/>
+					<code value="CH006"/>
+					<display value="Blood Spot Sample Taken"/>
 				</event>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
 				</source>
 				<responsible>
-					<reference value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</responsible>
 				<focus>
-					<reference value="urn:uuid:58df44c5-2b01-4425-bd9a-985ac73152d0"/>
+					<reference value="urn:uuid:376a6bbd-abe9-43b9-9be9-d86090025e6d"/>
 				</focus>
 			</MessageHeader>
 		</resource>
 	</entry>
-<!--Responsible for message content (Admission)-->
+	<!--Responsible Org Blood Spot-->
 	<entry>
-		<fullUrl value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 		<resource>
 			<Organization>
-				<id value="e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
@@ -64,38 +64,38 @@
 			</Organization>
 		</resource>
 	</entry>
-<!--Healthcare service used e.g GP, trust, etc..-->
+	<!--Healthcare service used e.g GP, trust, etc..-->
 	<entry>
-		<fullUrl value="urn:uuid:aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"/>
+		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 		<resource>
 			<HealthcareService>
-				<id value="aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"/>
+				<id value="5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
 				<providedBy>
-					<reference value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
-					<display value="UNIVERSITY HOSPITAL OF DURHAM "/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</providedBy>
 				<type>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="714088003"/>
-						<display value="Midwifery Service"/>
+						<code value="708196005"/>
+						<display value="Haematology service"/>
 					</coding>
 				</type>
 				<location>
-					<reference value="urn:uuid:30f11523-4d42-4853-b060-896686e2b6c7"/>
+					<reference value="urn:uuid:02692f55-56cf-4dda-8ef5-e9ec13f6bd99"/>
 				</location>
 				<telecom>
-				<system value="phone"/>
+					<system value="phone"/>
 					<value value="0191 1231234"/>
 				</telecom>
 			</HealthcareService>
 		</resource>
 	</entry>
-<!-- Patient-->
-		<entry>
+	<!--Child Details (Jack Dawkins)-->
+	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 		<resource>
 			<Patient>
@@ -136,12 +136,71 @@
 			</Patient>
 		</resource>
 	</entry>
-<!--Encounter details-->
+	<!--Bloodspot Screening Procedure Request-->
 	<entry>
-		<fullUrl value="urn:uuid:58df44c5-2b01-4425-bd9a-985ac73152d0"/>
+		<fullUrl value="urn:uuid:09e503d7-a06e-4b5a-8dfb-30cd3b65c690"/>
+		<resource>
+			<ProcedureRequest>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-NewbornBloodSpotScreening-ProcedureRequest-1"/>
+				</meta>
+				<status value="completed"/>
+				<intent value="order"/>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="428447008"/>
+						<display value="Newborn blood spot screening"/>
+					</coding>
+				</code>
+				<subject>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				</subject>
+				<context>
+					<reference value="urn:uuid:376a6bbd-abe9-43b9-9be9-d86090025e6d"/>
+				</context>
+				<authoredOn value="2018-03-23"/>
+				<requester>
+					<agent>
+						<reference value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
+					</agent>
+				</requester>
+			</ProcedureRequest>
+		</resource>
+	</entry>
+	<!--Blood Spot Sample taken Procedure-->
+	<entry>
+		<fullUrl value="urn:uuid:796a220c-7888-46ac-962e-46c971e1dbdf"/>
+		<resource>
+			<Procedure>
+				<id value="796a220c-7888-46ac-962e-46c971e1dbdf"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-NewbornBloodSpotSampleTaken-Procedure-1"/>
+				</meta>
+				<status value="completed"/>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="898271000000100"/>
+						<display value="Completion of newborn blood spot screening card (procedure)"/>
+					</coding>
+				</code>
+				<subject>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				</subject>
+				<context>
+					<reference value="urn:uuid:376a6bbd-abe9-43b9-9be9-d86090025e6d"/>
+				</context>
+				<performedDateTime value="2017-10-13"/>
+			</Procedure>
+		</resource>
+	</entry>
+	<!--Blood Spot Encounter details-->
+	<entry>
+		<fullUrl value="urn:uuid:376a6bbd-abe9-43b9-9be9-d86090025e6d"/>
 		<resource>
 			<Encounter>
-				<id value="58df44c5-2b01-4425-bd9a-985ac73152d0"/>
+				<id value="376a6bbd-abe9-43b9-9be9-d86090025e6d"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
@@ -151,28 +210,25 @@
 					<display value="DAWKINS, Jack"/>
 				</subject>
 				<period>
-					<start value="2018-01-29"/>
-					<end value="2018-02-02"/>
+					<start value="2014-10-12"/>
 				</period>
 				<location>
 					<location>
-						<reference value="urn:uuid:30f11523-4d42-4853-b060-896686e2b6c7"/>
-						<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+						<reference value="urn:uuid:02692f55-56cf-4dda-8ef5-e9ec13f6bd99"/>
 					</location>
 				</location>
 				<serviceProvider>
-					<reference value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
-					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+					<reference value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 				</serviceProvider>
 			</Encounter>
 		</resource>
 	</entry>
-<!--Practitioner-->
+	<!--Practitioner-->
 	<entry>
-		<fullUrl value="urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
+		<fullUrl value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 		<resource>
 			<Practitioner>
-				<id value="3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
+				<id value="1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
 				</meta>
@@ -188,34 +244,12 @@
 			</Practitioner>
 		</resource>
 	</entry>
-<!--Practitioner Role-->
+	<!--Location where event took place (Maternity Site)-->
 	<entry>
-		<fullUrl value="urn:uuid:b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
-		<resource>
-			<PractitionerRole>
-				<id value="b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-PractitionerRole-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
-					<value value="PT2468"/>
-				</identifier>
-				<practitioner>
-					<reference value="urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
-				</practitioner>
-				<organization>
-					<reference value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
-				</organization>
-			</PractitionerRole>
-		</resource>
-	</entry>
-<!--Location where event took place-->
-	<entry>
-		<fullUrl value="urn:uuid:30f11523-4d42-4853-b060-896686e2b6c7"/>
+		<fullUrl value="urn:uuid:02692f55-56cf-4dda-8ef5-e9ec13f6bd99"/>
 		<resource>
 			<Location>
-				<id value="30f11523-4d42-4853-b060-896686e2b6c7"/>
+				<id value="02692f55-56cf-4dda-8ef5-e9ec13f6bd99"/>
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
 				</meta>
@@ -223,7 +257,6 @@
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
 					<value value="RX3EP"/>
 				</identifier>
-				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 			</Location>
 		</resource>
 	</entry>

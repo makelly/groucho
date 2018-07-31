@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
-	<id value="a8ca980c-72aa-11e7-8cf7-a6006ad3dba0"/>
+	<id value="4a691c2c-f6d0-4fd6-90ff-51644333e121"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
+	<!--Message Header-->
 	<entry>
-		<fullUrl value="urn:uuid:5b666bdf-6d85-44d1-bb14-cb24914813ae"/>
+		<fullUrl value="urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
 		<resource>
 			<MessageHeader>
-				<id value="5b666bdf-6d85-44d1-bb14-cb24914813ae"/>
+				<id value="85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
 				</meta>
@@ -24,16 +25,16 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="CH001"/>
-					<display value="Additional Demographics"/>
+					<code value="CH008"/>
+					<display value="Conditions / Diagnoses"/>
 				</event>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
 				</source>
 				<responsible>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
@@ -41,48 +42,51 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible Org-->
+	<!--Responsible for message content-->
 	<entry>
-		<fullUrl value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 		<resource>
 			<Organization>
-				<id value="3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="A83627"/>
+					<value value="RX3EP"/>
 				</identifier>
-				<name value="SILVERDALE FAMILY PRACTICE"/>
+				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				<address>
-					<line value="FRONT STREET"/>
-					<line value="SOUTH HETTON"/>
+					<line value="NORTH ROAD"/>
 					<city value="DURHAM"/>
 					<district value="COUNTY DURHAM"/>
-					<postalCode value="DH6 2TH"/>
+					<postalCode value="DH1 5TW"/>
 				</address>
 			</Organization>
 		</resource>
 	</entry>
 	<!--Healthcare service used e.g GP, trust, etc..-->
 	<entry>
-		<fullUrl value="urn:uuid:47032621-220a-433e-9b64-94056e988730"/>
+		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 		<resource>
 			<HealthcareService>
-				<id value="47032621-220a-433e-9b64-94056e988730"/>
+				<id value="5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
+				<identifier>
+					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
+				</identifier>
 				<providedBy>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF DURHAM "/>
 				</providedBy>
 				<type>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="1060971000000108"/>
-						<display value="General practice service"/>
+						<code value="708170008"/>
+						<display value="Nursing service"/>
 					</coding>
 				</type>
 				<location>
@@ -95,7 +99,7 @@
 			</HealthcareService>
 		</resource>
 	</entry>
-	<!-- Patient-->
+	<!--Child Details (Jack Dawkins)-->
 	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 		<resource>
@@ -137,7 +141,7 @@
 			</Patient>
 		</resource>
 	</entry>
-	<!--Additional Demographics Encounter details-->
+	<!--Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
 		<resource>
@@ -146,32 +150,93 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
+				<identifier>
+					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<value value="94ef4041-42f0-4e7a-946e-18e908d43404"/>
+				</identifier>
 				<status value="finished"/>
-				<type>
-					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEncounterType-1"/>
-						<code value="0028"/>
-						<display value="GP Appointment"/>
-					</coding>
-				</type>
 				<subject>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 					<display value="DAWKINS, Jack"/>
 				</subject>
 				<period>
-					<start value="2017-10-01"/>
+					<start value="2018-01-29"/>
 				</period>
 				<location>
 					<location>
 						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="Silverdale Family Practice"/>
+						<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 					</location>
 				</location>
 				<serviceProvider>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</serviceProvider>
 			</Encounter>
+		</resource>
+	</entry>
+	<!--Condition/Diagnoses-->
+	<entry>
+		<fullUrl value="urn:uuid:f74658b4-f667-4385-9b6f-7c4305b4f743"/>
+		<resource>
+			<Condition>
+				<id value="f74658b4-f667-4385-9b6f-7c4305b4f743"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Diagnosis-Condition-1"/>
+				</meta>
+				<category>
+					<coding>
+						<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
+						<code value="diagnosis"/>
+						<display value="Diagnosis"/>
+					</coding>
+				</category>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="195967001"/>
+						<display value="Asthma (disorder)"/>
+					</coding>
+				</code>
+				<subject>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				</subject>
+				<context>
+					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+				</context>
+			</Condition>
+		</resource>
+	</entry>
+	<!--Condition/Diagnoses. Needs review due to problem codes not being suitable.-->
+	<entry>
+		<fullUrl value="urn:uuid:8af239ca-80bf-43c4-9b12-4d309a6cfb6c"/>
+		<resource>
+			<Condition>
+				<id value="8af239ca-80bf-43c4-9b12-4d309a6cfb6c"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Diagnosis-Condition-1"/>
+				</meta>
+				<category>
+					<coding>
+						<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
+						<code value="diagnosis"/>
+						<display value="Diagnosis"/>
+					</coding>
+				</category>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="413350009"/>
+						<display value="Finding with explicit context (situation)"/>
+					</coding>
+				</code>
+				<subject>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				</subject>
+				<context>
+					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+				</context>
+			</Condition>
 		</resource>
 	</entry>
 	<!--Location where event took place-->
@@ -185,9 +250,9 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="A83627"/>
+					<value value="RX3EP"/>
 				</identifier>
-				<name value="SILVERDALE FAMILY PRACTICE"/>
+				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 			</Location>
 		</resource>
 	</entry>

@@ -1,6 +1,6 @@
 {
   "resourceType": "Bundle",
-  "id": "37c05c52-b929-43fa-83fc-f7630af95cd6",
+  "id": "97be8432-5a9a-4c71-a083-b337323b8d6d",
   "meta": {
     "profile": [
       "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"
@@ -34,8 +34,8 @@
         ],
         "event": {
           "system": "https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1",
-          "code": "CH003",
-          "display": "Allergies and Adverse Reactions"
+          "code": "CH005",
+          "display": "Birth Details"
         },
         "timestamp": "2017-11-01T15:00:00+00:00",
         "source": {
@@ -82,10 +82,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca",
+      "fullUrl": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb",
       "resource": {
         "resourceType": "HealthcareService",
-        "id": "aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca",
+        "id": "5a293df7-b22f-41b6-8bf1-44248ea59edb",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"
@@ -100,15 +100,15 @@
             "coding": [
               {
                 "system": "http://snomed.info/sct",
-                "code": "708170008",
-                "display": "Nursing service"
+                "code": "714088003",
+                "display": "Midwifery Service"
               }
             ]
           }
         ],
         "location": [
           {
-            "reference": "urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890"
+            "reference": "urn:uuid:291ff33b-1904-4c0f-9c9b-33d7d0cec6a9"
           }
         ],
         "telecom": [
@@ -123,17 +123,17 @@
       "fullUrl": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
       "resource": {
         "resourceType": "Patient",
-        "id": "5d5845f3-398f-474b-af59-14882fc7b0ca",
+        "id": "7368c5fe-bbb4-4e9c-a585-234e06b84e82",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Baby-Patient-1"
           ]
         },
         "identifier": [
           {
             "extension": [
               {
-                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1",
+                "url": "https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1",
                 "valueCodeableConcept": {
                   "coding": [
                     {
@@ -159,12 +159,12 @@
           }
         ],
         "gender": "male",
-        "birthDate": "2013-10-12",
+        "birthDate": "2017-10-02",
         "_birthDate": {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-              "valueDateTime": "2017-10-02T12:00:00+00:00"
+              "valueDateTime": "2017-10-02T20:12:00+00:00"
             }
           ]
         },
@@ -177,61 +177,182 @@
             "city": "DURHAM",
             "postalCode": "DH1 2TF"
           }
+        ],
+        "multipleBirthInteger": 1
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4bec6095-3391-4e10-a906-d08803267c87",
+      "resource": {
+        "resourceType": "Observation",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-NumberOfBirths-Observation-1"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "382341000000101",
+              "display": "Total number of registerable births at delivery"
+            }
+          ]
+        },
+        "context": {
+          "reference": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"
+        },
+        "valueQuantity": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2c1aa48f-e96c-4294-b7eb-77b439b31967",
+      "resource": {
+        "resourceType": "Observation",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-LengthOfGestation-Observation-1"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "412726003",
+              "display": "Length of gestation at birth"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"
+        },
+        "context": {
+          "reference": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "258705008",
+                  "display": "weeks"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 40
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "258703001",
+                  "display": "days"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 3
+            }
+          }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:89433cac-6226-428d-99c1-988cd8f31a18",
+      "fullUrl": "urn:uuid:d75738b8-60c8-4d13-b3b6-5e4a606130ee",
       "resource": {
-        "resourceType": "AllergyIntolerance",
-        "id": "89433cac-6226-428d-99c1-988cd8f31a18",
+        "resourceType": "Observation",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-APGARScore-Observation-1"
           ]
         },
-        "clinicalStatus": "active",
-        "verificationStatus": "confirmed",
+        "status": "final",
         "code": {
           "coding": [
             {
               "system": "http://snomed.info/sct",
-              "code": "373270004",
-              "display": "Penicillin -class of antibiotic- (substance)"
+              "code": "169895004",
+              "display": "Apgar score at 1 minute (observable entity)"
             }
           ]
         },
-        "patient": {
+        "subject": {
           "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"
         },
-        "assertedDate": "2018-01-29"
+        "context": {
+          "reference": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"
+        },
+        "valueQuantity": {
+          "value": 8
+        }
       }
     },
     {
-      "fullUrl": "urn:uuid:fd44604e-eea1-4a9f-9b29-4606f8b5cbd5",
+      "fullUrl": "urn:uuid:d8465c7e-92db-4bc4-9c5a-2db34b1b1742",
       "resource": {
-        "resourceType": "AllergyIntolerance",
-        "id": "fd44604e-eea1-4a9f-9b29-4606f8b5cbd5",
+        "resourceType": "Observation",
+        "id": "d8465c7e-92db-4bc4-9c5a-2db34b1b1742",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-APGARScore-Observation-1"
           ]
         },
-        "clinicalStatus": "active",
-        "verificationStatus": "confirmed",
+        "status": "final",
         "code": {
           "coding": [
             {
               "system": "http://snomed.info/sct",
-              "code": "373270004",
-              "display": "Penicillin -class of antibiotic- (substance)"
+              "code": "169909004",
+              "display": "Apgar score at 5 minutes (observable entity)"
             }
           ]
         },
-        "patient": {
+        "subject": {
           "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"
         },
-        "assertedDate": "2018-01-29"
+        "context": {
+          "reference": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"
+        },
+        "valueQuantity": {
+          "value": 10
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6d129389-0872-4749-b221-e6b12d7e3c30",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "6d129389-0872-4749-b221-e6b12d7e3c30",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-FinalDeliveryType-Procedure-1"
+          ]
+        },
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "395683001",
+              "display": "Born by normal vaginal delivery"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
+          "display": "DAWKINS, Jack"
+        },
+        "context": {
+          "reference": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"
+        }
       }
     },
     {
@@ -241,7 +362,7 @@
         "id": "1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Birth-Encounter-1"
           ]
         },
         "status": "finished",
@@ -250,25 +371,25 @@
           "display": "DAWKINS, Jack"
         },
         "period": {
-          "start": "2018-01-29"
+          "start": "2014-10-12"
         },
         "location": [
           {
             "location": {
-              "reference": "urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890"
+              "reference": "urn:uuid:291ff33b-1904-4c0f-9c9b-33d7d0cec6a9"
             }
           }
         ],
         "serviceProvider": {
-          "reference": "urn:uuid:aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"
+          "reference": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"
         }
       }
     },
     {
-      "fullUrl": "urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890",
+      "fullUrl": "urn:uuid:291ff33b-1904-4c0f-9c9b-33d7d0cec6a9",
       "resource": {
         "resourceType": "Location",
-        "id": "9fb9d531-84dd-421e-8f4a-a309d9ff7890",
+        "id": "291ff33b-1904-4c0f-9c9b-33d7d0cec6a9",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"
