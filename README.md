@@ -20,7 +20,7 @@ A template file is a FHIR event message bundle, in XML or JSON format, that has 
 
 Template files live in the directory `/templates`
 
-A list of templates is provided [here.](../templates/TEMPLATE.md)
+A list of templates is provided [here.](TEMPLATE.md)
 
 The following Handlebars expressions are used in all templates:
 
