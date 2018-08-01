@@ -6,6 +6,8 @@ const dateFormat = require('dateformat');
 const crypto = require('crypto');
 const axios = require('axios');
 
+const MAX_NONCE_COUNT = 1000;
+
 // Class to send event using MESH
 class MeshChannel {
   // constructor
@@ -21,8 +23,8 @@ class MeshChannel {
     if (!validUrl.isUri(config.url)) {
       throw new Error('MeshChannel.constructor(config) - config.url invalid.');
     }
-    if (config.sendersMailboxID == undefined) {
-      throw new Error('MeshChannel.constructor(config) - config.sendersMailboxID undefined.');
+    if (config.senderMailboxID == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.senderMailboxID undefined.');
     }
     if (config.recipientMailboxID == undefined) {
       throw new Error('MeshChannel.constructor(config) - config.recipientMailboxID undefined.');
@@ -30,36 +32,40 @@ class MeshChannel {
     if (config.workflowID == undefined) {
       throw new Error('MeshChannel.constructor(config) - config.workflowID undefined.');
     }
-    if (config.userID == undefined) {
-      throw new Error('MeshChannel.constructor(config) - config.userID undefined.');
-    }
-    if (config.password == undefined) {
-      throw new Error('MeshChannel.constructor(config) - config.password undefined.');
+    if (config.senderMailboxPassword == undefined) {
+      throw new Error('MeshChannel.constructor(config) - config.senderMailboxPassword undefined.');
     }
     if (config.sharedKey == undefined) {
       throw new Error('MeshChannel.constructor(config) - config.sharedKey undefined.');
     }
 
-    try {
-
-    } catch(e) {
-      throw new Error(e.message);
-    }
+    // Store config values
+    this.config = config;
+    // Create nonce
+    this.nonce = uuidv4();
+    // Set nonce count to 1
+    this.nonceCount = 1;
   }
 
-  // Make Authorisation Token
-  makeToken(mailboxID, password, secret) {
-    // Check arguments
-    if (arguments.length != 3) {
-      throw new Error('MeshChannel.makeToken(mailboxID, password, secret) - invalid number of arguments.');
+  // Make Authorization Token
+  makeToken() {
+    // Check if nonceCount has reached MAX
+    if (this.nonceCount == MAX_NONCE_COUNT) {
+      // Create new nonce
+      this.nonce = uuidv4();
+      // Reset nonceCount to 1
+      this.nonceCount = 1;
     }
-    
-    let nonce = uuidv4();
+    // Get current date and time
     let timeStamp = Date.now();
-    let hmac = crypto.createHmac('sha256', secret);
-    hmac.update(mailboxID.toUpperCase() + ':' + nonce + ':001:' + password + ':' + dateFormat(timeStamp, 'yyyymmddHHMM'));
-    let token = 'NHSMESH ' + mailboxID.toUpperCase() + ':' + nonce + ':001:' + dateFormat(timeStamp, 'yyyymmddHHMM') + ':' + hmac.digest('hex');
-
+    // Create the HMAC-SHA256 Hash Code
+    let hmac = crypto.createHmac('sha256', this.config.sharedKey);
+    hmac.update(this.config.senderMailboxID.toUpperCase() + ':' + this.nonce + ':' + this.nonceCount.toString().padStart(3, '0') + ':' + this.config.senderMailboxPassword + ':' + dateFormat(timeStamp, 'yyyymmddHHMM'));
+    // Create token
+    let token = 'NHSMESH ' + this.config.senderMailboxID.toUpperCase() + ':' + this.nonce + ':' + this.nonceCount.toString().padStart(3, '0') + ':' + dateFormat(timeStamp, 'yyyymmddHHMM') + ':' + hmac.digest('hex');
+    // Increment the nonceCount
+    this.nonceCount++;
+    // Return token
     return token;
   }
 
@@ -77,7 +83,7 @@ class MeshChannel {
       case 'xml':
         break;
       default:
-        throw new Error(`InterSystemsChannel.publish(data, format) - format argument invalid. Value = ${format} expected xml | json .`);
+        throw new Error(`MeshChannel.publish(data, format) - format argument invalid. Value = ${format} expected xml | json .`);
     }
 
     // To Do

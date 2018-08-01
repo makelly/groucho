@@ -16,15 +16,11 @@ This is a Node.js application, therefore you need to first install Node.
 - [ ] UNDER CONSTRUCTION :construction:
 
 ## Templates
-- [ ] UNDER CONSTRUCTION :construction:
-
 A template file is a FHIR event message bundle, in XML or JSON format, that has elements marked up that will be replaced by data values. The [Handlebars templating language](http://handlebarsjs.com/), which is an extension to the well known Mustache templating language, is used to markup elements.
 
 Template files live in the directory `/templates`
 
-Template files use the following naming convention: `<event name and version if required>.template.<json | xml>`
-
-Examples: `physicalExamination.template.json   physicalExamination.template.xml`
+A list of templates is provided [here.](./templates/TEMPLATE.md)
 
 The following Handlebars expressions are used in all templates:
 

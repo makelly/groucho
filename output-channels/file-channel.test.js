@@ -6,6 +6,7 @@ const path = require('path');
 const channel = require('./file-channel.js');
 
 describe('Class FileChannel tests', () => {
+
   it('should throw error for create FileChannel object undefined config argument', () => {
     expect(() => {new channel.FileChannel(undefined);}).toThrow();
   });
@@ -43,4 +44,5 @@ describe('Class FileChannel tests', () => {
 
     expect(() => {file.publish('Anything', 'Anything');}).toThrow();
   });
+  
 });

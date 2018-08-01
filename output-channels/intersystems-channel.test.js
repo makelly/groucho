@@ -5,6 +5,7 @@ const expect = require('expect');
 const channel = require('./intersystems-channel.js');
 
 describe('Class InterSystemsChannel tests', () => {
+
   it('should throw error for create InterSystemsChannel object undefined config argument', () => {
     expect(() => {new channel.InterSystemsChannel(undefined);}).toThrow();
   });
@@ -43,4 +44,5 @@ describe('Class InterSystemsChannel tests', () => {
 
     expect(() => {isys.publish('Anything', 'Anything');}).toThrow();
   });
+  
 });

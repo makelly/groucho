@@ -19,6 +19,7 @@ const jsonOutputFile = 'testresult.json';
 const xmlOutputFile = 'testresult.xml';
 
 describe('Class UUID tests', () => {
+
   it('should create UUID object', () => {
     let uuid = new factory.UUID();
 
@@ -53,9 +54,11 @@ describe('Class UUID tests', () => {
 
     expect(uuid.getSize()).toBe(0);
   });
+
 });
 
 describe('Class DataBuilder tests', () => {
+
   it('should create DataBuilder object', () => {
     let db = new factory.DataBuilder();
 
@@ -106,7 +109,7 @@ describe('Class DataBuilder tests', () => {
     let data = factory.DataBuilder.build(publisherFile, providerFile, encounterFile, patientFile, eventFile);
 
     expect(data).toExist();
-  })
+  });
 
   it('should throw error for build() invalid publisher data file', () => {
     expect(() => {factory.DataBuilder.build(invalidFile, missingFile, missingFile, missingFile, missingFile);}).toThrow();
@@ -127,9 +130,11 @@ describe('Class DataBuilder tests', () => {
   it('should throw error for build() invalid event data file', () => {
     expect(() => {factory.DataBuilder.build(publisherFile, providerFile, encounterFile, patientFile, invalidFile);}).toThrow();
   });
+
 });
 
 describe('Class EventBuilder tests', () => {
+
   it('should create EventBuilder object', () => {
     let db = new factory.EventBuilder();
 
@@ -173,4 +178,5 @@ describe('Class EventBuilder tests', () => {
 
     expect(result).toExist();
   });
+  
 });

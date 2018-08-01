@@ -1,9 +1,8 @@
 {
   "url": "https://127.0.0.1",
-  "sendersMailboxID": "SENDER",
+  "senderMailboxID": "SENDER",
   "recipientMailboxID": "RECIPIENT",
   "workflowID": "WFID",
-  "userID": "UID",
-  "password": "PASSWORD",
+  "senderMailboxPassword": "PASSWORD",
   "sharedKey": "HMAC-SHA256"
 }
