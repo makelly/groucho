@@ -20,13 +20,9 @@ A template file is a FHIR event message bundle, in XML or JSON format, that has 
 
 Template files live in the directory `/templates`
 
-A list of templates is provided [here.](docs/TEMPLATES.md)
+A list of templates is provided [here](docs/TEMPLATES.md).
 
-The following Handlebars expressions are used in all templates:
-
-| Handlebars&nbsp;Expression       | Description |
-|---------------------|-------------|
-| `{{getUUID 'key'}}` | This will generate a new UUID and associate it with a key. If this is called again with the same key in the same template the UUID associated with the key will be returned. Note key values are case sensitive. |
+Details of the Handlebars expressions used is provided [here](docs/HANDLEBARS.md).
 
 ## Data
 - [ ] UNDER CONSTRUCTION :construction:

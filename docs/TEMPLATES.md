@@ -2,6 +2,9 @@
 Template files use the following naming convention: `<event name and version if required>.template.<json | xml>`
 
 Examples: `physicalExamination.template.json   physicalExamination.template.xml`
+
+*If you add new templates, please update the appropriate tables below.*
+
 ## Digital Child Health Events
 These are events that *could* be published by direct care systems.
 
