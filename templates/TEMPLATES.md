@@ -4,12 +4,15 @@ Template files use the following naming convention: `<event name and version if 
 Examples: `physicalExamination.template.json   physicalExamination.template.xml`
 ## Digital Child Health Events
 These are events that *could* be published by direct care systems.
+
 | File name | Description | Format |
 |-----------|-------------|--------|
 | additionalDemographics.template.json | Additional demographics. | JSON |
 | additionalDemographics.template.xml | Additional demographics. | XML |
+
 ## National Service Events
 These are events that would be published by national services. These can be used to allow Groucho to act as a *proxy publisher* of these events for testing purposes.
+
 | File name | Description | Format |
 |-----------|-------------|--------|
 | failsafeAlert.template.json | Failsafe alert from national failsafe service. | JSON |
