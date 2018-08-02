@@ -5,6 +5,7 @@ const expect = require('expect');
 const channel = require('./sink-channel.js');
 
 describe('Class SinkChannel tests', () => {
+
   it('should create SinkChannel object', () => {
     let sink = new channel.SinkChannel();
 
@@ -34,4 +35,5 @@ describe('Class SinkChannel tests', () => {
 
     expect(() => {sink.publish('Anything', 'Anything');}).toNotThrow();
   });
+
 });

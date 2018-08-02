@@ -2,6 +2,7 @@
 
 // Class to discard event sent to it
 class SinkChannel {
+
   // constructor
   constructor() {
     // Empty
@@ -11,6 +12,7 @@ class SinkChannel {
   publish(data, format) {
     // Do nothing
   }
+
 }
 
 // Export modules

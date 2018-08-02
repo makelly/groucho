@@ -7,6 +7,7 @@ const hbs = require('handlebars');
 
 // Class to create and manage UUIDs
 class UUID {
+
   // Constructor
   constructor() {
     this.map = new Map();
@@ -32,10 +33,12 @@ class UUID {
   getSize() {
     return this.map.size;
   }
+
 }
 
 // Class to build the data conext needed for a template
 class DataBuilder {
+
   // Constructor
   constructor () {
   }
@@ -54,11 +57,11 @@ class DataBuilder {
 
     try {
       // Get and build the data context
-      data.publisher = JSON.parse(fs.readFileSync(path.join(__dirname, '..', folder, publisherFileName), fileEncoding));
-      data.provider = JSON.parse(fs.readFileSync(path.join(__dirname, '..', folder, providerFileName), fileEncoding));
-      data.encounter = JSON.parse(fs.readFileSync(path.join(__dirname, '..', folder, encounterFileName), fileEncoding));
-      data.patient = JSON.parse(fs.readFileSync(path.join(__dirname, '..', folder, patientFileName), fileEncoding));
-      data.event = JSON.parse(fs.readFileSync(path.join(__dirname, '..', folder, eventFileName), fileEncoding));
+      data.publisher = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, publisherFileName), fileEncoding));
+      data.provider = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, providerFileName), fileEncoding));
+      data.encounter = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, encounterFileName), fileEncoding));
+      data.patient = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, patientFileName), fileEncoding));
+      data.event = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, eventFileName), fileEncoding));
       // Return data
       return data;
     } catch(e) {
@@ -66,10 +69,12 @@ class DataBuilder {
       throw new Error(e.message);
     }
   }
+
 }
 
 // Class to build event based on template and data context
 class EventBuilder {
+
   // Constructor
   constructor() {
   }
@@ -94,7 +99,7 @@ class EventBuilder {
       });
 
       // Get the JSON template source file
-      let source = fs.readFileSync(path.join(__dirname, '..', folder, templateFileName), fileEncoding);
+      let source = fs.readFileSync(path.join(__dirname, '../..', folder, templateFileName), fileEncoding);
       // Compile the template
       let template = hbs.compile(source);
       // Render template
@@ -106,6 +111,7 @@ class EventBuilder {
       throw new Error(e.message);
     }
   }
+  
 }
 
 // Export modules

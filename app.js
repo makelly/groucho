@@ -4,10 +4,10 @@
 const _ = require('lodash');
 const yargs = require('yargs');
 
-const inventory = require('./commands/inventory.js');
-const publish = require('./commands/publish.js');
-const point = require('./commands/point.js');
-const listen = require('./commands/listen.js');
+const inventory = require('./src/commands/inventory.js');
+const publish = require('./src/commands/publish.js');
+const point = require('./src/commands/point.js');
+const listen = require('./src/commands/listen.js');
 
 // Setup command-line arguments
 const inventoryCmd = 'inventory';

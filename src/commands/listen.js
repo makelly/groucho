@@ -1,15 +1,16 @@
-// publish.js - publish events
+// listen.js - listen for requests
 
-// Class to implement the publish command
-class PublishCommand {
+// Class to implement the listen command
+class ListenCommand {
+  
   // constructor
   constructor(verbose) {
     // Validate arguments
     if (verbose == undefined) {
-      throw new Error('PublishCommand.constructor(verbose) - verbose argument undefined.')
+      throw new Error('ListenCommand.constructor(verbose) - verbose argument undefined.')
     }
     if (typeof verbose != 'boolean') {
-      throw new Error('PublishCommand.constructor(verbose) - verbose argument invalid.');
+      throw new Error('ListenCommand.constructor(verbose) - verbose argument invalid.');
     }
 
     // Store arguments
@@ -26,5 +27,5 @@ class PublishCommand {
 
 // Export modules
 module.exports = {
-  PublishCommand
+  ListenCommand
 }

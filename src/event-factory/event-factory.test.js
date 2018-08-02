@@ -163,7 +163,7 @@ describe('Class EventBuilder tests', () => {
     // Build event
     let result = factory.EventBuilder.build(jsonTemplateFile, data);
     // Save to temp file for inspection
-    fs.writeFileSync(path.join(__dirname, '..', 'temp', jsonOutputFile), result);
+    fs.writeFileSync(path.join(__dirname, '../..', 'temp', jsonOutputFile), result);
 
     expect(result).toExist();
   });
@@ -174,9 +174,9 @@ describe('Class EventBuilder tests', () => {
     // Build event
     let result = factory.EventBuilder.build(xmlTemplateFile, data);
     // Save to temp file for insepction
-    fs.writeFileSync(path.join(__dirname, '..', 'temp', xmlOutputFile), result);
+    fs.writeFileSync(path.join(__dirname, '../..', 'temp', xmlOutputFile), result);
 
     expect(result).toExist();
   });
-  
+
 });

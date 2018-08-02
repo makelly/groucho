@@ -2,6 +2,7 @@
 
 // Class to save event as a file
 class FileChannel {
+
   // constructor
   constructor(config) {
     // config is a json object that defines the configuration values
@@ -40,6 +41,7 @@ class FileChannel {
 
     // evt-<datetime>-<rnd>.<xml | json>
   }
+
 }
 
 // Export modules

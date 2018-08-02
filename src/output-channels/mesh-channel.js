@@ -10,6 +10,7 @@ const MAX_NONCE_COUNT = 1000;
 
 // Class to send event using MESH
 class MeshChannel {
+
   // constructor
   constructor(config) {
     // config is a json object that defines the configuration values
@@ -88,6 +89,7 @@ class MeshChannel {
 
     // To Do
   }
+
 }
 
 // Export modules

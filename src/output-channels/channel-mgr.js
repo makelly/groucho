@@ -8,29 +8,51 @@ const fileOut = require('./file-channel.js');
 const intersystemsOut = require('./intersystems-channel.js');
 const meshOut = require('./mesh-channel.js');
 
-// Class to load channel configuration information
-class ChannelConfig {
+const folder = 'config';
+const fileEncoding = 'utf8';
+const fileFileName = 'file-channel.json';
+const intersystemsFileName = 'intersystems-channel.json';
+const meshFileName = 'mesh-channel.json';
+
+// Class to check existance of configuration files
+class ChannelConfigChecker {
+
   // Constructor
   constructor() {
-    const folder = 'config';
-    const fileEncoding = 'utf8';
-    const fileFileName = 'file-channel.json';
-    const intersystemsFileName = 'intersystems-channel.json';
-    const meshFileName = 'mesh-channel.json';
+  }
 
+  // Check expected config files exist
+  static check() {
+    var result = [];
+    result.push([fs.existsSync(path.join(__dirname, '../..', folder, fileFileName)), fileFileName]);
+    result.push([fs.existsSync(path.join(__dirname, '../..', folder, intersystemsFileName)), intersystemsFileName]);
+    result.push([fs.existsSync(path.join(__dirname, '../..', folder, meshFileName)), meshFileName]);
+
+    return result;
+  }
+
+}
+
+// Class to load channel configuration information
+class ChannelConfig {
+
+  // Constructor
+  constructor() {
     try {
       // Get the config files for each channel
-      this.file = JSON.parse(fs.readFileSync(path.join(__dirname, '..', folder, fileFileName), fileEncoding));
-      this.intersystems = JSON.parse(fs.readFileSync(path.join(__dirname, '..', folder, intersystemsFileName), fileEncoding));
-      this.mesh = JSON.parse(fs.readFileSync(path.join(__dirname, '..', folder, meshFileName), fileEncoding));
+      this.file = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, fileFileName), fileEncoding));
+      this.intersystems = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, intersystemsFileName), fileEncoding));
+      this.mesh = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, meshFileName), fileEncoding));
     } catch(e) {
       throw new Error('Constructor error - ' + e.message);
     }
   }
+
 }
 
 // Class to manage publishing events via different output channels
 class ChannelManager {
+
   // constructor
   constructor() {
     try {
@@ -46,12 +68,14 @@ class ChannelManager {
       throw new Error('Constructor error - ' + e.message);
     }
   }
+
 }
 
 
 
 // Export modules
 module.exports = {
+  ChannelConfigChecker,
   ChannelConfig,
   ChannelManager
 }

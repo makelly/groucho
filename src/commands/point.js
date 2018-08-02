@@ -2,6 +2,7 @@
 
 // Class to implement the point command
 class PointCommand {
+
   // constructor
   constructor(verbose) {
     // Validate arguments

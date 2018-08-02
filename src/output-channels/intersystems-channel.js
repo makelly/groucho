@@ -4,6 +4,7 @@ const axios = require('axios');
 
 // Class to send event using InterSystems API
 class InterSystemsChannel {
+
   // constructor
   constructor(config) {
     // config is a json object that defines the configuration values
@@ -38,6 +39,7 @@ class InterSystemsChannel {
 
     // To Do
   }
+
 }
 
 // Export modules
