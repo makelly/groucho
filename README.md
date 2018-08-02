@@ -19,9 +19,36 @@ To confirm that the application has been installed correctly run the tests:
 
 ## Usage
 ### Help
-`node app.js help`
-### Status
-`node app.js status`
+Shows the available commands and associated options.
+
+`node app.js --help`
+
+### Version
+Shows the application version.
+
+`node app.js --version`
+
+### Assets
+Shows information about the assets available to be used.
+
+`node app.js assets`
+
+### Publish
+Fabricate and publish events, as defined by a script, to a channel.
+
+`node app.js publish --script="events.json" --channel=sink`
+
+### Point
+Create, update and delete record pointers, as defined by a script, to an index.
+
+`node app.js publish --script="pointers.json" --index=sink`
+
+### Listen
+Listen for incoming requests for FHIR records.
+
+`node app.js listen`
+
+The application will listen indefinitely until you terminate it.
 
 ## Scripts
 - [ ] UNDER CONSTRUCTION :construction:
