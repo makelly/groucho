@@ -1,11 +1,15 @@
 {
   "name": "groucho",
   "version": "0.0.1",
-  "description": "Events publisher test client",
+  "description": "Health care interoperability test client",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "mocha **/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:makelly/groucho.git"
   },
   "author": "Mike Kelly",
   "license": "Apache-2.0",

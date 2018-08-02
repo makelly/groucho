@@ -1,13 +1,15 @@
 # Groucho
-- [ ] UNDER CONSTRUCTION :construction:
-
-Groucho is a command line tool to test generating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS).
+Groucho is a command-line tool to test:
+* Fabricating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS)
+* Creating, updating and deleting record pointers in a Record Location Service (RLS)
+* Listening for requests from clients to return FHIR records
 
 ## Installation
-- [ ] UNDER CONSTRUCTION :construction:
+This is a Node application, therefore you need to first install [Node](https://nodejs.org/en/) on your computer.
 
-This is a Node.js application, therefore you need to first install Node.
+You then install the application in a directory from the command-line by:
 
+`TBD`
 
 ## Running
 - [ ] UNDER CONSTRUCTION :construction:
