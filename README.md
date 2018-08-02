@@ -2,17 +2,26 @@
 Groucho is a command-line tool to test:
 * Fabricating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS)
 * Creating, updating and deleting record pointers in a Record Location Service (RLS)
-* Listening for requests from clients to return FHIR records
+* Listening for requests from clients to return FHIR records and serving the responses
 
 ## Installation
 This is a Node application, therefore you need to first install [Node](https://nodejs.org/en/) on your computer.
 
-You then install the application in a directory from the command-line by:
+Next clone or download the application code into a directory.
 
-`TBD`
+From the command-line move to the directory and run:
 
-## Running
-- [ ] UNDER CONSTRUCTION :construction:
+`npm install`
+
+To confirm that the application has been installed correctly run the tests:
+
+`npm test`
+
+## Usage
+### Help
+`node app.js help`
+### Status
+`node app.js status`
 
 ## Scripts
 - [ ] UNDER CONSTRUCTION :construction:
