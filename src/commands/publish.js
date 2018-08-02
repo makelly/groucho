@@ -1,11 +1,23 @@
 // publish.js - publish events
 
+const scriptInt = require('../script-interpreter/script-interpreter.js');
+
 // Class to implement the publish command
 class PublishCommand {
 
   // constructor
-  constructor(verbose) {
+  constructor(script, channel, verbose) {
     // Validate arguments
+    if (script == undefined) {
+      throw new Error('PublishCommand.constructor(script, channel, verbose) - script argument undefined.');
+    }
+    if (!scriptInt.ScriptInterpreter.existsScript(script)) {
+      throw new Error('PublishCommand.constructor(script, channel, verbose) - script not found.');
+    }
+    if (channel == undefined) {
+      throw new Error('PublishCommand.constructor(script, channel, verbose) - channel argument undefined.');
+    }
+//    if (!)
     if (verbose == undefined) {
       throw new Error('PublishCommand.constructor(verbose) - verbose argument undefined.')
     }

@@ -1,11 +1,10 @@
 // inventory.js - find and list inventory assets
 
-const fs = require('fs');
-const path = require('path');
 const logSymbols = require('log-symbols');
 const colors = require('colors');
 
 const channelMgr = require('../output-channels/channel-mgr.js');
+const scriptInt = require('../script-interpreter/script-interpreter.js');
 
 // Class to implement the inventory command
 class InventoryCommand {
@@ -19,8 +18,7 @@ class InventoryCommand {
     const pad2 = '  ';
     const pad7 = '       ';
 
-    console.log('Check inventory...');
-    console.log();
+    console.log('Checking inventory...');
 
     // Check we have all the expected config files
     console.log('Configuration files in /config:');
@@ -34,6 +32,15 @@ class InventoryCommand {
         console.log(pad7 + 'Missing file.'.red);
       }
     }
+    // Other configuration files go here
+    // TBD
+
+    // Count number of files in /data
+    console.log('Number of files in /data:' + scriptInt.ScriptInterpreter.countData());
+    // Count number of files in /templates
+    console.log('Number of files in /templates:' + scriptInt.ScriptInterpreter.countTemplates());
+    // Count number of files in /scripts
+    console.log('Number of files in /scripts:' + scriptInt.ScriptInterpreter.countScripts());
   }
 
 }

@@ -73,11 +73,11 @@ switch (command) {
     break;
 
   case publishCmd:
-    new publish.PublishCommand(argv.verbose).do();
+    new publish.PublishCommand(argv.script, argv.channel, argv.verbose).do();
     break;
 
   case pointCmd:
-    new point.PointCommand(argv.verbose).do();
+    new point.PointCommand(argv.script, argv.index, argv.verbose).do();
     break;
 
   case listenCmd:

@@ -14,6 +14,11 @@ const fileFileName = 'file-channel.json';
 const intersystemsFileName = 'intersystems-channel.json';
 const meshFileName = 'mesh-channel.json';
 
+const sinkValue = 'sink';
+const fileValue = 'file';
+const intersystemsValue = 'intersystems';
+const meshValue = 'mesh';
+
 // Class to check existance of configuration files
 class ChannelConfigChecker {
 
@@ -69,9 +74,22 @@ class ChannelManager {
     }
   }
 
+  // check valid channel value 
+  static isValid(value) {
+    switch (channelName) {
+      case sinkValue:
+      case fileValue:
+      case intersystemsValue:
+      case meshValue:
+        return true;
+        break;
+
+      default:
+        return false
+    }
+  }
+
 }
-
-
 
 // Export modules
 module.exports = {
