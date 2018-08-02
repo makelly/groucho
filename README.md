@@ -20,18 +20,16 @@ To confirm that the application has been installed correctly run the tests:
 ## Usage
 ### Help
 Shows the available commands and associated options.
-
 `node app.js --help`
 
 ### Version
 Shows the application version.
-
 `node app.js --version`
 
-### Assets
-Shows information about the assets available to be used.
+### Inventory
+Shows information about the assets available.
 
-`node app.js assets`
+`node app.js inventory`
 
 ### Publish
 Fabricate and publish events, as defined by a script, to a channel.
