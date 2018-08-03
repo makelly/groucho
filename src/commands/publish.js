@@ -36,7 +36,9 @@ class PublishCommand {
 
   // Do the command
   do() {
-    console.log('Not implemented yet!');
+    // Run the script
+    let script = new scrip.ScriptInterpreter();
+    script.runPublishScript(this.script, this.channel, this.verbose);
   }
 
 }

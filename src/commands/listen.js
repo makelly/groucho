@@ -20,7 +20,6 @@ class ListenCommand {
   // Do the command
   do() {
     console.log('Not implemented yet!');
-    console.log(`verbose = ${this.verbose}`);
   }
 
 }

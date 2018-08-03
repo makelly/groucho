@@ -8,6 +8,7 @@ const inventory = require('./src/commands/inventory.js');
 const publish = require('./src/commands/publish.js');
 const point = require('./src/commands/point.js');
 const listen = require('./src/commands/listen.js');
+const scrip = require('./src/script-interpreter/script-interpreter.js');
 
 // Setup command-line arguments
 const inventoryCmd = 'inventory';
@@ -34,7 +35,8 @@ const indexOptions = {
   describe: 'Index server',
   type: 'string',
   demandOption: true,
-  alias: 'i'
+  alias: 'i',
+  choices: ['loopback']
 };
 
 const verboseOptions = {
@@ -73,15 +75,43 @@ switch (command) {
     break;
 
   case publishCmd:
-    new publish.PublishCommand(argv.script, argv.channel, argv.verbose).do();
+    // Check script exists
+    if (!scrip.ScriptInterpreter.existsScript(argv.script)) {
+      console.log('Invalid values:');
+      console.log(`  Argument: script, Given: "${argv.script}", file not found.`);
+    } else {
+      try {
+        // Create command and execute
+        new publish.PublishCommand(argv.script, argv.channel, argv.verbose).do();
+      } catch(e) {
+        console.log('Error ' + e.message);
+      }
+    }
     break;
 
   case pointCmd:
-    new point.PointCommand(argv.script, argv.index, argv.verbose).do();
+    // Check script exists
+    if (!scrip.ScriptInterpreter.existsScript(argv.script)) {
+      console.log('Invalid values:');
+      console.log(`  Argument: script, Given: "${argv.script}", file not found.`);
+    } else {
+      try {
+        // Create command and execute
+        new point.PointCommand(argv.script, argv.index, argv.verbose).do();
+      } catch(e) {
+        console.log('Error ' + e.message);
+      }
+    }
+
     break;
 
   case listenCmd:
-    new listen.ListenCommand(argv.verbose).do();
+    try {
+      // Create command and execute
+      new listen.ListenCommand(argv.verbose).do();
+    } catch(e) {
+      console.log('Error ' + e.message);
+    }
     break;
 
   default:

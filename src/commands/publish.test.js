@@ -4,7 +4,7 @@ const expect = require('expect');
 
 const pub = require('./publish.js');
 
-const TEST_SCRIPT = 'test.json';
+const TEST_SCRIPT = 'test.script01.json';
 const TEST_CHANNEL = 'sink';
 
 

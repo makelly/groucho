@@ -1,3 +1,8 @@
 {
-  "test": "test"
+  "NHSNumber": "123456",
+  "familyName": "surname",
+  "givenName": "first name",
+  "gender": "male | female",
+  "dob": "YYYY-MM-DD",
+  "postcode": ""
 }

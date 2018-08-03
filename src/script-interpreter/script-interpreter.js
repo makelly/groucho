@@ -46,7 +46,63 @@ class ScriptInterpreter {
 
   // Check script exists
   static existsScript(scriptFile) {
-    return fs.existsSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, scriptFile))
+    return fs.existsSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, scriptFile));
+  }
+
+  // Validate and parse publish
+  parsePublishScript(script) {
+    // Ignore name, description, version
+    // MUST have publisher
+    if (script.publisher == undefined) {
+      return 'Error: Invalid script, "publisher" not defined.';
+    }
+    // MUST be a string
+    if (!(typeof script.publisher == 'string')) {
+      return 'Error: Invalid script, "publisher" value invalid, must be a string.';
+    }
+    // publisher data file MUST exist
+    if (!fs.existsSync(path.join(__dirname, '../..', DATA_FOLDER, script.publisher))) {
+      return 'Error: Invalid script, "publisher" data file ' + script.publisher + ' not found.';
+    }
+    // Store publisher
+    this.publisher = script.publisher;
+    // MUST have data
+    if (script.data == undefined) {
+      return 'Error: Invalid script, "data" not defined.';
+    }
+    // MUST be an array
+    if (!Array.isArray(script.data)) {
+      return 'Error: Invalid script, "data" value invalid, must be an array.';
+    }
+    // Check data not empty
+    if (script.data.length == 0) {
+            return 'Error: Invalid script, "data" array empty.';
+    }
+    // Check every object in data
+    for (let i = 0; i < script.data.length; i++) {
+      let d = script.data[i];
+    }
+
+    return;
+  }
+
+  // Run publish script
+  runPublishScript(script, channel, verbose) {
+    verbose ? console.log('Loading script') : null;
+    var scrip;
+    try {
+      scrip = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, script), FILE_ENCODING));
+    } catch(e) {
+      // Not valid JSON
+      console.log('Error: Invalid script, not JSON.');
+      return;
+    }
+    verbose ? console.log('Parsing script') : null;
+    var error = this.parsePublishScript(scrip);
+    if (error != undefined) {
+      console.log(error);
+      return;
+    }
   }
 
 }

@@ -4,7 +4,7 @@ const expect = require('expect');
 
 const ptr = require('./point.js');
 
-const TEST_SCRIPT = 'test.json';
+const TEST_SCRIPT = 'test.script01.json';
 const TEST_INDEX = 'loopback';
 
 describe('Class PointCommand tests', () => {
