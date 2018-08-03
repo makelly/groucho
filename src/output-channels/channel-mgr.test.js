@@ -1,4 +1,4 @@
-// channel-mgr.test.js - channel manager tests
+// channel-mgr.test.js - Channel manager tests
 
 const expect = require('expect');
 
@@ -6,15 +6,25 @@ const manager = require('./channel-mgr.js');
 
 describe('Class ChannelManager tests', () => {
 
-  it('should create ChannelManager object', () => {
+  it('should new ChannelManager()', () => {
     expect(() => {new manager.ChannelManager();}).toNotThrow();
+  });
+
+  it('should isValidChannelName(name) == true', () => {
+    let v = manager.ChannelManager.isValidChannelName('mesh');
+    expect(v).toBe(true);
+  });
+
+  it('should isValidChannelName(name) == false', () => {
+    let v = manager.ChannelManager.isValidChannelName('garbage');
+    expect(v).toBe(false);
   });
 
 });
 
 describe('Class ChannelConfig tests', () => {
 
-  it('should create ChannelConfig object', () => {
+  it('should new ChannelConfig()', () => {
     expect(() => {new manager.ChannelConfig();}).toNotThrow();
   });
 
@@ -22,11 +32,11 @@ describe('Class ChannelConfig tests', () => {
 
 describe('Class ChannelConfigChecker tests', () => {
 
-  it('should create ChannelConfigChecker object', () => {
+  it('should new ChannelConfigChecker()', () => {
     expect(() => {new manager.ChannelConfigChecker();}).toNotThrow();
   });
 
-  it('should check', () => {
+  it('should check()', () => {
     expect(() => {manager.ChannelConfigChecker.check();}).toNotThrow();
   });
 

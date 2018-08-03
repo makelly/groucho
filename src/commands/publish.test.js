@@ -1,27 +1,43 @@
-// publish.test.js - publish tests
+// publish.test.js - Publish tests
 
 const expect = require('expect');
 
 const pub = require('./publish.js');
 
+const TEST_SCRIPT = 'test.json';
+const TEST_CHANNEL = 'sink';
+
+
 describe('Class PublishCommand tests', () => {
 
-  it('should throw error for create PublishCommand object undefined verbose argument', () => {
-    expect(() => {new pub.PublishCommand(undefined);}).toThrow();
+  it('should throw error for new PublishCommand(script, channel, verbose) with undefined script argument', () => {
+    expect(() => {new pub.PublishCommand(undefined, undefined, undefined);}).toThrow();
   });
 
-  it('should throw error for create PublishCommand object invalid verbose argument', () => {
-    expect(() => {new pub.PublishCommand('wrong');}).toThrow();
+  it('should throw error for new PublishCommand(script, channel, verbose) with invalid script argument', () => {
+    expect(() => {new pub.PublishCommand('garbage', undefined, undefined);}).toThrow();
   });
 
-  it('should create PublishCommand object with verbose = true', () => {
-    let p = new pub.PublishCommand(true);
+  it('should throw error for new PublishCommand(script, channel, verbose) with invalid channel argument', () => {
+    expect(() => {new pub.PublishCommand(TEST_SCRIPT, 'garbage', undefined);}).toThrow();
+  });
+
+  it('should throw error for new PublishCommand(script, channel, verbose) with undefined verbose argument', () => {
+    expect(() => {new pub.PublishCommand(TEST_SCRIPT, TEST_CHANNEL, undefined);}).toThrow();
+  });
+
+  it('should throw error for new PublishCommand(script, channel, verbose) with invalid verbose argument', () => {
+    expect(() => {new pub.PublishCommand(TEST_SCRIPT, TEST_CHANNEL, 'garbage');}).toThrow();
+  });
+
+  it('should new PublishCommand(script, channel, verbose) with verbose = true', () => {
+    let p = new pub.PublishCommand(TEST_SCRIPT, TEST_CHANNEL, true);
 
     expect(p).toExist();
   });
 
-  it('should create PublishCommand object with verbose = false', () => {
-    let p = new pub.PublishCommand(false);
+  it('should new PublishCommand(script, channel, verbose) with verbose = false', () => {
+    let p = new pub.PublishCommand(TEST_SCRIPT, TEST_CHANNEL, false);
 
     expect(p).toExist();
   });

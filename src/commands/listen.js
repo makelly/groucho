@@ -2,8 +2,8 @@
 
 // Class to implement the listen command
 class ListenCommand {
-  
-  // constructor
+
+  // Constructor
   constructor(verbose) {
     // Validate arguments
     if (verbose == undefined) {

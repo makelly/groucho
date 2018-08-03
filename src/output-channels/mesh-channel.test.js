@@ -1,4 +1,4 @@
-// mesh-channel.test.js - mesh channel tests
+// mesh-channel.test.js - MESH channel tests
 
 const expect = require('expect');
 
@@ -13,36 +13,36 @@ const testConfig = {url: 'https://127.0.0.1',
 
 describe('Class MeshChannel tests', () => {
 
-  it('should throw error for create MeshChannel object undefined config argument', () => {
+  it('should throw error for new MeshChannel(config) with undefined config argument', () => {
     expect(() => {new channel.MeshChannel(undefined);}).toThrow();
   });
 
-  it('should throw error for create MeshChannel object missing config.url argument', () => {
+  it('should throw error for new MeshChannel(config) with missing config.url argument', () => {
     let config = {};
 
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   });
 
-  it('should throw error for create MeshChannel object invalid config.url argument', () => {
+  it('should throw error for new MeshChannel(config) with invalid config.url argument', () => {
     let config = {url: 'some text'};
 
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   });
 
-  it('should throw error for create MeshChannel object missing config.senderMailboxID argument', () => {
+  it('should throw error for new MeshChannel(config) with missing config.senderMailboxID argument', () => {
     let config = {url: 'https://127.0.0.1'};
 
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   });
 
-  it('should throw error for create MeshChannel object missing config.recipientMailboxID argument', () => {
+  it('should throw error for new MeshChannel(config) with missing config.recipientMailboxID argument', () => {
     let config = {url: 'https://127.0.0.1',
     senderMailboxID: 'SENDER'};
 
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   });
 
-  it('should throw error for create MeshChannel object missing config.workflowID argument', () => {
+  it('should throw error for new MeshChannel(config) with missing config.workflowID argument', () => {
     let config = {url: 'https://127.0.0.1',
     senderMailboxID: 'SENDER',
     recipientMailboxID: 'RECIPIENT'};
@@ -50,7 +50,7 @@ describe('Class MeshChannel tests', () => {
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   });
 
-  it('should throw error for create MeshChannel object missing config.senderMailboxPassword argument', () => {
+  it('should throw error for new MeshChannel(config) with missing config.senderMailboxPassword argument', () => {
     let config = {url: 'https://127.0.0.1',
     senderMailboxID: 'SENDER',
     recipientMailboxID: 'RECIPIENT',
@@ -59,7 +59,7 @@ describe('Class MeshChannel tests', () => {
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   });
 
-  it('should throw error for create MeshChannel object missing config.sharedKey argument', () => {
+  it('should throw error for new MeshChannel(config) with missing config.sharedKey argument', () => {
     let config = {url: 'https://127.0.0.1',
     senderMailboxID: 'SENDER',
     recipientMailboxID: 'RECIPIENT',
@@ -69,25 +69,25 @@ describe('Class MeshChannel tests', () => {
     expect(() => {new channel.MeshChannel(config);}).toThrow();
   });
 
-  it('should create MeshChannel object', () => {
+  it('should new MeshChannel(config)', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
     expect(mesh).toExist();
   });
 
-  it('should throw error for publish() undefined data argument', () => {
+  it('should throw error for publish(data, format) with undefined data argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
     expect(() => {mesh.publish(undefined, 'xml');}).toThrow();
   });
 
-  it('should throw error for publish() undefined format argument', () => {
+  it('should throw error for publish(data, format) with undefined format argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
     expect(() => {mesh.publish('Anything', undefined);}).toThrow();
   });
 
-  it('should throw error for publish() invalid format argument', () => {
+  it('should throw error for publish(data, format) with invalid format argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
     expect(() => {mesh.publish('Anything', 'Anything');}).toThrow();
@@ -96,11 +96,7 @@ describe('Class MeshChannel tests', () => {
   it('should makeToken()', () => {
     let mesh = new channel.MeshChannel(testConfig);
     let token = mesh.makeToken();
-    console.log('Token ', token);
-    token = mesh.makeToken();
-    console.log('Token ', token);
-    token = mesh.makeToken();
-    console.log('Token ', token);
+
     expect(token).toExist();
   });
 

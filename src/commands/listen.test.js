@@ -6,21 +6,21 @@ const lis = require('./listen.js');
 
 describe('Class ListenCommand tests', () => {
 
-  it('should throw error for create ListenCommand object undefined verbose argument', () => {
+  it('should throw error for new ListenCommand(verbose) with undefined verbose argument', () => {
     expect(() => {new lis.ListenCommand(undefined);}).toThrow();
   });
 
-  it('should throw error for create ListenCommand object invalid verbose argument', () => {
+  it('should throw error for new ListenCommand(verbose) with invalid verbose argument', () => {
     expect(() => {new lis.ListenCommand('wrong');}).toThrow();
   });
 
-  it('should create ListenCommand object with verbose = true', () => {
+  it('should new ListenCommand(verbose) with verbose = true', () => {
     let l = new lis.ListenCommand(true);
 
     expect(l).toExist();
   });
 
-  it('should create ListenCommand object with verbose = false', () => {
+  it('should new ListenCommand(verbose) with verbose = false', () => {
     let l = new lis.ListenCommand(false);
 
     expect(l).toExist();

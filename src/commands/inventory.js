@@ -1,15 +1,15 @@
-// inventory.js - find and list inventory assets
+// inventory.js - Find and list inventory assets
 
 const logSymbols = require('log-symbols');
 const colors = require('colors');
 
-const channelMgr = require('../output-channels/channel-mgr.js');
-const scriptInt = require('../script-interpreter/script-interpreter.js');
+const cMgr = require('../output-channels/channel-mgr.js');
+const scrip = require('../script-interpreter/script-interpreter.js');
 
 // Class to implement the inventory command
 class InventoryCommand {
 
-  // constructor
+  // Constructor
   constructor() {
   }
 
@@ -23,7 +23,7 @@ class InventoryCommand {
     // Check we have all the expected config files
     console.log('Configuration files in /config:');
     // Channels
-    let result = channelMgr.ChannelConfigChecker.check();
+    let result = cMgr.ChannelConfigChecker.check();
     for (let i = 0; i < result.length; i++) {
       if (result[i][0]) {
         console.log(pad2 + logSymbols.success.green + pad2 + result[i][1]);
@@ -36,11 +36,11 @@ class InventoryCommand {
     // TBD
 
     // Count number of files in /data
-    console.log('Number of files in /data:' + scriptInt.ScriptInterpreter.countData());
+    console.log('Number of files in /' + scrip.DATA_FOLDER + ': ' + scrip.ScriptInterpreter.countData());
     // Count number of files in /templates
-    console.log('Number of files in /templates:' + scriptInt.ScriptInterpreter.countTemplates());
+    console.log('Number of files in /' + scrip.TEMPLATES_FOLDER + ': ' + scrip.ScriptInterpreter.countTemplates());
     // Count number of files in /scripts
-    console.log('Number of files in /scripts:' + scriptInt.ScriptInterpreter.countScripts());
+    console.log('Number of files in /' + scrip.SCRIPTS_FOLDER + ': ' + scrip.ScriptInterpreter.countScripts());
   }
 
 }

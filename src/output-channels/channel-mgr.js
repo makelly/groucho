@@ -1,4 +1,4 @@
-// channel-mgr.js - channel manager
+// channel-mgr.js - Channel manager
 
 const fs = require('fs');
 const path = require('path');
@@ -7,17 +7,18 @@ const sinkOut = require('./sink-channel.js');
 const fileOut = require('./file-channel.js');
 const intersystemsOut = require('./intersystems-channel.js');
 const meshOut = require('./mesh-channel.js');
+const scrip = require('../script-interpreter/script-interpreter.js');
 
-const folder = 'config';
-const fileEncoding = 'utf8';
+const CONFIG_FOLDER = scrip.CONFIG_FOLDER;
+const FILE_ENCODING = scrip.FILE_ENCODING;
+const CHANNEL_SINK = scrip.CHANNEL_SINK;
+const CHANNEL_FILE = scrip.CHANNEL_FILE;
+const CHANNEL_INTERSYSTEMS = scrip.CHANNEL_INTERSYSTEMS;
+const CHANNEL_MESH = scrip.CHANNEL_MESH;
+
 const fileFileName = 'file-channel.json';
 const intersystemsFileName = 'intersystems-channel.json';
 const meshFileName = 'mesh-channel.json';
-
-const sinkValue = 'sink';
-const fileValue = 'file';
-const intersystemsValue = 'intersystems';
-const meshValue = 'mesh';
 
 // Class to check existance of configuration files
 class ChannelConfigChecker {
@@ -29,9 +30,9 @@ class ChannelConfigChecker {
   // Check expected config files exist
   static check() {
     var result = [];
-    result.push([fs.existsSync(path.join(__dirname, '../..', folder, fileFileName)), fileFileName]);
-    result.push([fs.existsSync(path.join(__dirname, '../..', folder, intersystemsFileName)), intersystemsFileName]);
-    result.push([fs.existsSync(path.join(__dirname, '../..', folder, meshFileName)), meshFileName]);
+    result.push([fs.existsSync(path.join(__dirname, '../..', CONFIG_FOLDER, fileFileName)), fileFileName]);
+    result.push([fs.existsSync(path.join(__dirname, '../..', CONFIG_FOLDER, intersystemsFileName)), intersystemsFileName]);
+    result.push([fs.existsSync(path.join(__dirname, '../..', CONFIG_FOLDER, meshFileName)), meshFileName]);
 
     return result;
   }
@@ -45,9 +46,9 @@ class ChannelConfig {
   constructor() {
     try {
       // Get the config files for each channel
-      this.file = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, fileFileName), fileEncoding));
-      this.intersystems = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, intersystemsFileName), fileEncoding));
-      this.mesh = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, meshFileName), fileEncoding));
+      this.file = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', CONFIG_FOLDER, fileFileName), FILE_ENCODING));
+      this.intersystems = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', CONFIG_FOLDER, intersystemsFileName), FILE_ENCODING));
+      this.mesh = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', CONFIG_FOLDER, meshFileName), FILE_ENCODING));
     } catch(e) {
       throw new Error('Constructor error - ' + e.message);
     }
@@ -74,13 +75,13 @@ class ChannelManager {
     }
   }
 
-  // check valid channel value 
-  static isValid(value) {
-    switch (channelName) {
-      case sinkValue:
-      case fileValue:
-      case intersystemsValue:
-      case meshValue:
+  // check valid channel value
+  static isValidChannelName(name) {
+    switch (name) {
+      case CHANNEL_SINK:
+      case CHANNEL_FILE:
+      case CHANNEL_INTERSYSTEMS:
+      case CHANNEL_MESH:
         return true;
         break;
 

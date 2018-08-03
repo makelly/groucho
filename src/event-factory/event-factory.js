@@ -1,9 +1,15 @@
-// event-factory.js - fabricate events
+// event-factory.js - Fabricate events
 
 const uuidv4 = require('uuid/v4');
 const fs = require('fs');
 const path = require('path');
 const hbs = require('handlebars');
+
+const scrip = require('../script-interpreter/script-interpreter.js');
+
+const DATA_FOLDER = scrip.DATA_FOLDER;
+const TEMPLATES_FOLDER = scrip.TEMPLATES_FOLDER;
+const FILE_ENCODING = scrip.FILE_ENCODING;
 
 // Class to create and manage UUIDs
 class UUID {
@@ -45,8 +51,6 @@ class DataBuilder {
 
   // Build the data context
   static build(publisherFileName, providerFileName, encounterFileName, patientFileName, eventFileName) {
-    const folder = 'data';
-    const fileEncoding = 'utf8';
     let data = {
       publisher: {},
       provider: {},
@@ -57,11 +61,11 @@ class DataBuilder {
 
     try {
       // Get and build the data context
-      data.publisher = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, publisherFileName), fileEncoding));
-      data.provider = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, providerFileName), fileEncoding));
-      data.encounter = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, encounterFileName), fileEncoding));
-      data.patient = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, patientFileName), fileEncoding));
-      data.event = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', folder, eventFileName), fileEncoding));
+      data.publisher = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', DATA_FOLDER, publisherFileName), FILE_ENCODING));
+      data.provider = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', DATA_FOLDER, providerFileName), FILE_ENCODING));
+      data.encounter = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', DATA_FOLDER, encounterFileName), FILE_ENCODING));
+      data.patient = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', DATA_FOLDER, patientFileName), FILE_ENCODING));
+      data.event = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', DATA_FOLDER, eventFileName), FILE_ENCODING));
       // Return data
       return data;
     } catch(e) {
@@ -81,9 +85,6 @@ class EventBuilder {
 
   // Build the event
   static build(templateFileName, data) {
-    const folder = 'templates';
-    const fileEncoding = 'utf8';
-
     try {
       let uuid = new UUID();
 
@@ -99,7 +100,7 @@ class EventBuilder {
       });
 
       // Get the JSON template source file
-      let source = fs.readFileSync(path.join(__dirname, '../..', folder, templateFileName), fileEncoding);
+      let source = fs.readFileSync(path.join(__dirname, '../..', TEMPLATES_FOLDER, templateFileName), FILE_ENCODING);
       // Compile the template
       let template = hbs.compile(source);
       // Render template
@@ -111,7 +112,7 @@ class EventBuilder {
       throw new Error(e.message);
     }
   }
-  
+
 }
 
 // Export modules
