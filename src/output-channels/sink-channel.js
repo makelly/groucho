@@ -15,7 +15,7 @@ class SinkChannel {
 
 }
 
-// Export modules
+// Module exports
 module.exports = {
   SinkChannel
 }

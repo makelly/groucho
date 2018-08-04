@@ -5,6 +5,7 @@ const uuidv4 = require('uuid/v4');
 const dateFormat = require('dateformat');
 const crypto = require('crypto');
 const axios = require('axios');
+const scriptModule = require('../script-interpreter/script-interpreter.js');
 
 const MAX_NONCE_COUNT = 1000;
 
@@ -80,8 +81,8 @@ class MeshChannel {
       throw new Error('MeshChannel.publish(data, format) - format argument undefined.')
     }
     switch (format) {
-      case 'json':
-      case 'xml':
+      case scriptModule.PUBLISH_XML:
+      case scriptModule.PUBLISH_JSON:
         break;
       default:
         throw new Error(`MeshChannel.publish(data, format) - format argument invalid. Value = ${format} expected xml | json .`);
@@ -92,7 +93,7 @@ class MeshChannel {
 
 }
 
-// Export modules
+// Module exports
 module.exports = {
   MeshChannel
 }

@@ -1,7 +1,6 @@
 // intersystems-channel.test.js - InterSystems channel tests
 
 const expect = require('expect');
-
 const channel = require('./intersystems-channel.js');
 
 describe('Class InterSystemsChannel tests', () => {

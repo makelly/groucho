@@ -24,7 +24,7 @@ class ListenCommand {
 
 }
 
-// Export modules
+// Module exports
 module.exports = {
   ListenCommand
 }

@@ -1,7 +1,6 @@
 // mesh-channel.test.js - MESH channel tests
 
 const expect = require('expect');
-
 const channel = require('./mesh-channel.js');
 
 const testConfig = {url: 'https://127.0.0.1',

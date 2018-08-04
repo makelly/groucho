@@ -1,7 +1,6 @@
 // index-mgr.test.js - Index manager tests
 
 const expect = require('expect');
-
 const index = require('./index-mgr.js');
 
 describe('Class IndexManager tests', () => {
@@ -14,11 +13,13 @@ describe('Class IndexManager tests', () => {
 
   it('should isValidIndexName(name) == true', () => {
     let v = index.IndexManager.isValidIndexName('loopback');
+
     expect(v).toBe(true);
   });
 
   it('should isValidIndexName(name) == false', () => {
     let v = index.IndexManager.isValidIndexName('garbage');
+    
     expect(v).toBe(false);
   });
 

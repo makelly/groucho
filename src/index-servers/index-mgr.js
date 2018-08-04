@@ -2,17 +2,14 @@
 
 const fs = require('fs');
 const path = require('path');
-
-const scrip = require('../script-interpreter/script-interpreter.js');
-
-const CONFIG_FOLDER = scrip.CONFIG_FOLDER;
-const INDEX_LOOPBACK = scrip.INDEX_LOOPBACK;
+const scriptModule = require('../script-interpreter/script-interpreter.js');
 
 // Class to check existance of configuration files
 class IndexConfigChecker {
 
   // Constructor
   constructor() {
+    // Empty
   }
 
   // Check expected config files exist
@@ -66,7 +63,7 @@ class IndexManager {
   // check valid index name
   static isValidIndexName(name) {
     switch (name) {
-      case INDEX_LOOPBACK:
+      case scriptModule.INDEX_LOOPBACK:
         return true;
         break;
 
@@ -77,7 +74,7 @@ class IndexManager {
 
 }
 
-// Export modules
+// Module exports
 module.exports = {
   IndexConfigChecker,
   IndexConfig,

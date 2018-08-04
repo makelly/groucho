@@ -3,7 +3,6 @@
 const expect = require('expect');
 const fs = require('fs');
 const path = require('path');
-
 const factory = require('./event-factory.js');
 
 const missingFile = 'missing';
@@ -151,9 +150,9 @@ describe('Class DataBuilder tests', () => {
 describe('Class EventBuilder tests', () => {
 
   it('should new EventBuilder()', () => {
-    let db = new factory.EventBuilder();
-
-    expect(db).toExist();
+    let eb = new factory.EventBuilder();
+    
+    expect(eb).toExist();
   });
 
   it('should throw error for build(templateFileName, data) with undefined templateFileName argument', () => {

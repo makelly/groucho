@@ -1,9 +1,6 @@
 // file-channel.js - File output channel
 
-const scrip = require('../script-interpreter/script-interpreter.js');
-
-const PUBLISH_XML = scrip.PUBLISH_XML;
-const PUBLISH_JSON = scrip.PUBLISH_JSON;
+const scriptModule = require('../script-interpreter/script-interpreter.js');
 
 // Class to save event as a file
 class FileChannel {
@@ -20,7 +17,7 @@ class FileChannel {
     }
 
     try {
-
+      // TBD
     } catch(e) {
       throw new Error(e.message);
     }
@@ -36,8 +33,8 @@ class FileChannel {
       throw new Error('FileChannel.publish(data, format) - format argument undefined.')
     }
     switch (format) {
-      case PUBLISH_XML:
-      case PUBLISH_JSON:
+      case scriptModule.PUBLISH_XML:
+      case scriptModule.PUBLISH_JSON:
         break;
       default:
         throw new Error(`FileChannel.publish(data, format) - format argument invalid. Value = ${format} expected xml | json .`);
@@ -49,7 +46,7 @@ class FileChannel {
 
 }
 
-// Export modules
+// Module exports
 module.exports = {
   FileChannel
 }

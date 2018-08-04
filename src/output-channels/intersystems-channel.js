@@ -14,7 +14,7 @@ class InterSystemsChannel {
     }
 
     try {
-
+      // TBD
     } catch(e) {
       throw new Error(e.message);
     }
@@ -42,7 +42,7 @@ class InterSystemsChannel {
 
 }
 
-// Export modules
+// Module exports
 module.exports = {
   InterSystemsChannel
 }

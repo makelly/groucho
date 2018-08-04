@@ -1,6 +1,0 @@
-{
-  "name": "Test 03 publish script",
-  "description": "Invalid publisher",
-  "version": "03/08/2018",
-  "publisher": {"garbage": "garbage"}
-}

@@ -2,7 +2,6 @@
 
 const expect = require('expect');
 const path = require('path');
-
 const channel = require('./file-channel.js');
 
 describe('Class FileChannel tests', () => {

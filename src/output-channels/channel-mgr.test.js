@@ -12,11 +12,13 @@ describe('Class ChannelManager tests', () => {
 
   it('should isValidChannelName(name) == true', () => {
     let v = manager.ChannelManager.isValidChannelName('mesh');
+
     expect(v).toBe(true);
   });
 
   it('should isValidChannelName(name) == false', () => {
     let v = manager.ChannelManager.isValidChannelName('garbage');
+    
     expect(v).toBe(false);
   });
 

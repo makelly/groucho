@@ -1,7 +1,7 @@
 // publish.js - Publish events
 
-const scrip = require('../script-interpreter/script-interpreter.js');
-const cMgr = require('../output-channels/channel-mgr');
+const scriptModule = require('../script-interpreter/script-interpreter.js');
+const channelModule = require('../output-channels/channel-mgr');
 
 // Class to implement the publish command
 class PublishCommand {
@@ -12,13 +12,13 @@ class PublishCommand {
     if (script == undefined) {
       throw new Error('PublishCommand.constructor(script, channel, verbose) - script argument undefined.');
     }
-    if (!scrip.ScriptInterpreter.existsScript(script)) {
+    if (!scriptModule.ScriptInterpreter.existsScript(script)) {
       throw new Error('PublishCommand.constructor(script, channel, verbose) - script not found.');
     }
     if (channel == undefined) {
       throw new Error('PublishCommand.constructor(script, channel, verbose) - channel argument undefined.');
     }
-    if (!cMgr.ChannelManager.isValidChannelName(channel)) {
+    if (!channelModule.ChannelManager.isValidChannelName(channel)) {
       throw new Error('PublishCommand.constructor(script, channel, verbose) - channel argument invalid.');
     }
     if (verbose == undefined) {
@@ -37,13 +37,13 @@ class PublishCommand {
   // Do the command
   do() {
     // Run the script
-    let script = new scrip.ScriptInterpreter();
-    script.runPublishScript(this.script, this.channel, this.verbose);
+    let scriptInterpreter = new scriptModule.ScriptInterpreter();
+    scriptInterpreter.runPublishScript(this.script, this.channel, this.verbose);
   }
 
 }
 
-// Export modules
+// Module exports
 module.exports = {
   PublishCommand
 }

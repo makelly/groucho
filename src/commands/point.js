@@ -1,7 +1,7 @@
 // point.js - Manage pointers
 
-const scrip = require('../script-interpreter/script-interpreter.js');
-const imgr = require('../index-servers/index-mgr.js');
+const scriptModule = require('../script-interpreter/script-interpreter.js');
+const indexModule = require('../index-servers/index-mgr.js');
 
 // Class to implement the point command
 class PointCommand {
@@ -12,13 +12,13 @@ class PointCommand {
     if (script == undefined) {
       throw new Error('PointCommand.constructor(script, index, verbose) - script argument undefined.');
     }
-    if (!scrip.ScriptInterpreter.existsScript(script)) {
+    if (!scriptModule.ScriptInterpreter.existsScript(script)) {
       throw new Error('PointCommand.constructor(script, index, verbose) - script not found.');
     }
     if (index == undefined) {
       throw new Error('PointCommand.constructor(script, index, verbose) - index argument undefined.');
     }
-    if (!imgr.IndexManager.isValidIndexName(index)) {
+    if (!indexModule.IndexManager.isValidIndexName(index)) {
       throw new Error('PointCommand.constructor(script, index, verbose) - index argument invalid.');
     }
     if (verbose == undefined) {
@@ -41,7 +41,7 @@ class PointCommand {
 
 }
 
-// Export modules
+// Module exports
 module.exports = {
   PointCommand
 }

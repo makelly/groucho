@@ -1,13 +1,12 @@
 // inventory.test.js - Inventory tests
 
 const expect = require('expect');
-
-const inv = require('./inventory.js');
+const inventory = require('./inventory.js');
 
 describe('Class InventoryCommand tests', () => {
 
   it('should new InventoryCommand()', () => {
-    let i = new inv.InventoryCommand();
+    let i = new inventory.InventoryCommand();
 
     expect(i).toExist();
   });

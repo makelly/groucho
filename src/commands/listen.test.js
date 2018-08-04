@@ -1,29 +1,28 @@
 // listen.test.js - Listen tests
 
 const expect = require('expect');
-
-const lis = require('./listen.js');
+const listen = require('./listen.js');
 
 describe('Class ListenCommand tests', () => {
 
   it('should throw error for new ListenCommand(verbose) with undefined verbose argument', () => {
-    expect(() => {new lis.ListenCommand(undefined);}).toThrow();
+    expect(() => {new listen.ListenCommand(undefined);}).toThrow();
   });
 
   it('should throw error for new ListenCommand(verbose) with invalid verbose argument', () => {
-    expect(() => {new lis.ListenCommand('wrong');}).toThrow();
+    expect(() => {new listen.ListenCommand('garbage');}).toThrow();
   });
 
   it('should new ListenCommand(verbose) with verbose = true', () => {
-    let l = new lis.ListenCommand(true);
+    let lc = new listen.ListenCommand(true);
 
-    expect(l).toExist();
+    expect(lc).toExist();
   });
 
   it('should new ListenCommand(verbose) with verbose = false', () => {
-    let l = new lis.ListenCommand(false);
+    let lc = new listen.ListenCommand(false);
 
-    expect(l).toExist();
+    expect(lc).toExist();
   });
 
 });

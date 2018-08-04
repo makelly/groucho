@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const jsonSchema = require('jsonschema');
 
 // Constants
 const FILE_ENCODING = 'utf8';
@@ -21,12 +22,14 @@ const CHANNEL_MESH = 'mesh';
 
 const INDEX_LOOPBACK = 'loopback';
 
+const PUBLISH_SCHEMA = 'publishscript.schema.json';
+
 // Class to interpret and run scripts
 class ScriptInterpreter {
 
   // Constructor
   constructor() {
-
+    // Empty
   }
 
   // Count script files
@@ -49,38 +52,94 @@ class ScriptInterpreter {
     return fs.existsSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, scriptFile));
   }
 
-  // Validate and parse publish
+  // Validate publish script
+  // If there is a validate error will return a string otherwise returns nothing
+  validatePublishScript(script) {
+    let v = new jsonSchema.Validator();
+    let schema = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, PUBLISH_SCHEMA), FILE_ENCODING));
+    try {
+      v.validate(script, schema, {'throwError': true});
+    } catch(e) {
+      return e.message;
+    }
+
+    return;
+  }
+
+  // Parse publish script, assumes it has already been validated
+  // Checks additional aspects of the script
+  // If there is a validate error will return a string otherwise returns nothing
   parsePublishScript(script) {
-    // Ignore name, description, version
-    // MUST have publisher
-    if (script.publisher == undefined) {
-      return 'Error: Invalid script, "publisher" not defined.';
-    }
-    // MUST be a string
-    if (!(typeof script.publisher == 'string')) {
-      return 'Error: Invalid script, "publisher" value invalid, must be a string.';
-    }
-    // publisher data file MUST exist
-    if (!fs.existsSync(path.join(__dirname, '../..', DATA_FOLDER, script.publisher))) {
-      return 'Error: Invalid script, "publisher" data file ' + script.publisher + ' not found.';
-    }
-    // Store publisher
-    this.publisher = script.publisher;
-    // MUST have data
-    if (script.data == undefined) {
-      return 'Error: Invalid script, "data" not defined.';
-    }
-    // MUST be an array
-    if (!Array.isArray(script.data)) {
-      return 'Error: Invalid script, "data" value invalid, must be an array.';
-    }
-    // Check data not empty
-    if (script.data.length == 0) {
-            return 'Error: Invalid script, "data" array empty.';
-    }
-    // Check every object in data
+    // Check name values are unique in data[]
     for (let i = 0; i < script.data.length; i++) {
-      let d = script.data[i];
+      for (let j = i + 1; j < script.data.length; j++) {
+        if (script.data[j].name == script.data[i].name) {
+          return ' duplicate names in data';
+        }
+      }
+    }
+
+    // Check all names referenced from other parts of the script are defined
+    // templates
+    let found = false;
+    for (let i = 0; i < script.templates.length; i++) {
+      found = false;
+      for (let j = 0; j < script.data.length; j++) {
+        if (script.templates[i].eventData == script.data[j].name) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        return ' templates eventData "' + script.templates[i].eventData + '" not found in data';
+      }
+    }
+    // #PUBLISH
+    found = false;
+    for (let i = 0; i < script.data.length; i++) {
+      if (script.PUBLISH.FOR_EACH_PATIENT == script.data[i].name) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      return ' FOR_EACH_PATIENT "' + script.PUBLISH.FOR_EACH_PATIENT + '" not found in data';
+    }
+    found = false;
+    for (let i = 0; i < script.data.length; i++) {
+      if (script.PUBLISH.FOR_EACH_PROVIDER == script.data[i].name) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      return ' FOR_EACH_PROVIDER "' + script.PUBLISH.FOR_EACH_PROVIDER + '" not found in data';
+    }
+    found = false;
+    for (let i = 0; i < script.data.length; i++) {
+      if (script.PUBLISH.FOR_EACH_ENCOUNTER == script.data[i].name) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      return ' FOR_EACH_ENCOUNTER "' + script.PUBLISH.FOR_EACH_ENCOUNTER + '" not found in data';
+    }
+
+    // Check all files exist
+    // Data
+    for (let i = 0; i < script.data.length; i++) {
+      for (let j = 0; j < script.data[i].list.length; j++) {
+        if (!fs.existsSync(path.join(__dirname, '../..', DATA_FOLDER, script.data[i].list[j]))) {
+          return ' data file "' + script.data[i].list[j] + '" not found';
+        }
+      }
+    }
+    // Templates
+    for (let i = 0; i < script.templates.length; i++) {
+      if (!fs.existsSync(path.join(__dirname, '../..', TEMPLATES_FOLDER, script.templates[i].template))) {
+        return ' template file "' + script.templates[i].template + '" not found';
+      }
     }
 
     return;
@@ -88,26 +147,44 @@ class ScriptInterpreter {
 
   // Run publish script
   runPublishScript(script, channel, verbose) {
+    // Load script and check it is JSON
     verbose ? console.log('Loading script') : null;
-    var scrip;
+    let scriptObj;
     try {
-      scrip = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, script), FILE_ENCODING));
+      scriptObj = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, script), FILE_ENCODING));
     } catch(e) {
-      // Not valid JSON
-      console.log('Error: Invalid script, not JSON.');
+      console.log('Error: Invalid script, not JSON');
       return;
     }
-    verbose ? console.log('Parsing script') : null;
-    var error = this.parsePublishScript(scrip);
+
+    // Validate script
+    verbose ? console.log('Validating script - stage 1') : null;
+    let error = this.validatePublishScript(scriptObj);
     if (error != undefined) {
-      console.log(error);
+      console.log('Error: Invalid script, ' + error);
+      return;
+    }
+
+    // Parse script
+    verbose ? console.log('Validating script - stage 2') : null;
+    error = this.parsePublishScript(scriptObj);
+    if (error != undefined) {
+      console.log('Error: Invalid script, ' + error);
       return;
     }
   }
 
+  // Ready to run it
+  // single publisher 
+  //  for provider?
+  //  for each patient
+  //    for each encounter
+  //      for each template (event type)
+  //        for each event data
+
 }
 
-// Export modules
+// Module exports
 module.exports = {
   ScriptInterpreter,
   FILE_ENCODING,
