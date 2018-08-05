@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const scriptModule = require('../script-interpreter/script-interpreter.js');
+const constants = require('../lib/constants.js');
 
 // Class to check existance of configuration files
 class IndexConfigChecker {
@@ -63,7 +64,7 @@ class IndexManager {
   // check valid index name
   static isValidIndexName(name) {
     switch (name) {
-      case scriptModule.INDEX_LOOPBACK:
+      case constants.INDEX_LOOPBACK:
         return true;
         break;
 

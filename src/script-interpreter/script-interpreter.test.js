@@ -4,6 +4,7 @@ const expect = require('expect');
 const fs = require('fs');
 const path = require('path');
 const scriptModule = require('./script-interpreter.js');
+const constants = require('../lib/constants.js');
 
 describe('Class ScriptInterpreter tests', () => {
 
@@ -34,7 +35,7 @@ describe('Class ScriptInterpreter tests', () => {
   });
 
   it('should validatePublishScript(script) return error string for bad script', () => {
-    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', scriptModule.SCRIPTS_FOLDER, 'bad.publish.json'), scriptModule.FILE_ENCODING));
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad.publish.json'), constants.FILE_ENCODING));
     let s = new scriptModule.ScriptInterpreter();
     let error = s.validatePublishScript(script);
 
@@ -42,10 +43,75 @@ describe('Class ScriptInterpreter tests', () => {
   });
 
   it('should validatePublishScript(script)', () => {
-    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', scriptModule.SCRIPTS_FOLDER, 'good.publish.json'), scriptModule.FILE_ENCODING));
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'good.publish.json'), constants.FILE_ENCODING));
     let s = new scriptModule.ScriptInterpreter();
     let error = s.validatePublishScript(script);
 
     expect(error).toNotExist();
   });
+
+  it('should checkPublishScript(script) return error string for duplicate name in data[]', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad2.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toExist();
+  });
+
+  it('should checkPublishScript(script) return error string for undefined name reference in events[]', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad3.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toExist();
+  });
+
+  it('should checkPublishScript(script) return error string for undefined name reference in FOR_EACH_PATIENT', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad4.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toExist();
+  });
+
+  it('should checkPublishScript(script) return error string for undefined name reference in FOR_EACH_PROVIDER', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad5.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toExist();
+  });
+
+  it('should checkPublishScript(script) return error string for undefined name reference in FOR_EACH_ENCOUNTER', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad6.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toExist();
+  });
+
+  it('should checkPublishScript(script) return error string for file not found in data[]', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad7.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toExist();
+  });
+
+  it('should checkPublishScript(script) return error string for file not found in events[]', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad8.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toExist();
+  });
+
+  it('should checkPublishScript(script)', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'good.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toNotExist();
+  });
+
 });

@@ -3,6 +3,7 @@
 const logSymbols = require('log-symbols');
 const colors = require('colors');
 const channelModule = require('../output-channels/channel-mgr.js');
+const constants = require('../lib/constants.js');
 const scriptModule = require('../script-interpreter/script-interpreter.js');
 
 // Class to implement the inventory command
@@ -37,11 +38,11 @@ class InventoryCommand {
     // TBD
 
     // Count number of files in /data
-    console.log('Number of files in /' + scriptModule.DATA_FOLDER + ': ' + scriptModule.ScriptInterpreter.countData());
+    console.log('Number of files in /' + constants.DATA_FOLDER + ': ' + scriptModule.ScriptInterpreter.countData());
     // Count number of files in /templates
-    console.log('Number of files in /' + scriptModule.TEMPLATES_FOLDER + ': ' + scriptModule.ScriptInterpreter.countTemplates());
+    console.log('Number of files in /' + constants.TEMPLATES_FOLDER + ': ' + scriptModule.ScriptInterpreter.countTemplates());
     // Count number of files in /scripts
-    console.log('Number of files in /' + scriptModule.SCRIPTS_FOLDER + ': ' + scriptModule.ScriptInterpreter.countScripts());
+    console.log('Number of files in /' + constants.SCRIPTS_FOLDER + ': ' + scriptModule.ScriptInterpreter.countScripts());
   }
 
 }

@@ -56,8 +56,8 @@
       "uniqueItems": true
     },
 
-    "templates": {
-      "description": "Templates to populate with data",
+    "events": {
+      "description": "Events to publish for the encounter",
       "type": "array",
       "items": {
         "type": "object",
@@ -65,7 +65,7 @@
         "properties": {
 
           "template": {
-            "description": "Name of the template",
+            "description": "Name of the event template",
             "type": "string"
           },
 
@@ -76,7 +76,7 @@
           },
 
           "eventData": {
-            "description": "List contaning the data files",
+            "description": "List contaning the event data files",
             "type": "string"
           }
 
@@ -111,5 +111,5 @@
       "required": ["FOR_EACH_PATIENT", "FOR_EACH_PROVIDER", "FOR_EACH_ENCOUNTER"]
     }
   },
-  "required": ["publisher", "data", "templates", "PUBLISH"]
+  "required": ["publisher", "data", "events", "PUBLISH"]
 }

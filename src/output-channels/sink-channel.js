@@ -11,6 +11,8 @@ class SinkChannel {
   // Publish event
   publish(data, format) {
     // Do nothing
+
+    return;
   }
 
 }

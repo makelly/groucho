@@ -1,6 +1,7 @@
 // intersystems-channel.js - InterSystems output channel
 
 const axios = require('axios');
+const constants = require('../lib/constants.js');
 
 // Class to send event using InterSystems API
 class InterSystemsChannel {
@@ -30,8 +31,8 @@ class InterSystemsChannel {
       throw new Error('InterSystemsChannel.publish(data, format) - format argument undefined.')
     }
     switch (format) {
-      case 'json':
-      case 'xml':
+      case constants.PUBLISH_XML:
+      case constants.PUBLISH_JSON:
         break;
       default:
         throw new Error(`InterSystemsChannel.publish(data, format) - format argument invalid. Value = ${format} expected xml | json .`);

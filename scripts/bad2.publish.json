@@ -1,13 +1,15 @@
 {
   "title": "Bad publish script",
-  "description": "Publisher missing",
+  "description": "Duplicate name in data[]",
   "version": "03/08/2018",
+  "publisher": "test.publisher.data.json",
 
   "data": [
     {"name": "providers", "list": ["test.provider.data.json"]},
     {"name": "encounters", "list": ["test.encounter.data.json"]},
     {"name": "patients", "list": ["test.smith.data.json", "test.frederikson.data.json", "test.crowther.data.json"]},
     {"name": "immunizations", "list": ["test.immunization01.data.json", "test.immunization02.data.json"]},
+    {"name": "encounters", "list": ["test.encounter.data.json", "test.encounter.data.json"]},
     {"name": "medications", "list": ["test.medication01.data.json", "test.medication02.data.json"]}
   ],
 

@@ -1,7 +1,8 @@
 {
   "title": "Bad publish script",
-  "description": "Publisher missing",
+  "description": "Undefined name reference in FOR_EACH_ENCOUNTER",
   "version": "03/08/2018",
+  "publisher": "test.publisher.data.json",
 
   "data": [
     {"name": "providers", "list": ["test.provider.data.json"]},
@@ -13,7 +14,7 @@
 
   "events": [
     {"template": "immunization.template.json", "type": "json", "eventData": "immunizations"},
-    {"template": "medication.template.xml", "type": "xml", "eventData": "medications"}
+    {"template": "garbage", "type": "xml", "eventData": "medications"}
   ],
 
   "PUBLISH": {

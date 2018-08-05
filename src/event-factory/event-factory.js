@@ -4,7 +4,7 @@ const uuidv4 = require('uuid/v4');
 const fs = require('fs');
 const path = require('path');
 const hbs = require('handlebars');
-const scriptModule = require('../script-interpreter/script-interpreter.js');
+const constants = require('../lib/constants.js');
 
 // Class to create and manage UUIDs
 class UUID {
@@ -57,11 +57,11 @@ class DataBuilder {
 
     try {
       // Get and build the data context
-      data.publisher = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', scriptModule.DATA_FOLDER, publisherFileName), scriptModule.FILE_ENCODING));
-      data.provider = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', scriptModule.DATA_FOLDER, providerFileName), scriptModule.FILE_ENCODING));
-      data.encounter = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', scriptModule.DATA_FOLDER, encounterFileName), scriptModule.FILE_ENCODING));
-      data.patient = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', scriptModule.DATA_FOLDER, patientFileName), scriptModule.FILE_ENCODING));
-      data.event = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', scriptModule.DATA_FOLDER, eventFileName), scriptModule.FILE_ENCODING));
+      data.publisher = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.DATA_FOLDER, publisherFileName), constants.FILE_ENCODING));
+      data.provider = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.DATA_FOLDER, providerFileName), constants.FILE_ENCODING));
+      data.encounter = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.DATA_FOLDER, encounterFileName), constants.FILE_ENCODING));
+      data.patient = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.DATA_FOLDER, patientFileName), constants.FILE_ENCODING));
+      data.event = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.DATA_FOLDER, eventFileName), constants.FILE_ENCODING));
       // Return data
       return data;
     } catch(e) {
@@ -97,7 +97,7 @@ class EventBuilder {
       });
 
       // Get the JSON template source file
-      let source = fs.readFileSync(path.join(__dirname, '../..', scriptModule.TEMPLATES_FOLDER, templateFileName), scriptModule.FILE_ENCODING);
+      let source = fs.readFileSync(path.join(__dirname, '../..', constants.TEMPLATES_FOLDER, templateFileName), constants.FILE_ENCODING);
       // Compile the template
       let template = hbs.compile(source);
       // Render template

@@ -1,7 +1,8 @@
 {
   "title": "Bad publish script",
-  "description": "Publisher missing",
+  "description": "Undefined name reference in FOR_EACH_PATIENT",
   "version": "03/08/2018",
+  "publisher": "test.publisher.data.json",
 
   "data": [
     {"name": "providers", "list": ["test.provider.data.json"]},
@@ -17,7 +18,7 @@
   ],
 
   "PUBLISH": {
-    "FOR_EACH_PATIENT": "patients",
+    "FOR_EACH_PATIENT": "garbage",
     "FOR_EACH_PROVIDER": "providers",
     "FOR_EACH_ENCOUNTER": "encounters"
   }

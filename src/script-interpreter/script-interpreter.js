@@ -3,26 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 const jsonSchema = require('jsonschema');
-
-// Constants
-const FILE_ENCODING = 'utf8';
-
-const DATA_FOLDER = 'data';
-const TEMPLATES_FOLDER = 'templates';
-const SCRIPTS_FOLDER = 'scripts';
-const CONFIG_FOLDER = 'config';
-
-const PUBLISH_XML = 'xml';
-const PUBLISH_JSON = 'json';
-
-const CHANNEL_SINK = 'sink';
-const CHANNEL_FILE = 'file';
-const CHANNEL_INTERSYSTEMS = 'intersystems';
-const CHANNEL_MESH = 'mesh';
-
-const INDEX_LOOPBACK = 'loopback';
-
-const PUBLISH_SCHEMA = 'publishscript.schema.json';
+const constants = require('../lib/constants.js');
+const factory = require('../event-factory/event-factory.js');
+const channelMgr = require('../output-channels/channel-mgr.js');
 
 // Class to interpret and run scripts
 class ScriptInterpreter {
@@ -34,29 +17,29 @@ class ScriptInterpreter {
 
   // Count script files
   static countScripts() {
-    return fs.readdirSync(path.join(__dirname, '../..', SCRIPTS_FOLDER)).length;
+    return fs.readdirSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER)).length;
   }
 
   // Count template files
   static countTemplates() {
-    return fs.readdirSync(path.join(__dirname, '../..', TEMPLATES_FOLDER)).length;
+    return fs.readdirSync(path.join(__dirname, '../..', constants.TEMPLATES_FOLDER)).length;
   }
 
   // Count data files
   static countData() {
-    return fs.readdirSync(path.join(__dirname, '../..', DATA_FOLDER)).length;
+    return fs.readdirSync(path.join(__dirname, '../..', constants.DATA_FOLDER)).length;
   }
 
   // Check script exists
   static existsScript(scriptFile) {
-    return fs.existsSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, scriptFile));
+    return fs.existsSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, scriptFile));
   }
 
   // Validate publish script
   // If there is a validate error will return a string otherwise returns nothing
   validatePublishScript(script) {
     let v = new jsonSchema.Validator();
-    let schema = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, PUBLISH_SCHEMA), FILE_ENCODING));
+    let schema = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, constants.PUBLISH_SCHEMA), constants.FILE_ENCODING));
     try {
       v.validate(script, schema, {'throwError': true});
     } catch(e) {
@@ -66,10 +49,10 @@ class ScriptInterpreter {
     return;
   }
 
-  // Parse publish script, assumes it has already been validated
+  // Check publish script, assumes it has already been validated
   // Checks additional aspects of the script
   // If there is a validate error will return a string otherwise returns nothing
-  parsePublishScript(script) {
+  checkPublishScript(script) {
     // Check name values are unique in data[]
     for (let i = 0; i < script.data.length; i++) {
       for (let j = i + 1; j < script.data.length; j++) {
@@ -80,21 +63,21 @@ class ScriptInterpreter {
     }
 
     // Check all names referenced from other parts of the script are defined
-    // templates
+    // events
     let found = false;
-    for (let i = 0; i < script.templates.length; i++) {
+    for (let i = 0; i < script.events.length; i++) {
       found = false;
       for (let j = 0; j < script.data.length; j++) {
-        if (script.templates[i].eventData == script.data[j].name) {
+        if (script.events[i].eventData == script.data[j].name) {
           found = true;
           break;
         }
       }
       if (!found) {
-        return ' templates eventData "' + script.templates[i].eventData + '" not found in data';
+        return ' events eventData "' + script.events[i].eventData + '" not found in data';
       }
     }
-    // #PUBLISH
+    // PUBLISH
     found = false;
     for (let i = 0; i < script.data.length; i++) {
       if (script.PUBLISH.FOR_EACH_PATIENT == script.data[i].name) {
@@ -130,15 +113,15 @@ class ScriptInterpreter {
     // Data
     for (let i = 0; i < script.data.length; i++) {
       for (let j = 0; j < script.data[i].list.length; j++) {
-        if (!fs.existsSync(path.join(__dirname, '../..', DATA_FOLDER, script.data[i].list[j]))) {
+        if (!fs.existsSync(path.join(__dirname, '../..', constants.DATA_FOLDER, script.data[i].list[j]))) {
           return ' data file "' + script.data[i].list[j] + '" not found';
         }
       }
     }
-    // Templates
-    for (let i = 0; i < script.templates.length; i++) {
-      if (!fs.existsSync(path.join(__dirname, '../..', TEMPLATES_FOLDER, script.templates[i].template))) {
-        return ' template file "' + script.templates[i].template + '" not found';
+    // Events
+    for (let i = 0; i < script.events.length; i++) {
+      if (!fs.existsSync(path.join(__dirname, '../..', constants.TEMPLATES_FOLDER, script.events[i].template))) {
+        return ' template file "' + script.events[i].template + '" not found';
       }
     }
 
@@ -151,7 +134,7 @@ class ScriptInterpreter {
     verbose ? console.log('Loading script') : null;
     let scriptObj;
     try {
-      scriptObj = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', SCRIPTS_FOLDER, script), FILE_ENCODING));
+      scriptObj = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, script), constants.FILE_ENCODING));
     } catch(e) {
       console.log('Error: Invalid script, not JSON');
       return;
@@ -165,38 +148,56 @@ class ScriptInterpreter {
       return;
     }
 
-    // Parse script
+    // Check script
     verbose ? console.log('Validating script - stage 2') : null;
-    error = this.parsePublishScript(scriptObj);
+    error = this.checkPublishScript(scriptObj);
     if (error != undefined) {
       console.log('Error: Invalid script, ' + error);
       return;
     }
-  }
 
-  // Ready to run it
-  // single publisher 
-  //  for provider?
-  //  for each patient
-  //    for each encounter
-  //      for each template (event type)
-  //        for each event data
+    // Ready to run
+    let mgr = new channelMgr.ChannelManager();
+    let eventCount = 0;
+    // find the providers list
+    let providers = scriptObj.data.find((obj) => { return obj.name == scriptObj.PUBLISH.FOR_EACH_PROVIDER; });
+    // find the encounters list
+    let encounters = scriptObj.data.find((obj) => { return obj.name == scriptObj.PUBLISH.FOR_EACH_ENCOUNTER; });
+    // Find the patient list
+    let patients = scriptObj.data.find((obj) => { return obj.name == scriptObj.PUBLISH.FOR_EACH_PATIENT; });
+
+    // For each service provider
+    for (let sp = 0; sp < providers.list.length; ++sp) {
+      // The associated encounter is the one at the same index value in the encounters
+      // If there are less encounters than providers, the last encounter is used
+      let enc = sp < encounters.list.length ? sp : encounters.list.length - 1;
+      // For each patient
+      for (let p = 0; p < patients.list.length; ++p) {
+        // For each event type
+        for (let eType = 0; eType < scriptObj.events.length; ++eType) {
+          // Find the event data list
+          let data = scriptObj.data.find((obj) => { return obj.name == scriptObj.events[eType].eventData; });
+          // For each event data file
+          for (let eObj = 0; eObj < data.list.length; ++eObj) {
+            // Build the template data
+            let templateData = factory.DataBuilder.build(scriptObj.publisher, providers.list[sp], encounters.list[enc], patients.list[p], data.list[eObj]);
+            // Build the event
+            verbose ? console.log('Build event') : null;
+            let event = factory.EventBuilder.build(scriptObj.events[eType].template, templateData);
+            // Publish the event
+            verbose ? console.log('Publish event') : null;
+            mgr.publish(event, scriptObj.events[eType].type, channel);
+            ++eventCount;
+            console.log('Published event [' + eventCount.toString().padStart(5) + '] to channel [' + channel + '] - SUCCESS');
+          }
+        }
+      }
+    }
+  }
 
 }
 
 // Module exports
 module.exports = {
-  ScriptInterpreter,
-  FILE_ENCODING,
-  DATA_FOLDER,
-  TEMPLATES_FOLDER,
-  SCRIPTS_FOLDER,
-  CONFIG_FOLDER,
-  PUBLISH_XML,
-  PUBLISH_JSON,
-  CHANNEL_SINK,
-  CHANNEL_FILE,
-  CHANNEL_INTERSYSTEMS,
-  CHANNEL_MESH,
-  INDEX_LOOPBACK
+  ScriptInterpreter
 }
