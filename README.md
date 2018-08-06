@@ -34,17 +34,29 @@ Shows information about the assets available.
 ### Publish
 Fabricate and publish events, as defined by a script, to a channel.
 
-`node app.js publish --script="events.json" --channel=sink`
+`node app.js publish --script=<script file> --channel=<channel name> [--verbose]`
+
+The script file is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The output channel is
+defined by **`<channel name>`**. It must be one of:
++ **`sink`**
++ **`file`**
++ **`healthshare`**
++ **`mesh`**
+If **`--verbose`** is set, then progress messages will be displayed.
+
+Example:
+
+`node app,js publish --script=good.publish.json --channel=sink --verbose`
 
 ### Point
 Create, update and delete record pointers, as defined by a script, to an index.
 
-`node app.js publish --script="pointers.json" --index=sink`
+`node app.js publish --script="pointers.json" --index=sink --verbose`
 
 ### Listen
 Listen for incoming requests for FHIR records.
 
-`node app.js listen`
+`node app.js listen --verbose`
 
 The application will listen indefinitely until you terminate it.
 
