@@ -38,13 +38,13 @@ These are events that would be published by national services. These can be used
 
 | File name | Description | Format |
 |-----------|-------------|--------|
-| failsafeAlert.template.json | Failsafe alert from national failsafe service. | JSON |
-| failsafeAlert.template.xml | Failsafe alert from national failsafe service. | XML |
-| birthNotification.template.json | Birth notification from national Personal Demographics Service (PDS). | JSON |
-| birthNotification.template.xml | Birth notification from national Personal Demographics Service (PDS). | XML |
-| changeOfAddress.template.json | Change of address from national Personal Demographics Service (PDS). | JSON |
-| changeOfAddress.template.xml | Change of address from national Personal Demographics Service (PDS). | XML |
-| changeOfGP.template.json | Change of GP from national Personal Demographics Service (PDS). | JSON |
-| changeOfGP.template.xml | Change of GP from national Personal Demographics Service (PDS). | XML |
-| personDeath.template.json | Death notification from national Personal Demographics Service (PDS). | JSON |
-| personDeath.template.xml | Death notification from national Personal Demographics Service (PDS). | XML |
+| failsafeAlert.beta.template.json | Failsafe alert from national failsafe service.  STU3 FHIR Beta release. | JSON |
+| failsafeAlert.beta.template.xml | Failsafe alert from national failsafe service.  STU3 FHIR Beta release. | XML |
+| birthNotification.beta.template.json | Birth notification from national Personal Demographics Service (PDS).  STU3 FHIR Beta release. | JSON |
+| birthNotification.beta.template.xml | Birth notification from national Personal Demographics Service (PDS).  STU3 FHIR Beta release. | XML |
+| changeOfAddress.beta.template.json | Change of address from national Personal Demographics Service (PDS).  STU3 FHIR Beta release. | JSON |
+| changeOfAddress.beta.template.xml | Change of address from national Personal Demographics Service (PDS).  STU3 FHIR Beta release. | XML |
+| changeOfGP.beta.template.json | Change of GP from national Personal Demographics Service (PDS).  STU3 FHIR Beta release. | JSON |
+| changeOfGP.beta.template.xml | Change of GP from national Personal Demographics Service (PDS).  STU3 FHIR Beta release. | XML |
+| personDeath.beta.template.json | Death notification from national Personal Demographics Service (PDS).  STU3 FHIR Beta release. | JSON |
+| personDeath.beta.template.xml | Death notification from national Personal Demographics Service (PDS).  STU3 FHIR Beta release. | XML |
