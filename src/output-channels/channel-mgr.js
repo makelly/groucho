@@ -4,12 +4,12 @@ const fs = require('fs');
 const path = require('path');
 const sinkOut = require('./sink-channel.js');
 const fileOut = require('./file-channel.js');
-const intersystemsOut = require('./intersystems-channel.js');
+const healthshareOut = require('./healthshare-channel.js');
 const meshOut = require('./mesh-channel.js');
 const constants = require('../lib/constants.js');
 
 const FILE_FILENAME = 'file-channel.json';
-const INTERSYSTEMS_FILENAME = 'intersystems-channel.json';
+const HEALTHSHARE_FILENAME = 'healthshare-channel.json';
 const MESH_FILENAME = 'mesh-channel.json';
 
 // Class to check existance of configuration files
@@ -23,7 +23,7 @@ class ChannelConfigChecker {
   static check() {
     let result = [];
     result.push([fs.existsSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, FILE_FILENAME)), FILE_FILENAME]);
-    result.push([fs.existsSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, INTERSYSTEMS_FILENAME)), INTERSYSTEMS_FILENAME]);
+    result.push([fs.existsSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, HEALTHSHARE_FILENAME)), HEALTHSHARE_FILENAME]);
     result.push([fs.existsSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, MESH_FILENAME)), MESH_FILENAME]);
 
     return result;
@@ -39,7 +39,7 @@ class ChannelConfig {
     try {
       // Get the config files for each channel
       this.file = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, FILE_FILENAME), constants.FILE_ENCODING));
-      this.intersystems = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, INTERSYSTEMS_FILENAME), constants.FILE_ENCODING));
+      this.healthshare = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, HEALTHSHARE_FILENAME), constants.FILE_ENCODING));
       this.mesh = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, MESH_FILENAME), constants.FILE_ENCODING));
     } catch(e) {
       throw new Error('Constructor error - ' + e.message);
@@ -60,7 +60,7 @@ class ChannelManager {
       // Create instances of all output channels, passing in config information
       this.sink = new sinkOut.SinkChannel();
       this.file = new fileOut.FileChannel(cfg.file);
-      this.intersystems = new intersystemsOut.InterSystemsChannel(cfg.intersystems);
+      this.healthshare = new healthshareOut.HealthShareChannel(cfg.healthshare);
       this.mesh = new meshOut.MeshChannel(cfg.mesh);
     } catch(e) {
       throw new Error('ChannelConfig.constructor() - ' + e.message);
@@ -72,7 +72,7 @@ class ChannelManager {
     switch (name) {
       case constants.CHANNEL_SINK:
       case constants.CHANNEL_FILE:
-      case constants.CHANNEL_INTERSYSTEMS:
+      case constants.CHANNEL_HEALTHSHARE:
       case constants.CHANNEL_MESH:
         return true;
         break;
@@ -83,27 +83,56 @@ class ChannelManager {
   }
 
   // publish event
-  publish(event, format, channel) {
+  publish(event, format, channel, eventID) {
+    // Check arguments
+    if (event == undefined) {
+      throw new Error('ChannelManager.publish(event, format, channel, eventID) - event argument undefined.');
+    }
+    if (format == undefined) {
+      throw new Error('ChannelManager.publish(event, format, channel, eventID) - format argument undefined.')
+    }
+    switch (format) {
+      case constants.PUBLISH_XML:
+      case constants.PUBLISH_JSON:
+        break;
+      default:
+        throw new Error(`ChannelManager.publish(event, format, channel, eventID) - format argument invalid.`);
+    }
+    if (channel == undefined) {
+      throw new Error('ChannelManager.publish(event, format, channel, eventID) - channel argument undefined.')
+    }
+    if (!ChannelManager.isValidChannelName(channel)) {
+        throw new Error(`ChannelManager.publish(event, format, channel, eventID) - channel argument invalid.`);
+    }
+    if (eventID == undefined) {
+      throw new Error('ChannelManager.publish(event, format, channel, eventID) - eventID argument undefined.')
+    }
+
+    // Call channel
+    let response = '';
+
     switch (channel) {
       case constants.CHANNEL_SINK:
-        this.sink.publish(event, format);
+        response = this.sink.publish(event, format, eventID);
         break;
 
       case constants.CHANNEL_FILE:
-        this.file.publish(event, format);
+        response = this.file.publish(event, format, eventID);
         break;
 
-      case constants.CHANNEL_INTERSYSTEMS:
-        this.intersystems.publish(event, format);
+      case constants.CHANNEL_HEALTHSHARE:
+        response = this.healthshare.publish(event, format, eventID);
         break;
 
       case constants.CHANNEL_MESH:
-        this.mesh.publish(event, format);
+        response = this.mesh.publish(event, format, eventID);
         break;
 
       default:
-        throw new Error('ChannelManager.publish(event, format, channel) - invalid channel "' + channel + '"')
+        throw new Error('ChannelManager.publish(event, format, channel, eventID) - invalid channel "' + channel + '"')
     }
+
+    return response;
   }
 
 }

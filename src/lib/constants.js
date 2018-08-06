@@ -13,7 +13,7 @@ const PUBLISH_JSON = 'json';
 
 const CHANNEL_SINK = 'sink';
 const CHANNEL_FILE = 'file';
-const CHANNEL_INTERSYSTEMS = 'intersystems';
+const CHANNEL_HEALTHSHARE = 'healthshare';
 const CHANNEL_MESH = 'mesh';
 
 const INDEX_LOOPBACK = 'loopback';
@@ -31,7 +31,7 @@ module.exports = {
   PUBLISH_JSON,
   CHANNEL_SINK,
   CHANNEL_FILE,
-  CHANNEL_INTERSYSTEMS,
+  CHANNEL_HEALTHSHARE,
   CHANNEL_MESH,
   INDEX_LOOPBACK,
   PUBLISH_SCHEMA

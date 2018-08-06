@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const jsonSchema = require('jsonschema');
+const colors = require('colors');
 const constants = require('../lib/constants.js');
 const factory = require('../event-factory/event-factory.js');
 const channelMgr = require('../output-channels/channel-mgr.js');
@@ -141,7 +142,7 @@ class ScriptInterpreter {
     }
 
     // Validate script
-    verbose ? console.log('Validating script - stage 1') : null;
+    verbose ? console.log('Validating script') : null;
     let error = this.validatePublishScript(scriptObj);
     if (error != undefined) {
       console.log('Error: Invalid script, ' + error);
@@ -149,7 +150,7 @@ class ScriptInterpreter {
     }
 
     // Check script
-    verbose ? console.log('Validating script - stage 2') : null;
+    verbose ? console.log('Checking script') : null;
     error = this.checkPublishScript(scriptObj);
     if (error != undefined) {
       console.log('Error: Invalid script, ' + error);
@@ -157,8 +158,9 @@ class ScriptInterpreter {
     }
 
     // Ready to run
+    verbose ? console.log('Start run script...') : null;
     let mgr = new channelMgr.ChannelManager();
-    let eventCount = 0;
+    let eventCount = 1;
     // find the providers list
     let providers = scriptObj.data.find((obj) => { return obj.name == scriptObj.PUBLISH.FOR_EACH_PROVIDER; });
     // find the encounters list
@@ -182,17 +184,17 @@ class ScriptInterpreter {
             // Build the template data
             let templateData = factory.DataBuilder.build(scriptObj.publisher, providers.list[sp], encounters.list[enc], patients.list[p], data.list[eObj]);
             // Build the event
-            verbose ? console.log('Build event') : null;
             let event = factory.EventBuilder.build(scriptObj.events[eType].template, templateData);
+            verbose ? console.log('Event number ' + eventCount.toString().padStart(5).green + ' built with eventID = ' + event.eventID.green) : null;
             // Publish the event
-            verbose ? console.log('Publish event') : null;
-            mgr.publish(event, scriptObj.events[eType].type, channel);
+            let response = mgr.publish(event.event, scriptObj.events[eType].type, channel, event.eventID);
+            console.log('Event number ' + eventCount.toString().padStart(5).green + ' published to channel with response ' + response.yellow);
             ++eventCount;
-            console.log('Published event [' + eventCount.toString().padStart(5) + '] to channel [' + channel + '] - SUCCESS');
           }
         }
       }
     }
+    verbose ? console.log('End run script...') : null;
   }
 
 }

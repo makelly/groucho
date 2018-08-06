@@ -8,6 +8,7 @@ const axios = require('axios');
 const constants = require('../lib/constants.js');
 
 const MAX_NONCE_COUNT = 1000;
+const OK = 'OK';
 
 // Class to send event using MESH
 class MeshChannel {
@@ -72,23 +73,28 @@ class MeshChannel {
   }
 
   // Publish event
-  publish(data, format) {
+  publish(data, format, eventID) {
     // Check arguments
     if (data == undefined) {
-      throw new Error('MeshChannel.publish(data, format) - data argument undefined.');
+      throw new Error('MeshChannel.publish(data, format, eventID) - data argument undefined.');
     }
     if (format == undefined) {
-      throw new Error('MeshChannel.publish(data, format) - format argument undefined.')
+      throw new Error('MeshChannel.publish(data, format, eventID) - format argument undefined.')
     }
     switch (format) {
       case constants.PUBLISH_XML:
       case constants.PUBLISH_JSON:
         break;
       default:
-        throw new Error(`MeshChannel.publish(data, format) - format argument invalid. Value = ${format} expected xml | json .`);
+        throw new Error(`MeshChannel.publish(data, format, eventID) - format argument invalid. Value = ${format} expected xml | json .`);
+    }
+    if (eventID == undefined) {
+      throw new Error('MeshChannel.publish(data, format, eventID) - eventID argument undefined.')
     }
 
     // To Do
+
+    return OK;
   }
 
 }

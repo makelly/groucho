@@ -6,6 +6,8 @@ const path = require('path');
 const hbs = require('handlebars');
 const constants = require('../lib/constants.js');
 
+const EVENTID = 'bundle';
+
 // Class to create and manage UUIDs
 class UUID {
 
@@ -101,8 +103,11 @@ class EventBuilder {
       // Compile the template
       let template = hbs.compile(source);
       // Render template
-      let result = template(data);
-      // Return event
+      let result = {};
+      result.event = template(data);
+      // Get eventID
+      result.eventID = uuid.getUUID(EVENTID);
+      // Return result
       return result;
     } catch(e) {
       // Throw error

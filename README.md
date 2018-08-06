@@ -76,7 +76,7 @@ Configuration files live in the directory `/config`
 |---------|-------------| --------------|
 | Sink | Discards event. Useful for testing. | None needed |
 | File | Write event to a file in a designated directory. | [here](docs/FILE-CHANNEL.md) |
-| InterSystems | Send event, via an API, to an instance of an InterSystems EMS. | [here](docs/INTERSYSTEMS-CHANNEL.md) |
+| HealthShare | Send event, via an API, to an instance of an InterSystems HealthShare EMS. | [here](docs/HEALTHSHARE-CHANNEL.md) |
 | MESH | Send event via the Message Exchange for Social Care and Health (MESH) messaging service. | [here](docs/MESH-CHANNEL.md) |
 
 ## Logging

@@ -1,5 +1,7 @@
 // sink-channel.js - Sink output channel
 
+const OK = 'OK';
+
 // Class to discard event sent to it
 class SinkChannel {
 
@@ -9,10 +11,10 @@ class SinkChannel {
   }
 
   // Publish event
-  publish(data, format) {
+  publish(data, format, eventID) {
     // Do nothing
 
-    return;
+    return OK;
   }
 
 }

@@ -114,4 +114,6 @@ describe('Class ScriptInterpreter tests', () => {
     expect(error).toNotExist();
   });
 
+  // no test for runPublishScript
+
 });

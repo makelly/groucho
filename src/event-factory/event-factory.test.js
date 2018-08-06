@@ -15,7 +15,9 @@ const eventFile = 'test.event.data.json';
 const jsonTemplateFile = 'test.template.json';
 const xmlTemplateFile = 'test.template.xml';
 const jsonOutputFile = 'testresult.json';
+const jsonEventIDFile = "testresult.eventID.json"
 const xmlOutputFile = 'testresult.xml';
+const xmlEventIDFile = 'testresult.eventID.xml';
 
 describe('Class UUID tests', () => {
 
@@ -151,7 +153,7 @@ describe('Class EventBuilder tests', () => {
 
   it('should new EventBuilder()', () => {
     let eb = new factory.EventBuilder();
-    
+
     expect(eb).toExist();
   });
 
@@ -177,7 +179,9 @@ describe('Class EventBuilder tests', () => {
     // Build event
     let result = factory.EventBuilder.build(jsonTemplateFile, data);
     // Save to temp file for inspection
-    fs.writeFileSync(path.join(__dirname, '../..', 'temp', jsonOutputFile), result);
+    fs.writeFileSync(path.join(__dirname, '../..', 'temp', jsonOutputFile), result.event);
+    // Save eventID to temp file for inspection
+    fs.writeFileSync(path.join(__dirname, '../..', 'temp', jsonEventIDFile), '{ "EventID": "' + result.eventID + '"}');
 
     expect(result).toExist();
   });
@@ -187,8 +191,10 @@ describe('Class EventBuilder tests', () => {
     let data = factory.DataBuilder.build(publisherFile, providerFile, encounterFile, patientFile, eventFile);
     // Build event
     let result = factory.EventBuilder.build(xmlTemplateFile, data);
-    // Save to temp file for insepction
-    fs.writeFileSync(path.join(__dirname, '../..', 'temp', xmlOutputFile), result);
+    // Save to temp file for inspection
+    fs.writeFileSync(path.join(__dirname, '../..', 'temp', xmlOutputFile), result.event);
+    // Save eventID to temp file for inspection
+    fs.writeFileSync(path.join(__dirname, '../..', 'temp', xmlEventIDFile), '<?xml version="1.0" encoding="UTF-8"?><EventID>' + result.eventID + '</EventID>');    
 
     expect(result).toExist();
   });

@@ -14,8 +14,8 @@
   ],
 
   "events": [
-    {"template": "immunization.template.json", "type": "json", "eventData": "immunizations"},
-    {"template": "medication.template.xml", "type": "xml", "eventData": "medications"}
+    {"template": "immunization.beta.template.json", "type": "json", "eventData": "immunizations"},
+    {"template": "medication.beta.template.xml", "type": "xml", "eventData": "medications"}
   ],
 
   "PUBLISH": {

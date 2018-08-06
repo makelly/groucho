@@ -13,7 +13,7 @@
   ],
 
   "events": [
-    {"template": "immunization.template.json", "type": "json", "eventData": "immunizations"},
+    {"template": "immunization.beta.template.json", "type": "json", "eventData": "immunizations"},
     {"template": "garbage", "type": "xml", "eventData": "medications"}
   ],
 

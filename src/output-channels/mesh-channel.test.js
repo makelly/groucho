@@ -74,23 +74,31 @@ describe('Class MeshChannel tests', () => {
     expect(mesh).toExist();
   });
 
-  it('should throw error for publish(data, format) with undefined data argument', () => {
+  it('should throw error for publish(data, format, eventID) with undefined data argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
-    expect(() => {mesh.publish(undefined, 'xml');}).toThrow();
+    expect(() => {mesh.publish(undefined, 'xml', 'id');}).toThrow();
   });
 
-  it('should throw error for publish(data, format) with undefined format argument', () => {
+  it('should throw error for publish(data, format, eventID) with undefined format argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
-    expect(() => {mesh.publish('Anything', undefined);}).toThrow();
+    expect(() => {mesh.publish('Anything', undefined, 'id');}).toThrow();
   });
 
   it('should throw error for publish(data, format) with invalid format argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
-    expect(() => {mesh.publish('Anything', 'Anything');}).toThrow();
+    expect(() => {mesh.publish('Anything', 'Anything', 'id');}).toThrow();
   });
+
+  it('should throw error for publish(data, format, eventID) with undefined EventID argument', () => {
+    let mesh = new channel.MeshChannel(testConfig);
+
+    expect(() => {mesh.publish('Anything', 'xml', undefined);}).toThrow();
+  });
+
+  // There is no test publish(data, format, eventID) with valid arguments as dont want to actually output to MESH
 
   it('should makeToken()', () => {
     let mesh = new channel.MeshChannel(testConfig);
