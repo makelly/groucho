@@ -20,21 +20,34 @@ To confirm that the application has been installed correctly run the tests:
 ## Usage
 ### Help
 Shows the available commands and associated options.
-`node app.js --help`
+
+**`node app.js --help`**
 
 ### Version
 Shows the application version.
-`node app.js --version`
+
+**`node app.js --version`**
 
 ### Inventory
 Shows information about the assets available.
 
-`node app.js inventory`
+**`node app.js inventory`**
 
+Example:
+```
+Checking inventory...
+Configuration files in /config:
+  √  file-channel.json
+  √  healthshare-channel.json
+  √  mesh-channel.json
+Number of files in /data: 14
+Number of files in /templates: 84
+Number of files in /scripts: 12
+```
 ### Publish
 Fabricate and publish events, as defined by a script, to a channel.
 
-`node app.js publish --script=<script file> --channel=<channel name> [--verbose]`
+**`node app.js publish --script=<script file> --channel=<channel name> [--verbose]`**
 
 The script file is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The output channel is
 defined by **`<channel name>`**. It must be one of:
@@ -42,23 +55,38 @@ defined by **`<channel name>`**. It must be one of:
 + **`file`**
 + **`healthshare`**
 + **`mesh`**
+
 If **`--verbose`** is set, then progress messages will be displayed.
 
 Example:
 
-`node app,js publish --script=good.publish.json --channel=sink --verbose`
+`node app.js publish --script=good.publish.json --channel=sink --verbose`
 
 ### Point
 Create, update and delete record pointers, as defined by a script, to an index.
 
-`node app.js publish --script="pointers.json" --index=sink --verbose`
+**`node app.js publish --script=<script file --index=<index name> [--verbose]`**
+
+The script file is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The record index is
+defined by **`<index name>`**. It must be one of:
++ **`loopback`**
+
+If **`--verbose`** is set, then progress messages will be displayed.
+
+Example:
+
+`node app.js index --script=good.index.json --index=loopback --verbose`
 
 ### Listen
-Listen for incoming requests for FHIR records.
+Listen for incoming requests for FHIR records. The application will listen indefinitely until you terminate it.
+
+**`node app.js listen [--verbose]`**
+
+If **`--verbose`** is set, then progress messages will be displayed.
+
+Example:
 
 `node app.js listen --verbose`
-
-The application will listen indefinitely until you terminate it.
 
 ## Scripts
 - [ ] UNDER CONSTRUCTION :construction:
