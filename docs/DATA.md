@@ -35,9 +35,179 @@ Data files use the following naming convention:
 ### additionalDemographics
 | File name | Description |
 |-----------|-------------|
-|  |  |
+|  TBD |  |
 
 ### admissionDetails
 | File name | Description |
 |-----------|-------------|
-|  |  |
+|  TBD |  |
+
+### allergiesAndAdverseReactions
+| File name       | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### assessmentScales
+| File name     | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### birthDetails
+| File name       | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### bloodSpotSampleTaken
+| File name     | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### bloodSpotCardReceived
+| File name     | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### bloodSpotTestOutcome
+| File name       | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### clinicalRiskFactors
+| File name     | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### conditions
+| File name    | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### developmentalSkills
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### dischargeDetails
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### earlyYearsProgress
+| File name    | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### educationalHistory
+| File name   | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### emergencyCareAttendance
+| File name    | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### examinationFindings
+| File name    | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### familyHistory
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### feedingStatus
+| File name  | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### immunization
+| File name    | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### individualRequirements
+| File name   | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### informationandAdviceGiven
+| File name     | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### legalInformation
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### measurements
+| File name       | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### medication
+| File name       | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### newbornHearing
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### parentGuardianorPersonalComment
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### personalContacts
+| File name     | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### physicalExamination
+| File name       | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### planandRequestedActions
+| File name     | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### professionalComment
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### professionalContacts
+| File name    | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### referral
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### safetyAlerts
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### socialContextHousehold
+| File name    | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### socialContextPerson
+| File name     | Description |
+|---------------------|-------------|
+|   TBD  |  |
+
+### failsafeAlertNullify
+| File name      | Description |
+|---------------------|-------------|
+|   TBD  |  |

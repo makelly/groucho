@@ -65,7 +65,7 @@ Example:
 ### Point
 Create, update and delete record pointers, as defined by a script, to an index.
 
-**`node app.js publish --script=<script file --index=<index name> [--verbose]`**
+**`node app.js publish --script=<script file> --index=<index name> [--verbose]`**
 
 The script file is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The record index is
 defined by **`<index name>`**. It must be one of:

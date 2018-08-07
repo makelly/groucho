@@ -1,7 +1,7 @@
 # Templates
-Template files use the following naming convention: `<event name and version if required>.template.<json | xml>`
+Template files use the following naming convention: `<event name>.<version if required>.template.<json | xml>`
 
-Examples: `physicalExamination.template.json   physicalExamination.template.xml`
+Examples: `physicalExamination.beta.template.json   physicalExamination.beta.template.xml`
 
 *If you add new templates, please update the appropriate tables below.*
 
