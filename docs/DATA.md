@@ -3,33 +3,33 @@ Data files use the following naming convention:
 
 | Type of Data | Naming Convention | Example |
 |-----------------|-----------------------|---------------------|
-| Publisher | `<name and version if required>.publisher.data.json` | `LGI.publisher.data.json` |
-| Provider |  `<name and version if required>.provider.data.json` | `LGI.provider.data.json` |
-| Encounter |  `<name and version if required>.encounter.data.json` | `LGIMonday.encounter.data.json` |
-| Patient |  `<name and version if required>.patient.data.json` | `GMarx.patient.data.json` |
-| Event |  `<name and version if required>.event.data.json` | `physicalExamination.event.data.json` |
+| Publisher | `<name>.<version if required>.publisher.data.json` | `LGI.publisher.data.json` |
+| Provider |  `<name>.<version if required>.provider.data.json` | `LGI.provider.data.json` |
+| Encounter |  `<name>.<version if required>.encounter.data.json` | `LGIMonday.encounter.data.json` |
+| Patient |  `<name>.<version if required>.patient.data.json` | `GMarx.patient.data.json` |
+| Event |  `<name>.<version if required>.event.data.json` | `physicalExamination.event.data.json` |
 
 *If you add new data files, please update the appropriate tables below.*
 
 ## Publishers
 | File name | Description |
 |-----------|-------------|
-|  |  |
+|  test.* |  Used for testing of Groucho. |
 
 ## Providers
 | File name | Description |
 |-----------|-------------|
-|  |  |
+|  test.* |  Used for testing of Groucho. |
 
 ## Encounters
 | File name | Description |
 |-----------|-------------|
-|  |  |
+|  test.* |  Used for testing of Groucho. |
 
 ## Patients
 | File name | Description |
 |-----------|-------------|
-|  |  |
+|  test.* |  Used for testing of Groucho. |
 
 ## Events
 ### additionalDemographics
