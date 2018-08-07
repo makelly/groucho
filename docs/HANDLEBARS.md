@@ -44,7 +44,7 @@ Patient specific Handlebars expressions. A patient is the patient associated wit
 | `{{patient.givenName}}` | Given (first) name, for example `Jack`. |
 | `{{patient.gender}}` | Gender. Must be `male` or `female`. |
 | `{{patient.dob}}` | Date of birth in format YYYY-MM-DD, for example `2013-10-12`. |
-| `{{patient.tob}}` | Time of birth in format YYYY-MM-DDTHH:MM:DD+00:00, for example `2017-10-02T12:00:00+00:00. |
+| `{{patient.tob}}` | Time of birth in format YYYY-MM-DDTHH:MM:DD+00:00, for example `2017-10-02T12:00:00+00:00`. |
 | `{{patient.postcode}}` | Residential postcode, for example `DH1 2TF`. |
 
 ## Event
