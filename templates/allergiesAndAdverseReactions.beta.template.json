@@ -37,13 +37,13 @@
           "code": "CH003",
           "display": "Allergies and Adverse Reactions"
         },
-        "timestamp": "2017-11-01T15:00:00+00:00",
+        "timestamp": "{{publishDate}}",
         "source": {
-          "endpoint": "urn:nhs-uk:addressing:ods:RX3EP"
+          "endpoint": "{{publisher.endpoint}}"
         },
         "responsible": {
           "reference": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
-          "display": "UNIVERSITY HOSPITAL OF NORTH DURHAM"
+          "display": "{{publisher.name}}"
         },
         "focus": [
           {

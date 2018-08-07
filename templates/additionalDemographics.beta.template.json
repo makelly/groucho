@@ -37,13 +37,13 @@
           "code": "CH001",
           "display": "Additional Demographics"
         },
-        "timestamp": "2017-11-01T15:00:00+00:00",
+        "timestamp": "{{publishDate}}",
         "source": {
-          "endpoint": "urn:nhs-uk:addressing:ods:A83627"
+          "endpoint": "{{publisher.endpoint}}"
         },
         "responsible": {
           "reference": "urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
-          "display": "SILVERDALE FAMILY PRACTICE"
+          "display": "{{publisher.name}}"
         },
         "focus": [
           {
@@ -147,7 +147,7 @@
               }
             ],
             "system": "https://fhir.nhs.uk/Id/nhs-number",
-            "value": "9912003888"
+            "value": "{{patient.NHSNumber}}"
           }
         ],
         "name": [

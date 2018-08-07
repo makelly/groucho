@@ -27,13 +27,13 @@
 					<code value="CH004"/>
 					<display value="Assessment Scales"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
+					<endpoint value="{{publisher.endpoint}}"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:faad7a74-267f-4e07-b19b-a230d257e0cc"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<display value="{{publisher.name}}"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:5dbe9e0a-d520-44ff-af10-3cbb8d6015c6"/>

@@ -27,13 +27,13 @@
 					<code value="CH003"/>
 					<display value="Allergies and Adverse Reactions"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
+					<endpoint value="{{publisher.endpoint}}"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
-					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+					<display value="{{publisher.name}}"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>

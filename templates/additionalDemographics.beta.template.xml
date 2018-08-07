@@ -27,13 +27,13 @@
 					<code value="CH001"/>
 					<display value="Additional Demographics"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
+					<endpoint value="{{publisher.endpoint}}"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<display value="{{publisher.name}}"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>

@@ -146,20 +146,20 @@
               }
             ],
             "system": "https://fhir.nhs.uk/Id/nhs-number",
-            "value": "9912003888"
+            "value": "{{patient.NHSNumber}}"
           }
         ],
         "name": [
           {
             "use": "official",
-            "family": "DAWKINS",
+            "family": "{{patient.familyName}}",
             "given": [
-              "Jack"
+              "{{patient.givenName}}"
             ]
           }
         ],
-        "gender": "male",
-        "birthDate": "2013-10-12",
+        "gender": "{{patient.gender}}",
+        "birthDate": "{{patient.dob}}",
         "_birthDate": {
           "extension": [
             {
@@ -175,7 +175,7 @@
               "4 Sandmoor Drive"
             ],
             "city": "DURHAM",
-            "postalCode": "DH1 2TF"
+            "postalCode": "{{patient.postcode}}"
           }
         ]
       }

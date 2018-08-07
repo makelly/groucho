@@ -17,7 +17,8 @@ Publisher specific Handlebars expressions. A publisher is the organisation which
 | `{{getUUID 'bundle'}}` | Every event template MUST include this. The UUID returned is used as the unique EventID. |
 | `{{getUUID 'message'}}` | Every event template SHOULD include this. The UUID returned is used as the unique message header id. |
 | `{{publishDate}}` | Every event template SHOULD include this. Sets the publish date and time to the current date and time at the point Groucho fabricates the event. |
- 
+| `{{publisher.endpoint}}` | The endpoint from which the event has been published, for example `urn:nhs-uk:addressing:ods:A83627` |
+| `{{publisher.name}}` | The full name of the publisher, for example `SILVERDALE FAMILY PRACTICE` |
 
 ## Provider
 Provider specific Handlebars expressions. A provider is the health care provider which is the source, origin, of the event. In most situations publisher and provider will be the same, but can be different.
@@ -38,7 +39,13 @@ Patient specific Handlebars expressions. A patient is the patient associated wit
 
 | Handlebars&nbsp;Expression       | Description |
 |---------------------|-------------|
-|     |  |
+| `{{patient.NHSNumber}}`    |  NHS number, for example `9912003888` |
+| `{{patient.familyName}}` | Family name, for example `DAWKINS` |
+| `{{patient.givenName}}` | Given (first) name, for example `Jack` |
+| `{{patient.gender}}` | Gender. Must be `male` or `female` |
+| `{{patient.dob}}` | Date of birth in format YYYY-MM-DD, for example `2013-10-12` |
+| `{{patient.tob}}` | Time of birth in format YYYY-MM-DDTHH:MM:DD+00:00, for example `2017-10-02T12:00:00+00:00` |
+| `{{patient.postcode}}` | Residential postcode, for example `DH1 2TF` |
 
 ## Event
 Event specific Handlebars expressions. This will be different for each event type.
