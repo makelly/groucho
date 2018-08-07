@@ -89,7 +89,13 @@ Example:
 `node app.js listen --verbose`
 
 ## Scripts
-- [ ] UNDER CONSTRUCTION :construction:
+A script file contains a set of commands to fabricate events or pointers.
+
+Script files live in the directory `/scripts`
+
+A list of scripts is provided [here](docs/SCRIPTS.md).
+
+How to create scripts is described [here](docs/CREATE-SCRIPTS.md).
 
 ## Templates
 A template file is a FHIR event message bundle, in XML or JSON format, that has elements marked up that will be replaced by data values. The [Handlebars templating language](http://handlebarsjs.com/), which is an extension to the well known Mustache templating language, is used to markup elements.
