@@ -75,13 +75,13 @@
 				<status value="completed"/>
 				<subject>
 					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<sent value="2018-02-01"/>
 				<payload>
 					<contentReference>
 						<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-						<display value="DAWKINS, Jack"/>
+						<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 					</contentReference>
 				</payload>
 			</Communication>
@@ -122,24 +122,24 @@
 						</valueCodeableConcept>
 					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="9912003888"/>
+					<value value="{{patient.NHSNumber}}"/>
 				</identifier>
 				<name>
 					<use value="official"/>
-					<family value="DAWKINS"/>
-					<given value="Jack"/>
+					<family value="{{patient.familyName}}"/>
+					<given value="{{patient.givenName}}"/>
 					<prefix value="Master"/>
 				</name>
-				<gender value="male"/>
-				<birthDate value="2017-10-02">
+				<gender value="{{patient.gender}}"/>
+				<birthDate value="{{patient.dob}}">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
-						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+						<valueDateTime value="{{patient.tob}}"/>
 					</extension>
 				</birthDate>
 				<address>
 					<line value="4 Sandmoor Drive"/>
 					<line value="LEEDS"/>
-					<postalCode value="LS17 7DF"/>
+					<postalCode value="{{patient.postcode}}"/>
 				</address>
 				<multipleBirthInteger value="1"/>
 			</Patient>
@@ -237,7 +237,7 @@
 				</code>
 				<subject>
 					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<valueQuantity>
 					<value value="3.98"/>
@@ -267,7 +267,7 @@
 				</code>
 				<subject>
 					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<valueQuantity>
 					<value value="39.0"/>
@@ -324,7 +324,7 @@
 				</code>
 				<subject>
 					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<valueCodeableConcept>
 					<coding>
@@ -354,7 +354,7 @@
 				</code>
 				<subject>
 					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<valueCodeableConcept>
 					<coding>

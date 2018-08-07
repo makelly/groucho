@@ -1,5 +1,9 @@
 // file-channel.js - File output channel
 
+const tmp = require('tmp');
+const fs = require('fs');
+const path = require('path');
+
 const constants = require('../lib/constants.js');
 
 const OK = 'OK';
@@ -18,11 +22,8 @@ class FileChannel {
       throw new Error('FileChannel.constructor(config) - config.fullPath undefined.');
     }
 
-    try {
-      // TBD
-    } catch(e) {
-      throw new Error(e.message);
-    }
+    // Store config
+    this.config = config;
   }
 
   // Publish event
@@ -44,9 +45,20 @@ class FileChannel {
     if (eventID == undefined) {
       throw new Error('FileChannel.publish(data, format, eventID) - eventID argument undefined.')
     }
-    // To Do
 
-    // evt-<datetime>-<rnd>.<xml | json>
+    // Check if directory exists
+    if (!fs.existsSync(this.config.fullPath)) {
+      // Doesn't so create it
+      fs.mkdirSync(this.config.fullPath);
+    }
+    // Create file name
+    let args = {};
+    args.dir = this.config.fullPath;
+    args.template = 'evt-XXXXXX.';
+    let fname = tmp.tmpNameSync(args) + format;
+    // Write file
+    fs.writeFileSync(path.join(this.config.fullPath, fname), data);
+
     return OK;
   }
 
