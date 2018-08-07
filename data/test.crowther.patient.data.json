@@ -4,5 +4,6 @@
   "givenName": "Kenn",
   "gender": "male",
   "dob": "2014-06-03",
+  "tob": "2014-06-03T12:00:00+00:00",
   "postcode": "FY1 3TF"
 }
