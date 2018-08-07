@@ -7,10 +7,10 @@
 	<type value="message"/>
 	<!--Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication-->
 	<entry>
-		<fullUrl value="urn:uuid:7165ecd5-4abb-4dbe-922b-7c7db71accd4"/>
+		<fullUrl value="urn:uuid:{{getUUID 'message'}}"/>
 		<resource>
 			<MessageHeader>
-				<id value="7165ecd5-4abb-4dbe-922b-7c7db71accd4"/>
+				<id value="{{getUUID 'message'}}"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"/>
 				</meta>

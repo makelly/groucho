@@ -6,10 +6,10 @@
 	</meta>
 	<type value="message"/>
 	<entry>
-		<fullUrl value="urn:uuid:e83118d5-b888-42d6-bf38-7e21b83a7f9b"/>
+		<fullUrl value="urn:uuid:{{getUUID 'message'}}"/>
 		<resource>
 			<MessageHeader>
-				<id value="e83118d5-b888-42d6-bf38-7e21b83a7f9b"/>
+				<id value="{{getUUID 'message'}}"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"/>
 				</meta>

@@ -9,10 +9,10 @@
   "type": "message",
   "entry": [
     {
-      "fullUrl": "urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
+      "fullUrl": "urn:uuid:{{getUUID 'message'}}",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
+        "id": "{{getUUID 'message'}}",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"

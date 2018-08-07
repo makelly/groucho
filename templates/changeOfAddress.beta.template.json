@@ -9,10 +9,10 @@
   "type": "message",
   "entry": [
     {
-      "fullUrl": "urn:uuid:8bb85c96-d8b7-4995-94ed-72845b85cf14",
+      "fullUrl": "urn:uuid:{{getUUID 'message'}}",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "8bb85c96-d8b7-4995-94ed-72845b85cf14",
+        "id": "{{getUUID 'message'}}",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"

@@ -6,10 +6,10 @@
 	</meta>
 	<type value="message"/>
 	<entry>
-		<fullUrl value="urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
+		<fullUrl value="urn:uuid:{{getUUID 'message'}}"/>
 		<resource>
 			<MessageHeader>
-				<id value="9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
+				<id value="{{getUUID 'message'}}"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
 				</meta>

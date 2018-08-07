@@ -8,12 +8,16 @@ General purpose Handlebars expressions.
 |---------------------|-------------|
 | `{{getUUID 'key'}}` | This will generate a new UUID and associate it with a key. If this is called again with the same key in the same template the UUID associated with the key will be returned. Note key values are case sensitive. |
 
+
 ## Publisher
 Publisher specific Handlebars expressions. A publisher is the organisation which is publishing the event.
 
 | Handlebars&nbsp;Expression       | Description |
 |---------------------|-------------|
-|     |  |
+| `{{getUUID 'bundle'}}` | Every event template MUST include this. The UUID returned is used as the unique EventID. |
+| `{{getUUID 'message'}}` | Every event template SHOULD include this. The UUID returned is used as the unique message header id. |
+| `{{publishDate}}` | Every event template SHOULD include this. Sets the publish date and time to the current date and time at the point Groucho fabricates the event. |
+ 
 
 ## Provider
 Provider specific Handlebars expressions. A provider is the health care provider which is the source, origin, of the event. In most situations publisher and provider will be the same, but can be different.
