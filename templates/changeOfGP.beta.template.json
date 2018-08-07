@@ -37,7 +37,7 @@
           "code": "PDS001",
           "display": "PDS Change of GP"
         },
-        "timestamp": "2017-11-01T15:00:00+00:00",
+        "timestamp": "{{publishDate}}",
         "source": {
           "endpoint": "urn:nhs-uk:addressing:ods:X26"
         },

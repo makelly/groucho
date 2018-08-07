@@ -28,7 +28,7 @@
 					<code value="PDS003"/>
 					<display value="PDS Birth Notification"/>
 				</event>
-				<timestamp value="2017-10-02T20:20:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
 				</source>

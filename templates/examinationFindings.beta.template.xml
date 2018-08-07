@@ -28,7 +28,7 @@
 					<code value="CH012"/>
 					<display value="Examination Findings"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
 				</source>

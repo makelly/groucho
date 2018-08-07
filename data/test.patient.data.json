@@ -1,9 +1,9 @@
 {
   "NHSNumber": "123456",
-  "familyName": "surname",
-  "givenName": "first name",
-  "gender": "male | female",
-  "dob": "YYYY-MM-DD",
-  "tob": "YYYY-MM-DDTHH:MM:DD+00:00",
-  "postcode": "POSTCODE"
+  "familyName": "DOE",
+  "givenName": "John",
+  "gender": "male",
+  "dob": "2018-01-05",
+  "tob": "2018-01-05T12:00:00+00:00",
+  "postcode": "LS1 6AE"
 }

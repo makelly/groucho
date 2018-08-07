@@ -37,7 +37,7 @@
           "code": "PDS003",
           "display": "PDS Birth Notification"
         },
-        "timestamp": "2017-10-02T20:20:00+00:00",
+        "timestamp": "{{publishDate}}",
         "source": {
           "endpoint": "urn:nhs-uk:addressing:ods:X26"
         },

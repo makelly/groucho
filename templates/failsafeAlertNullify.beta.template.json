@@ -37,7 +37,7 @@
           "code": "FM002",
           "display": "National Population Failsafe Alert Nullify"
         },
-        "timestamp": "2018-02-01T09:00:00+00:00",
+        "timestamp": "{{publishDate}}",
         "source": {
           "endpoint": "urn:nhs-uk:addressing:ods:RY6"
         },

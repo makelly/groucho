@@ -28,7 +28,7 @@
 					<code value="PDS002"/>
 					<display value="PDS Change of Address"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
 				</source>

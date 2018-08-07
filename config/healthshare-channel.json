@@ -1,7 +1,11 @@
 {
   "url": "https://127.0.0.1",
-  "basic-authentication": {
+  "authentication": "basic",
+  "basic": {
     "username": "USERNAME",
     "password": "PASSWORD"
+  },
+  "oauth2": {
+    "url": "https://127.0.0.1"
   }
 }

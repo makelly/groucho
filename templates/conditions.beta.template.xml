@@ -28,7 +28,7 @@
 					<code value="CH008"/>
 					<display value="Conditions / Diagnoses"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
 				</source>

@@ -197,7 +197,7 @@
 				<status value="finished"/>
 				<subject>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<period>
 					<start value="2018-01-29"/>

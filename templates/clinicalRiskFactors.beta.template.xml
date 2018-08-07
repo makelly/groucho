@@ -28,7 +28,7 @@
 					<code value="CH007"/>
 					<display value="Clinical Risk Factors"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
 				</source>

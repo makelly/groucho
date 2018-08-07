@@ -1,9 +1,13 @@
 // healthshare-channel.js - InterSystems HealthShare output channel
 
 const axios = require('axios');
+const validUrl = require('valid-url');
 const constants = require('../lib/constants.js');
 
+const BASIC = 'basic';
+const OAUTH2 = 'oauth2';
 const OK = 'OK';
+const FAIL = 'FAIL ';
 
 // Class to send event using InterSystems HealthShare EMS API
 class HealthShareChannel {
@@ -15,12 +19,47 @@ class HealthShareChannel {
     if (config == undefined) {
       throw new Error('HealthShareChannel.constructor(config) - config argument undefined.')
     }
-
-    try {
-      // TBD
-    } catch(e) {
-      throw new Error(e.message);
+    if (config.url == undefined) {
+      throw new Error('HealthShareChannel.constructor(config) - config.url undefined.');
     }
+    if (!validUrl.isUri(config.url)) {
+      throw new Error('HealthShareChannel.constructor(config) - config.url invalid.');
+    }
+    if (config.authentication == undefined) {
+      throw new Error('HealthShareChannel.constructor(config) - config.authentication undefined.');
+    }
+    switch (config.authentication) {
+      case BASIC:
+      case OAUTH2:
+        break;
+
+      default:
+        throw new Error('HealthShareChannel.constructor(config) - config.authentication invalid.');
+    }
+    if (config.authentication == BASIC) {
+      if (config.basic == undefined) {
+        throw new Error('HealthShareChannel.constructor(config) - config.basic undefined.');
+      }
+      if (config.basic.username == undefined) {
+        throw new Error('HealthShareChannel.constructor(config) - config.basic.username undefined.');
+      }
+      if (config.basic.password == undefined) {
+        throw new Error('HealthShareChannel.constructor(config) - config.basic.password undefined.');
+      }
+    } else {
+      if (config.oauth2 == undefined) {
+        throw new Error('HealthShareChannel.constructor(config) - config.oauth2 undefined.');
+      }
+      if (config.oauth2.url == undefined) {
+        throw new Error('HealthShareChannel.constructor(config) - config.oauth2.url undefined.');
+      }
+      if (!validUrl.isUri(config.oauth2.url)) {
+        throw new Error('HealthShareChannel.constructor(config) - config.oauth2.url invalid.');
+      }
+    }
+
+    // Store config values
+    this.config = config;
   }
 
   // Publish event
@@ -43,9 +82,49 @@ class HealthShareChannel {
       throw new Error('HealthShareChannel.publish(data, format, eventID) - eventID argument undefined.')
     }
 
-    // To Do
+    // Create url to call
+    let url = new URL('Bundle/' + eventID, this.config.url);
+    console.log('URL ' + url.href);
+    // Create the HTTP request configuration
+    let httpConfig = {};
+    httpConfig.headers = {};
+    if (format == constants.PUBLISH_XML) {
+      // Content-Type
+      httpConfig.headers = {'content-type': 'application/xml+fhir'};
+    } else {
+      httpConfig.headers = {'content-type': 'application/json+fhir'};
+    }
+    if (this.config.authentication == BASIC) {
+      // Set basic authentication
+      httpConfig.auth = {};
+      httpConfig.auth.username = this.config.basic.username;
+      httpConfig.auth.password = this.config.basic.password;
 
-    return OK;
+      console.log('Config ' + JSON.stringify(httpConfig));
+
+      axios.put(url.href, data, httpConfig).then((response) => {
+        // Check response code
+        if (response.status == 200) {
+          // OK
+          return OK;
+        } else {
+          // Something has gone wrong
+          return FAIL + response.data;
+        }
+      }).catch((e) => {
+        //if (e.code === 'ENOTFOUND') {
+        //  console.log('Unable to connect to API servers.');
+        //} else {
+          console.log(e.message);
+          return FAIL + e.message;
+        //}
+      });
+    } else {
+      // OAUTH2 - Not implemented yet
+    }
+
+
+
   }
 
 }

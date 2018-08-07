@@ -27,7 +27,7 @@
 					<code value="CH034"/>
 					<display value="Blood Spot Card Received"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
 				</source>

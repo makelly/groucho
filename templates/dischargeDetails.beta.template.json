@@ -37,7 +37,7 @@
           "code": "CH009",
           "display": "Discharge Details"
         },
-        "timestamp": "2017-11-01T15:00:00+00:00",
+        "timestamp": "{{publishDate}}",
         "source": {
           "endpoint": "urn:nhs-uk:addressing:ods:RX3EP"
         },
