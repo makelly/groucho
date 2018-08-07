@@ -9,7 +9,7 @@ Configuration file contents:
 
 | Configuration Item | Description |
 |--------------------|-------------|
-| fullPath | The full path to the directory in which to save event files. If the directory does not exist it is created. |
+| `fullPath` | The full path to the directory in which to save event files. If the directory does not exist it is created. |
 
 Example configuration file:
 ```JSON
