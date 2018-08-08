@@ -144,10 +144,10 @@ describe('Class HealthShareChannel tests', () => {
     expect(() => {hs.publish('Anything', 'xml', undefined);}).toThrow();
   });
 
-  it('should publish(data, format, eventID) DEBUG ONLY - REMOVE', () => {
-    let hs = new channel.HealthShareChannel(testConfig);
-    let result = hs.publish('Anything', 'xml', 'xxxx-2345-yyyy');
-
-    expect(result).toExist();
-  });
+//  it('should publish(data, format, eventID) DEBUG ONLY - REMOVE', () => {
+//    let hs = new channel.HealthShareChannel(testConfig);
+//    let result = hs.publish('Anything', 'xml', 'xxxx-2345-yyyy');
+//
+//    expect(result).toExist();
+//  });
 });

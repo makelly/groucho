@@ -8,7 +8,7 @@ const inventory = require('./src/commands/inventory.js');
 const publish = require('./src/commands/publish.js');
 const point = require('./src/commands/point.js');
 const listen = require('./src/commands/listen.js');
-const scrip = require('./src/script-interpreter/script-interpreter.js');
+const scriptModule = require('./src/script-interpreter/script-interpreter.js');
 
 // Setup command-line arguments
 const inventoryCmd = 'inventory';
@@ -76,7 +76,7 @@ switch (command) {
 
   case publishCmd:
     // Check script exists
-    if (!scrip.ScriptInterpreter.existsScript(argv.script)) {
+    if (!scriptModule.ScriptInterpreter.existsScript(argv.script)) {
       console.log('Invalid values:');
       console.log(`  Argument: script, Given: "${argv.script}", file not found.`);
     } else {
@@ -91,7 +91,7 @@ switch (command) {
 
   case pointCmd:
     // Check script exists
-    if (!scrip.ScriptInterpreter.existsScript(argv.script)) {
+    if (!scriptModule.ScriptInterpreter.existsScript(argv.script)) {
       console.log('Invalid values:');
       console.log(`  Argument: script, Given: "${argv.script}", file not found.`);
     } else {

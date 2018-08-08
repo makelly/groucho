@@ -101,13 +101,13 @@
 				<status value="completed"/>
 				<subject>
 					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<sent value="2018-02-01"/>
 				<payload>
 					<contentReference>
 						<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-						<display value="DAWKINS, Jack"/>
+						<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 					</contentReference>
 				</payload>
 			</Communication>
@@ -133,17 +133,17 @@
 						</valueCodeableConcept>
 					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="9912003888"/>
+					<value value="{{patient.NHSNumber}}"/>
 				</identifier>
 				<name>
 					<use value="usual"/>
-					<family value="DAWKINS"/>
-					<given value="Jack"/>
+					<family value="{{patient.familyName}}"/>
+					<given value="{{patient.givenName}}"/>
 				</name>
-				<gender value="male"/>
-				<birthDate value="2017-10-02">
+				<gender value="{{patient.gender}}"/>
+				<birthDate value="{{patient.dob}}">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
-						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+						<valueDateTime value="{{patient.tob}}"/>
 					</extension>
 				</birthDate>
 				<!--Entry for previous address.-->
@@ -162,7 +162,7 @@
 					<use value="home"/>
 					<line value="4 SANDMOOR DRIVE"/>
 					<city value="LEEDS"/>
-					<postalCode value="LS17 7DF"/>
+					<postalCode value="{{patient.postcode}}"/>
 					<period>
 						<start value="2017-11-01"/>
 					</period>

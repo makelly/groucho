@@ -92,7 +92,18 @@ class MeshChannel {
       throw new Error('MeshChannel.publish(data, format, eventID) - eventID argument undefined.')
     }
 
-    // To Do
+    // Create the HTTP request configuration
+    let httpConfig = {};
+    httpConfig.headers = {};
+    // Content-Type
+    httpConfig.headers = {'Content-Type': 'application/octet-stream',
+                          'Authorization': this.makeToken(),
+                          'Mex-From': this.config.senderMailboxID,
+                          'Mex-To': this.config.recipientMailboxID,
+                          'Mex-WorkflowID': this.config.workflowID,
+                          'Mex-FileName': eventID,
+                          'Mex-MessageType': 'DATA',
+                          'Mex-Version': '1.0'};
 
     return OK;
   }

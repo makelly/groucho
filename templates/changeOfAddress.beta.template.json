@@ -122,13 +122,13 @@
         "status": "completed",
         "subject": {
           "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
-          "display": "DAWKINS, Jack"
+          "display": "{{patient.familyName}}, {{patient.givenName}}"
         },
         "payload": [
           {
             "contentReference": {
               "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
-              "display": "DAWKINS, Jack"
+              "display": "{{patient.familyName}}, {{patient.givenName}}"
             }
           }
         ]
@@ -161,25 +161,25 @@
               }
             ],
             "system": "https://fhir.nhs.uk/Id/nhs-number",
-            "value": "9912003888"
+            "value": "{{patient.NHSNumber}}"
           }
         ],
         "name": [
           {
             "use": "usual",
-            "family": "DAWKINS",
+            "family": "{{patient.familyName}}",
             "given": [
-              "Jack"
+              "{{patient.givenName}}"
             ]
           }
         ],
-        "gender": "male",
-        "birthDate": "2017-10-02",
+        "gender": "{{patient.gender}}",
+        "birthDate": "{{patient.dob}}",
         "_birthDate": {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-              "valueDateTime": "2017-10-02T20:12:00+00:00"
+              "valueDateTime": "{{patient.tob}}"
             }
           ]
         },
@@ -190,7 +190,7 @@
               "4 Sandmoor Drive"
             ],
             "city": "LEEDS",
-            "postalCode": "LS17 7DF"
+            "postalCode": "{{patient.postcode}}"
           }
         ],
         "generalPractitioner": [
@@ -267,7 +267,7 @@
         ],
         "patient": {
           "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
-          "display": "DAWKINS, Jack"
+          "display": "{{patient.familyName}}, {{patient.givenName}}"
         },
         "managingOrganization": {
           "reference": "urn:uuid:e84bfc04-2d79-451e-84ef-a50116506088",

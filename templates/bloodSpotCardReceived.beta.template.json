@@ -146,25 +146,25 @@
               }
             ],
             "system": "https://fhir.nhs.uk/Id/nhs-number",
-            "value": "9912003888"
+            "value": "{{patient.NHSNumber}}"
           }
         ],
         "name": [
           {
             "use": "official",
-            "family": "DAWKINS",
+            "family": "{{patient.familyName}}",
             "given": [
-              "Jack"
+              "{{patient.givenName}}"
             ]
           }
         ],
-        "gender": "male",
-        "birthDate": "2013-10-12",
+        "gender": "{{patient.gender}}",
+        "birthDate": "{{patient.dob}}",
         "_birthDate": {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-              "valueDateTime": "2017-10-02T12:00:00+00:00"
+              "valueDateTime": "{{patient.tob}}"
             }
           ]
         },
@@ -175,7 +175,7 @@
               "4 Sandmoor Drive"
             ],
             "city": "DURHAM",
-            "postalCode": "DH1 2TF"
+            "postalCode": "{{patient.postcode}}"
           }
         ]
       }
@@ -209,7 +209,7 @@
         "status": "finished",
         "subject": {
           "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
-          "display": "DAWKINS, Jack"
+          "display": "{{patient.familyName}}, {{patient.givenName}}"
         },
         "period": {
           "start": "2018-01-29"

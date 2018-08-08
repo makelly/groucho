@@ -84,15 +84,15 @@ class HealthShareChannel {
 
     // Create url to call
     let url = new URL('Bundle/' + eventID, this.config.url);
-    console.log('URL ' + url.href);
+    //console.log('URL ' + url.href);
     // Create the HTTP request configuration
     let httpConfig = {};
     httpConfig.headers = {};
     if (format == constants.PUBLISH_XML) {
       // Content-Type
-      httpConfig.headers = {'content-type': 'application/xml+fhir'};
+      httpConfig.headers = {'Content-Type': 'application/xml+fhir'};
     } else {
-      httpConfig.headers = {'content-type': 'application/json+fhir'};
+      httpConfig.headers = {'Content-Type': 'application/json+fhir'};
     }
     if (this.config.authentication == BASIC) {
       // Set basic authentication
@@ -112,15 +112,12 @@ class HealthShareChannel {
           return FAIL + response.data;
         }
       }).catch((e) => {
-        //if (e.code === 'ENOTFOUND') {
-        //  console.log('Unable to connect to API servers.');
-        //} else {
-          console.log(e.message);
+          //console.log(e.message);
           return FAIL + e.message;
-        //}
       });
     } else {
       // OAUTH2 - Not implemented yet
+      return FAIL + ' oauth2 not implemented yet';
     }
 
 

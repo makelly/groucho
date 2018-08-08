@@ -49,7 +49,11 @@ class FileChannel {
     // Check if directory exists
     if (!fs.existsSync(this.config.fullPath)) {
       // Doesn't so create it
-      fs.mkdirSync(this.config.fullPath);
+      try {
+        fs.mkdirSync(this.config.fullPath);
+      } catch(e) {
+        throw new Error('FileChannel.publish(data, format, eventID) - mkdir ' + e.message);
+      }
     }
     // Create file name
     let args = {};
@@ -57,7 +61,11 @@ class FileChannel {
     args.template = 'evt-XXXXXX.';
     let fname = tmp.tmpNameSync(args) + format;
     // Write file
-    fs.writeFileSync(path.join(this.config.fullPath, fname), data);
+    try {
+      fs.writeFileSync(path.join(this.config.fullPath, fname), data);
+    } catch(e) {
+      throw new Error('FileChannel.publish(data, format, eventID) - write file ' + e.message);
+    }
 
     return OK;
   }
