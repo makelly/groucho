@@ -49,7 +49,7 @@ Fabricate and publish events, as defined by a script, to a channel.
 
 **`node app.js publish --script=<script file> --channel=<channel name> [--verbose]`**
 
-The script file is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The output channel is
+The script is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The output channel is
 defined by **`<channel name>`**. It must be one of:
 + **`sink`**
 + **`file`**
@@ -67,7 +67,7 @@ Create, update and delete record pointers, as defined by a script, to an index.
 
 **`node app.js publish --script=<script file> --index=<index name> [--verbose]`**
 
-The script file is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The record index is
+The script is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The record index is
 defined by **`<index name>`**. It must be one of:
 + **`loopback`**
 

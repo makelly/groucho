@@ -74,28 +74,40 @@ describe('Class MeshChannel tests', () => {
     expect(mesh).toExist();
   });
 
-  it('should throw error for publish(data, format, eventID) with undefined data argument', () => {
+  it('should throw error for publish(data, format, eventID, eventType) with undefined data argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
-    expect(() => {mesh.publish(undefined, 'xml', 'id');}).toThrow();
+    expect(() => {mesh.publish(undefined, 'xml', 'id', 'CH001');}).toThrow();
   });
 
-  it('should throw error for publish(data, format, eventID) with undefined format argument', () => {
+  it('should throw error for publish(data, format, eventID, eventType) with undefined format argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
-    expect(() => {mesh.publish('Anything', undefined, 'id');}).toThrow();
+    expect(() => {mesh.publish('Anything', undefined, 'id', 'CH001');}).toThrow();
   });
 
-  it('should throw error for publish(data, format) with invalid format argument', () => {
+  it('should throw error for publish(data, format, eventID, eventType) with invalid format argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
-    expect(() => {mesh.publish('Anything', 'Anything', 'id');}).toThrow();
+    expect(() => {mesh.publish('Anything', 'Anything', 'id', 'CH01');}).toThrow();
   });
 
-  it('should throw error for publish(data, format, eventID) with undefined EventID argument', () => {
+  it('should throw error for publish(data, format, eventID, eventType) with undefined eventID argument', () => {
     let mesh = new channel.MeshChannel(testConfig);
 
-    expect(() => {mesh.publish('Anything', 'xml', undefined);}).toThrow();
+    expect(() => {mesh.publish('Anything', 'xml', undefined, 'CH01');}).toThrow();
+  });
+
+  it('should throw error for publish(data, format, eventID, eventType) with undefined eventType argument', () => {
+    let mesh = new channel.MeshChannel(testConfig);
+
+    expect(() => {mesh.publish('Anything', 'xml', 'id', undefined);}).toThrow();
+  });
+
+  it('should throw error for publish(data, format, eventID, eventType) with invalid eventType argument', () => {
+    let mesh = new channel.MeshChannel(testConfig);
+
+    expect(() => {mesh.publish('Anything', 'xml', 'id', 'garbage');}).toThrow();
   });
 
   // There is no test publish(data, format, eventID) with valid arguments as dont want to actually output to MESH

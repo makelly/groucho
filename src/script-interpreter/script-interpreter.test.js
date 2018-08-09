@@ -106,6 +106,14 @@ describe('Class ScriptInterpreter tests', () => {
     expect(error).toExist();
   });
 
+  it('should checkPublishScript(script) return error string for invalid event in events[]', () => {
+    let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'bad9.publish.json'), constants.FILE_ENCODING));
+    let s = new scriptModule.ScriptInterpreter();
+    let error = s.checkPublishScript(script);
+
+    expect(error).toExist();
+  });
+
   it('should checkPublishScript(script)', () => {
     let script = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, 'good.publish.json'), constants.FILE_ENCODING));
     let s = new scriptModule.ScriptInterpreter();

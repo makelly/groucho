@@ -1,7 +1,7 @@
 # File Output Channel
-Saved files use the following naming convention: `evt<datetime stamp><random number>.<json | xml>`
+Saved files use the following naming convention: `evt-<Event type>-<random 6 digits and/or letters>.<json | xml>`
 
-Examples: `TBD` `TBD`
+Examples: `evt-CH015-RpQ4yj.json` `evt-CH019-V9EPDf.xml`
 
 The configuration file is named `file-channel.json`
 

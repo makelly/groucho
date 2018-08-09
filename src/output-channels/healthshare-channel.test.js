@@ -120,29 +120,41 @@ describe('Class HealthShareChannel tests', () => {
     expect(hs).toExist();
   });
 
-  it('should throw error for publish(data, format, eventID) with undefined data argument', () => {
+  it('should throw error for publish(data, format, eventID, eventType) with undefined data argument', () => {
     let hs = new channel.HealthShareChannel(testConfig);
 
-    expect(() => {hs.publish(undefined, 'xml', 'id');}).toThrow();
+    expect(() => {hs.publish(undefined, 'xml', 'id', 'CH001');}).toThrow();
   });
 
-  it('should throw error for publish(data, format, eventID) with undefined format argument', () => {
+  it('should throw error for publish(data, format, eventID, eventType) with undefined format argument', () => {
     let hs = new channel.HealthShareChannel(testConfig);
 
-    expect(() => {hs.publish('Anything', undefined, 'id');}).toThrow();
+    expect(() => {hs.publish('Anything', undefined, 'id', 'CH001');}).toThrow();
   });
 
-  it('should throw error for publish(data, format, eventID) with invalid format argument', () => {
+  it('should throw error for publish(data, format, eventID, eventType) with invalid format argument', () => {
     let hs = new channel.HealthShareChannel(testConfig);
 
-    expect(() => {hs.publish('Anything', 'Anything', undefined);}).toThrow();
+    expect(() => {hs.publish('Anything', 'Anything', undefined, 'CH001');}).toThrow();
   });
 
   it('should throw error for publish(data, format, eventID) with undefined eventID argument', () => {
     let hs = new channel.HealthShareChannel(testConfig);
 
-    expect(() => {hs.publish('Anything', 'xml', undefined);}).toThrow();
+    expect(() => {hs.publish('Anything', 'xml', undefined, 'CH001');}).toThrow();
   });
+
+  it('should throw error for publish(data, format, eventID, eventType) with undefined eventType argument', () => {
+    let hs = new channel.HealthShareChannel(testConfig);
+
+    expect(() => {hs.publish('Anything', 'xml', 'id', undefined);}).toThrow();
+  });
+
+  it('should throw error for publish(data, format, eventID, eventType) with invalid eventType argument', () => {
+    let mesh = new channel.HealthShareChannel(testConfig);
+
+    expect(() => {hs.publish('Anything', 'xml', 'id', 'garbage');}).toThrow();
+  })
 
 //  it('should publish(data, format, eventID) DEBUG ONLY - REMOVE', () => {
 //    let hs = new channel.HealthShareChannel(testConfig);

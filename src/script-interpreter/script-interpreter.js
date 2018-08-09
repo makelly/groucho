@@ -69,13 +69,13 @@ class ScriptInterpreter {
     for (let i = 0; i < script.events.length; i++) {
       found = false;
       for (let j = 0; j < script.data.length; j++) {
-        if (script.events[i].eventData == script.data[j].name) {
+        if (script.events[i].data == script.data[j].name) {
           found = true;
           break;
         }
       }
       if (!found) {
-        return ' events eventData "' + script.events[i].eventData + '" not found in data';
+        return ' events eventData "' + script.events[i].data + '" not found in data';
       }
     }
     // PUBLISH
@@ -110,6 +110,12 @@ class ScriptInterpreter {
       return ' FOR_EACH_ENCOUNTER "' + script.PUBLISH.FOR_EACH_ENCOUNTER + '" not found in data';
     }
 
+    // Check event types are valid
+    for (let i = 0; i < script.events.length; i++) {
+      if (!factory.EventBuilder.isValidEventType(script.events[i].type)) {
+        return ' event type "' + script.events[i].type + '" invalid';
+      }
+    }
     // Check all files exist
     // Data
     for (let i = 0; i < script.data.length; i++) {
@@ -178,7 +184,7 @@ class ScriptInterpreter {
         // For each event type
         for (let eType = 0; eType < scriptObj.events.length; ++eType) {
           // Find the event data list
-          let data = scriptObj.data.find((obj) => { return obj.name == scriptObj.events[eType].eventData; });
+          let data = scriptObj.data.find((obj) => { return obj.name == scriptObj.events[eType].data; });
           // For each event data file
           for (let eObj = 0; eObj < data.list.length; ++eObj) {
             // Build the template data
@@ -187,7 +193,7 @@ class ScriptInterpreter {
             let event = factory.EventBuilder.build(scriptObj.events[eType].template, templateData);
             verbose ? console.log('Event number ' + eventCount.toString().padStart(5).green + ' built with eventID = ' + event.eventID.green) : null;
             // Publish the event
-            let response = mgr.publish(event.event, scriptObj.events[eType].type, channel, event.eventID);
+            let response = mgr.publish(event.event, scriptObj.events[eType].format, channel, event.eventID, scriptObj.events[eType].type);
             console.log('Event number ' + eventCount.toString().padStart(5).green + ' published to channel with response ' + response.yellow);
             ++eventCount;
           }

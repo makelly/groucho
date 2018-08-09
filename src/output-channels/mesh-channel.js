@@ -6,6 +6,7 @@ const dateFormat = require('dateformat');
 const crypto = require('crypto');
 const axios = require('axios');
 const constants = require('../lib/constants.js');
+const factory = require('../event-factory/event-factory');
 
 const MAX_NONCE_COUNT = 1000;
 const OK = 'OK';
@@ -73,23 +74,29 @@ class MeshChannel {
   }
 
   // Publish event
-  publish(data, format, eventID) {
+  publish(data, format, eventID, eventType) {
     // Check arguments
     if (data == undefined) {
-      throw new Error('MeshChannel.publish(data, format, eventID) - data argument undefined.');
+      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - data argument undefined.');
     }
     if (format == undefined) {
-      throw new Error('MeshChannel.publish(data, format, eventID) - format argument undefined.')
+      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - format argument undefined.')
     }
     switch (format) {
       case constants.PUBLISH_XML:
       case constants.PUBLISH_JSON:
         break;
       default:
-        throw new Error(`MeshChannel.publish(data, format, eventID) - format argument invalid. Value = ${format} expected xml | json .`);
+        throw new Error(`MeshChannel.publish(data, format, eventID, eventType) - format argument invalid. Value = ${format} expected xml | json .`);
     }
     if (eventID == undefined) {
-      throw new Error('MeshChannel.publish(data, format, eventID) - eventID argument undefined.')
+      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - eventID argument undefined.')
+    }
+    if (eventType == undefined) {
+      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - eventType argument undefined.')
+    }
+    if (!factory.EventBuilder.isValidEventType(eventType)) {
+      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - invalid eventType argument.')
     }
 
     // Create the HTTP request configuration

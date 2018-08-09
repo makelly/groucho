@@ -1,6 +1,6 @@
 {
   "title": "Bad publish script",
-  "description": "Undefined name reference in FOR_EACH_ENCOUNTER",
+  "description": "Template file not found",
   "version": "03/08/2018",
   "publisher": "test.publisher.data.json",
 
@@ -13,8 +13,8 @@
   ],
 
   "events": [
-    {"template": "immunization.beta.template.json", "type": "json", "eventData": "immunizations"},
-    {"template": "garbage", "type": "xml", "eventData": "medications"}
+    {"template": "immunization.beta.template.json", "type": "CH015", "format": "json", "data": "immunizations"},
+    {"template": "garbage", "type": "CH019", "format": "xml", "data": "medications"}
   ],
 
   "PUBLISH": {

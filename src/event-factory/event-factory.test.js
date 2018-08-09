@@ -157,6 +157,18 @@ describe('Class EventBuilder tests', () => {
     expect(eb).toExist();
   });
 
+  it('should isValidEventType(name) == true', () => {
+    let v = factory.EventBuilder.isValidEventType('CH021');
+
+    expect(v).toBe(true);
+  });
+
+  it('should isValidEventType(name) == false', () => {
+    let v = factory.EventBuilder.isValidEventType('garbage');
+
+    expect(v).toBe(false);
+  });
+
   it('should throw error for build(templateFileName, data) with undefined templateFileName argument', () => {
     expect(() => {factory.EventBuilder.build(undefined, undefined);}).toThrow();
   });
@@ -194,7 +206,7 @@ describe('Class EventBuilder tests', () => {
     // Save to temp file for inspection
     fs.writeFileSync(path.join(__dirname, '../..', 'temp', xmlOutputFile), result.event);
     // Save eventID to temp file for inspection
-    fs.writeFileSync(path.join(__dirname, '../..', 'temp', xmlEventIDFile), '<?xml version="1.0" encoding="UTF-8"?><EventID>' + result.eventID + '</EventID>');    
+    fs.writeFileSync(path.join(__dirname, '../..', 'temp', xmlEventIDFile), '<?xml version="1.0" encoding="UTF-8"?><EventID>' + result.eventID + '</EventID>');
 
     expect(result).toExist();
   });

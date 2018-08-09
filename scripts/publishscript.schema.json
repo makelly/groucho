@@ -70,18 +70,23 @@
           },
 
           "type": {
+            "description": "The event type",
+            "type": "string"
+          },
+
+          "format": {
             "description": "Template format, xml or json",
             "type": "string",
             "enum": ["xml", "json"]
           },
 
-          "eventData": {
+          "data": {
             "description": "List contaning the event data files",
             "type": "string"
           }
 
         },
-        "required": ["template", "type", "eventData"]
+        "required": ["template", "type", "format", "data"]
 
       },
       "minItems": 1

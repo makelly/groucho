@@ -3,6 +3,7 @@
 const axios = require('axios');
 const validUrl = require('valid-url');
 const constants = require('../lib/constants.js');
+const factory = require('../event-factory/event-factory.js');
 
 const BASIC = 'basic';
 const OAUTH2 = 'oauth2';
@@ -63,23 +64,29 @@ class HealthShareChannel {
   }
 
   // Publish event
-  publish(data, format, eventID) {
+  publish(data, format, eventID, eventType) {
     // Check arguments
     if (data == undefined) {
-      throw new Error('healthshareOutChannel.publish(data, format, eventID) - data argument undefined.');
+      throw new Error('healthshareOutChannel.publish(data, format, eventID, eventType) - data argument undefined.');
     }
     if (format == undefined) {
-      throw new Error('HealthShareChannel.publish(data, format, eventID) - format argument undefined.')
+      throw new Error('HealthShareChannel.publish(data, format, eventID, eventType) - format argument undefined.')
     }
     switch (format) {
       case constants.PUBLISH_XML:
       case constants.PUBLISH_JSON:
         break;
       default:
-        throw new Error(`HealthShareChannel.publish(data, format, eventID) - format argument invalid. Value = ${format} expected xml | json .`);
+        throw new Error(`HealthShareChannel.publish(data, format, eventID, eventType) - format argument invalid. Value = ${format} expected xml | json .`);
     }
     if (eventID == undefined) {
-      throw new Error('HealthShareChannel.publish(data, format, eventID) - eventID argument undefined.')
+      throw new Error('HealthShareChannel.publish(data, format, eventID, eventType) - eventID argument undefined.')
+    }
+    if (eventType == undefined) {
+      throw new Error('HealthShareChannel.publish(data, format, eventID, eventType) - eventType argument undefined.')
+    }
+    if (!factory.EventBuilder.isValidEventType(eventType)) {
+      throw new Error('HealthShareChannel.publish(data, format, eventID, eventType) - invalid eventType argument.')
     }
 
     // Create url to call
@@ -119,9 +126,6 @@ class HealthShareChannel {
       // OAUTH2 - Not implemented yet
       return FAIL + ' oauth2 not implemented yet';
     }
-
-
-
   }
 
 }

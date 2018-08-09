@@ -11,34 +11,40 @@ describe('Class SinkChannel tests', () => {
     expect(sink).toExist();
   });
 
-  it('should not throw error for publish(data, format, eventID) with undefined data argument', () => {
+  it('should not throw error for publish(data, format, eventID, eventType) with undefined data argument', () => {
     let sink = new channel.SinkChannel();
 
-    expect(() => {sink.publish(undefined, 'xml', 'id');}).toNotThrow();
+    expect(() => {sink.publish(undefined, 'xml', 'id', 'CH001');}).toNotThrow();
   });
 
-  it('should not throw error for publish(data, format, eventID) with undefined format argument', () => {
+  it('should not throw error for publish(data, format, eventID, eventType) with undefined format argument', () => {
     let sink = new channel.SinkChannel();
 
-    expect(() => {sink.publish('Anything', undefined, 'id');}).toNotThrow();
+    expect(() => {sink.publish('Anything', undefined, 'id', 'CH001');}).toNotThrow();
   });
 
-  it('should not throw error for publish(data, format, eventID) with invalid format argument', () => {
+  it('should not throw error for publish(data, format, eventID, eventType) with invalid format argument', () => {
     let sink = new channel.SinkChannel();
 
-    expect(() => {sink.publish('Anything', 'Anything', 'id');}).toNotThrow();
+    expect(() => {sink.publish('Anything', 'Anything', 'id','CH001');}).toNotThrow();
   });
 
-  it('should not throw error for publish(data, format, eventID) with undefined eventID argument', () => {
+  it('should not throw error for publish(data, format, eventID, eventType) with undefined eventID argument', () => {
     let sink = new channel.SinkChannel();
 
-    expect(() => {sink.publish('Anything', 'Anything', undefined);}).toNotThrow();
+    expect(() => {sink.publish('Anything', 'Anything', undefined, 'CH001');}).toNotThrow();
   });
 
-  it('should publish(data, format, eventID)', () => {
+  it('should not throw error for publish(data, format, eventID, eventType) with undefined eventType argument', () => {
     let sink = new channel.SinkChannel();
 
-    expect(() => {sink.publish('Anything', 'Anything', 'id');}).toNotThrow();
+    expect(() => {sink.publish('Anything', 'Anything', 'Anything', undefined);}).toNotThrow();
+  });
+
+  it('should publish(data, format, eventID, eventType)', () => {
+    let sink = new channel.SinkChannel();
+
+    expect(() => {sink.publish('Anything', 'Anything', 'id', 'CH001');}).toNotThrow();
   });
 
 });
