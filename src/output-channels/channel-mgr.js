@@ -84,35 +84,47 @@ class ChannelManager {
   }
 
   // publish event
-  publish(event, format, channel, eventID, eventType) {
+  publish(event, format, channel, eventID, eventType, eventNumber, callback) {
     // Check arguments
     if (event == undefined) {
-      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - event argument undefined.');
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - event argument undefined.');
     }
     if (format == undefined) {
-      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - format argument undefined.')
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - format argument undefined.')
     }
     switch (format) {
       case constants.PUBLISH_XML:
       case constants.PUBLISH_JSON:
         break;
       default:
-        throw new Error(`ChannelManager.publish(event, format, channel, eventID, eventType) - format argument invalid.`);
+        throw new Error(`ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - format argument invalid.`);
     }
     if (channel == undefined) {
-      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - channel argument undefined.')
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - channel argument undefined.')
     }
     if (!ChannelManager.isValidChannelName(channel)) {
-        throw new Error(`ChannelManager.publish(event, format, channel, eventID, eventType) - channel argument invalid.`);
+        throw new Error(`ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - channel argument invalid.`);
     }
     if (eventID == undefined) {
-      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - eventID argument undefined.')
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - eventID argument undefined.')
     }
     if (eventType == undefined) {
-      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - eventType argument undefined.')
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - eventType argument undefined.')
     }
     if (!factory.EventBuilder.isValidEventType(eventType)) {
-      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - invalid eventType argument.')
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - invalid eventType argument.')
+    }
+    if (eventNumber == undefined) {
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - eventNumber argument undefined.')
+    }
+    if (typeof(eventNumber) != 'number') {
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - eventNumber argument invalid.')
+    }
+    if (callback == undefined) {
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - callback argument undefined.')
+    }
+    if (typeof(callback) != 'function') {
+      throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType, eventNumber, callback) - callback argument invalid.')
     }
 
     // Call channel
@@ -120,15 +132,15 @@ class ChannelManager {
 
     switch (channel) {
       case constants.CHANNEL_SINK:
-        response = this.sink.publish(event, format, eventID, eventType);
+        this.sink.publish(event, format, eventID, eventType, eventNumber, callback);
         break;
 
       case constants.CHANNEL_FILE:
-        response = this.file.publish(event, format, eventID, eventType);
+        this.file.publish(event, format, eventID, eventType, eventNumber, callback);
         break;
 
       case constants.CHANNEL_HEALTHSHARE:
-        response = this.healthshare.publish(event, format, eventID, eventType);
+        this.healthshare.publish(event, format, eventID, eventType, eventNumber, callback);
         break;
 
       case constants.CHANNEL_MESH:
@@ -139,7 +151,8 @@ class ChannelManager {
         throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - invalid channel "' + channel + '"')
     }
 
-    return response;
+    //return response
+    //callback(eventNumber, response);
   }
 
 }

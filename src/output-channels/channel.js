@@ -8,7 +8,7 @@ class Channel {
   }
 
   // Publish event
-  publish(data, format, eventID, eventType) {
+  publish(data, format, eventID, eventType, eventNumber, callback) {
     //empty
   }
 

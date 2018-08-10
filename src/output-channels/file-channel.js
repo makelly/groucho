@@ -30,30 +30,8 @@ class FileChannel extends abstract.Channel {
   }
 
   // Publish event
-  publish(data, format, eventID, eventType) {
-    // Check arguments
-    if (data == undefined) {
-      throw new Error('FileChannel.publish(data, format, eventID, eventType) - data argument undefined.');
-    }
-    if (format == undefined) {
-      throw new Error('FileChannel.publish(data, format, eventID, eventType) - format argument undefined.')
-    }
-    switch (format) {
-      case constants.PUBLISH_XML:
-      case constants.PUBLISH_JSON:
-        break;
-      default:
-        throw new Error(`FileChannel.publish(data, format, eventID, eventType) - format argument invalid. Value = ${format} expected xml | json .`);
-    }
-    if (eventID == undefined) {
-      throw new Error('FileChannel.publish(data, format, eventID, eventType) - eventID argument undefined.')
-    }
-    if (eventType == undefined) {
-      throw new Error('FileChannel.publish(data, format, eventID, eventType) - eventType argument undefined.')
-    }
-    if (!factory.EventBuilder.isValidEventType(eventType)) {
-      throw new Error('FileChannel.publish(data, format, eventID, eventType) - invalid eventType argument.')
-    }
+  publish(data, format, eventID, eventType, eventNumber, callback) {
+    // No validation of arguments as will always be called by ChannelManager
 
     // Check if directory exists
     if (!fs.existsSync(this.config.fullPath)) {
@@ -64,6 +42,7 @@ class FileChannel extends abstract.Channel {
         throw new Error('FileChannel.publish(data, format, eventID) - mkdir ' + e.message);
       }
     }
+
     // Create file name
     let args = {};
     args.dir = this.config.fullPath;
@@ -76,7 +55,7 @@ class FileChannel extends abstract.Channel {
       throw new Error('FileChannel.publish(data, format, eventID) - write file ' + e.message);
     }
 
-    return OK;
+    callback(eventNumber, OK);
   }
 
 }

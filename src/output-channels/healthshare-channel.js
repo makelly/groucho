@@ -10,6 +10,7 @@ const BASIC = 'basic';
 const OAUTH2 = 'oauth2';
 const OK = 'OK';
 const FAIL = 'FAIL ';
+const PROMISE = 'PROMISE';
 
 // Class to send event using InterSystems HealthShare EMS API
 class HealthShareChannel extends abstract.Channel {
@@ -17,7 +18,7 @@ class HealthShareChannel extends abstract.Channel {
   // Constructor
   constructor(config) {
     // config is a json object that defines the configuration values
-    super(config);    
+    super(config);
     // Validate
     if (config == undefined) {
       throw new Error('HealthShareChannel.constructor(config) - config argument undefined.')
@@ -66,34 +67,12 @@ class HealthShareChannel extends abstract.Channel {
   }
 
   // Publish event
-  publish(data, format, eventID, eventType) {
-    // Check arguments
-    if (data == undefined) {
-      throw new Error('healthshareOutChannel.publish(data, format, eventID, eventType) - data argument undefined.');
-    }
-    if (format == undefined) {
-      throw new Error('HealthShareChannel.publish(data, format, eventID, eventType) - format argument undefined.')
-    }
-    switch (format) {
-      case constants.PUBLISH_XML:
-      case constants.PUBLISH_JSON:
-        break;
-      default:
-        throw new Error(`HealthShareChannel.publish(data, format, eventID, eventType) - format argument invalid. Value = ${format} expected xml | json .`);
-    }
-    if (eventID == undefined) {
-      throw new Error('HealthShareChannel.publish(data, format, eventID, eventType) - eventID argument undefined.')
-    }
-    if (eventType == undefined) {
-      throw new Error('HealthShareChannel.publish(data, format, eventID, eventType) - eventType argument undefined.')
-    }
-    if (!factory.EventBuilder.isValidEventType(eventType)) {
-      throw new Error('HealthShareChannel.publish(data, format, eventID, eventType) - invalid eventType argument.')
-    }
+  publish(data, format, eventID, eventType, eventNumber, callback) {
+    // No validation of arguments as will always be called by ChannelManager
 
     // Create url to call
     let url = new URL('Bundle/' + eventID, this.config.url);
-    console.log('URL ' + url.href);
+
     // Create the HTTP request configuration
     let httpConfig = {};
     httpConfig.headers = {};
@@ -109,24 +88,22 @@ class HealthShareChannel extends abstract.Channel {
       httpConfig.auth.username = this.config.basic.username;
       httpConfig.auth.password = this.config.basic.password;
 
-      console.log('Config ' + JSON.stringify(httpConfig));
-
+      // Call the EMS
       axios.put(url.href, data, httpConfig).then((response) => {
-        // Check response code
+        // Check response status
         if (response.status == 200) {
           // OK
-          return OK;
+          callback(eventNumber, OK);
         } else {
           // Something has gone wrong
-          return FAIL + response.data;
+          callback(eventNumber, FAIL + response.data);
         }
       }).catch((e) => {
-          //console.log(e.message);
-          return FAIL + e.message;
+          callback(eventNumber, FAIL + e.message);
       });
     } else {
       // OAUTH2 - Not implemented yet
-      return FAIL + ' oauth2 not implemented yet';
+      callback(eventNumber, FAIL + ' oauth2 not implemented yet');
     }
   }
 

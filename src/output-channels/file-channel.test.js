@@ -23,46 +23,4 @@ describe('Class FileChannel tests', () => {
     expect(file).toExist();
   });
 
-  it('should throw error for publish(data, format, eventID, eventType) with undefined data argument', () => {
-    let config = {fullPath: path.join(__dirname, '..', 'temp')};
-    let file = new channel.FileChannel(config);
-
-    expect(() => {file.publish(undefined, 'xml', 'id', 'CH001');}).toThrow();
-  });
-
-  it('should throw error for publish(data, format, eventID, eventType) with undefined format argument', () => {
-    let config = {fullPath: path.join(__dirname, '..', 'temp')};
-    let file = new channel.FileChannel(config);
-
-    expect(() => {file.publish('Anything', undefined, 'id', 'CH001');}).toThrow();
-  });
-
-  it('should throw error for publish(data, format, eventID, eventtype) with invalid format argument', () => {
-    let config = {fullPath: path.join(__dirname, '..', 'temp')};
-    let file = new channel.FileChannel(config);
-
-    expect(() => {file.publish('Anything', 'Anything', 'id', 'CH001');}).toThrow();
-  });
-
-  it('should throw error for publish(data, format, eventID, eventType) with undefined eventID argument', () => {
-    let config = {fullPath: path.join(__dirname, '..', 'temp')};
-    let file = new channel.FileChannel(config);
-
-    expect(() => {file.publish('Anything', 'Anything', undefined, 'CH001');}).toThrow();
-  });
-
-  it('should throw error for publish(data, format, eventID, eventType) with undefined eventType argument', () => {
-    let config = {fullPath: path.join(__dirname, '..', 'temp')};
-    let file = new channel.FileChannel(config);
-
-    expect(() => {file.publish('Anything', 'xml', 'id', undefined);}).toThrow();
-  });
-
-  it('should throw error for publish(data, format, eventID, eventType) with invalid eventType argument', () => {
-    let config = {fullPath: path.join(__dirname, '..', 'temp')};
-    let file = new channel.FileChannel(config);
-
-    expect(() => {file.publish('Anything', 'xml', 'id', 'garbage');}).toThrow();
-  })
-
 });

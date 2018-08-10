@@ -8,6 +8,11 @@ const constants = require('../lib/constants.js');
 const factory = require('../event-factory/event-factory.js');
 const channelMgr = require('../output-channels/channel-mgr.js');
 
+// Function to display event publication result
+function printResult(eventNumber, result) {
+  console.log('Event number ' + eventNumber.toString().padStart(5).green + ' published to channel with result ' + result.yellow);
+}
+
 // Class to interpret and run scripts
 class ScriptInterpreter {
 
@@ -193,8 +198,7 @@ class ScriptInterpreter {
             let event = factory.EventBuilder.build(scriptObj.events[eType].template, templateData);
             verbose ? console.log('Event number ' + eventCount.toString().padStart(5).green + ' built with eventID = ' + event.eventID.green) : null;
             // Publish the event
-            let response = mgr.publish(event.event, scriptObj.events[eType].format, channel, event.eventID, scriptObj.events[eType].type);
-            console.log('Event number ' + eventCount.toString().padStart(5).green + ' published to channel with response ' + response.yellow);
+            let response = mgr.publish(event.event, scriptObj.events[eType].format, channel, event.eventID, scriptObj.events[eType].type, eventCount, printResult);
             ++eventCount;
           }
         }
@@ -207,5 +211,6 @@ class ScriptInterpreter {
 
 // Module exports
 module.exports = {
-  ScriptInterpreter
+  ScriptInterpreter,
+  printResult
 }
