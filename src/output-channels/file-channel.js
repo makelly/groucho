@@ -6,15 +6,17 @@ const path = require('path');
 
 const constants = require('../lib/constants.js');
 const factory = require('../event-factory/event-factory');
+const abstract = require('./channel.js');
 
 const OK = 'OK';
 
 // Class to save event as a file
-class FileChannel {
+class FileChannel extends abstract.Channel {
 
   // Constructor
   constructor(config) {
     // config is a json object that defines the configuration values
+    super(config);
     // Validate
     if (config == undefined) {
       throw new Error('FileChannel.constructor(config) - config argument undefined.')

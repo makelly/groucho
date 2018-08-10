@@ -7,16 +7,18 @@ const crypto = require('crypto');
 const axios = require('axios');
 const constants = require('../lib/constants.js');
 const factory = require('../event-factory/event-factory');
+const abstract = require('./channel.js');
 
 const MAX_NONCE_COUNT = 1000;
 const OK = 'OK';
 
 // Class to send event using MESH
-class MeshChannel {
+class MeshChannel extends abstract.Channel{
 
   // Constructor
   constructor(config) {
     // config is a json object that defines the configuration values
+    super(config);
     // Validate
     if (config == undefined) {
       throw new Error('MeshChannel.constructor(config) - config argument undefined.')

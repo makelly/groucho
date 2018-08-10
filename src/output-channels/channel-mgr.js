@@ -59,7 +59,7 @@ class ChannelManager {
       let cfg = new ChannelConfig();
 
       // Create instances of all output channels, passing in config information
-      this.sink = new sinkOut.SinkChannel();
+      this.sink = new sinkOut.SinkChannel({});
       this.file = new fileOut.FileChannel(cfg.file);
       this.healthshare = new healthshareOut.HealthShareChannel(cfg.healthshare);
       this.mesh = new meshOut.MeshChannel(cfg.mesh);

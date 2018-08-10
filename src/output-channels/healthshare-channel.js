@@ -4,6 +4,7 @@ const axios = require('axios');
 const validUrl = require('valid-url');
 const constants = require('../lib/constants.js');
 const factory = require('../event-factory/event-factory.js');
+const abstract = require('./channel.js');
 
 const BASIC = 'basic';
 const OAUTH2 = 'oauth2';
@@ -11,11 +12,12 @@ const OK = 'OK';
 const FAIL = 'FAIL ';
 
 // Class to send event using InterSystems HealthShare EMS API
-class HealthShareChannel {
+class HealthShareChannel extends abstract.Channel {
 
   // Constructor
   constructor(config) {
     // config is a json object that defines the configuration values
+    super(config);    
     // Validate
     if (config == undefined) {
       throw new Error('HealthShareChannel.constructor(config) - config argument undefined.')
@@ -91,7 +93,7 @@ class HealthShareChannel {
 
     // Create url to call
     let url = new URL('Bundle/' + eventID, this.config.url);
-    //console.log('URL ' + url.href);
+    console.log('URL ' + url.href);
     // Create the HTTP request configuration
     let httpConfig = {};
     httpConfig.headers = {};

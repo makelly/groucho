@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../SchemasSTU3/bundle.xsd">
+<Bundle xmlns="http://hl7.org/fhir">
 	<id value="{{getUUID 'bundle'}}"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
@@ -25,10 +25,10 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="CH027"/>
-					<display value="Professional Contacts"/>
+					<code value="CH026"/>
+					<display value="Professional Comment"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="2017-02-14T15:00:00+00:00"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
 				</source>
@@ -37,7 +37,7 @@
 					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</responsible>
 				<focus>
-					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+					<reference value="urn:uuid:0b5365ea-5eb5-4119-bfad-c6dfe0874b1b"/>
 				</focus>
 			</MessageHeader>
 		</resource>
@@ -82,8 +82,8 @@
 				<type>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="71078501000000104"/>
-						<display value="Health visiting service"/>
+						<code value="1060971000000108"/>
+						<display value="General practice service"/>
 					</coding>
 				</type>
 				<location>
@@ -138,100 +138,110 @@
 			</Patient>
 		</resource>
 	</entry>
+	<!--Professional Comment-->
+	<entry>
+		<fullUrl value="urn:uuid:5812bce1-58c4-43c0-bd17-30d5a567d87e"/>
+		<resource>
+			<Communication>
+				<id value="5812bce1-58c4-43c0-bd17-30d5a567d87e"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ProfessionalComment-Communication-1"/>
+				</meta>
+				<status value="completed"/>
+				<category>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalCommentType-1"/>
+						<code value="006"/>
+						<display value="Immunisations"/>
+					</coding>
+				</category>
+				<subject>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				</subject>
+				<context>
+					<reference value="urn:uuid:0b5365ea-5eb5-4119-bfad-c6dfe0874b1b"/>
+				</context>
+				<sent value="2017-02-14"/>
+				<sender>
+					<reference value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
+				</sender>
+				<payload>
+					<contentString value="Second MMR vacinnation administered to Jack"/>
+				</payload>
+			</Communication>
+		</resource>
+	</entry>
 	<!--Encounter details-->
 	<entry>
-		<fullUrl value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+		<fullUrl value="urn:uuid:0b5365ea-5eb5-4119-bfad-c6dfe0874b1b"/>
 		<resource>
 			<Encounter>
-				<id value="12779557-9033-4213-876f-69a670cdf35d"/>
+				<id value="0b5365ea-5eb5-4119-bfad-c6dfe0874b1b"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
 				<status value="finished"/>
-				<type>
-					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEncounterType-1"/>
-						<code value="0028"/>
-						<display value="GP Appointment"/>
-					</coding>
-				</type>
 				<subject>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 					<display value="DAWKINS, Jack"/>
 				</subject>
 				<period>
-					<start value="2018-01-29"/>
+					<start value="2017-02-14"/>
 				</period>
 				<location>
 					<location>
 						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="Silverdale Family Practice"/>
+						<display value="SILVERDALE FAMILY PRACTICE"/>
 					</location>
 				</location>
 				<serviceProvider>
-					<reference value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
+					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
 					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</serviceProvider>
 			</Encounter>
 		</resource>
 	</entry>
-	<!--Pro Contact Episode of Care-->
+	<!--Practitioner from Encounter-->
 	<entry>
-		<fullUrl value="urn:uuid:5812bce1-58c4-43c0-bd17-30d5a567d87e"/>
+		<fullUrl value="urn:uuid:285e33ce-918f-406b-b971-f253fe53160e"/>
 		<resource>
-			<EpisodeOfCare>
-				<id value="5812bce1-58c4-43c0-bd17-30d5a567d87e"/>
+			<Practitioner>
+				<id value="285e33ce-918f-406b-b971-f253fe53160e"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ProfessionalContact-EpisodeOfCare-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
 				</meta>
-				<status value="active"/>
-				<type>
-					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-AssociationType-1"/>
-						<code value="Assumed"/>
-						<display value="Assumed"/>
-					</coding>
-				</type>
-				<patient>
-					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-				</patient>
-				<period>
-					<start value="2018-02-01"/>
-				</period>
-				<team>
-					<reference value="urn:uuid:7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
-				</team>
-			</EpisodeOfCare>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<name>
+					<family value="Emmanuel"/>
+					<given value="Gladys"/>
+					<prefix value="Dr."/>
+				</name>
+			</Practitioner>
 		</resource>
 	</entry>
-	<!--CareTeam-->
+	<!--Practitioner Role-->
 	<entry>
-		<fullUrl value="urn:uuid:7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
+		<fullUrl value="urn:uuid:b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
 		<resource>
-			<CareTeam>
-				<id value="7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
-				<name value="Silverdale Health Visiting Service"/>
-				<subject>
-					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-					<display value="DAWKINS, Jack"/>
-				</subject>
-				<context>
-					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
-				</context>
-				<participant>
-					<role>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
-							<code value="330"/>
-							<display value="Specialist Community Public Health Nurse: Health Visitor"/>
-						</coding>
-					</role>
-				</participant>
-				<managingOrganization>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
-				</managingOrganization>
-			</CareTeam>
+			<PractitionerRole>
+				<id value="b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-PractitionerRole-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<practitioner>
+					<reference value="urn:uuid:285e33ce-918f-406b-b971-f253fe53160e"/>
+				</practitioner>
+				<organization>
+					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				</organization>
+			</PractitionerRole>
 		</resource>
 	</entry>
 	<!--Location where event took place-->
@@ -247,10 +257,7 @@
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
 					<value value="A83627"/>
 				</identifier>
-				<name value="Silverdale Family Practice"/>
-				<managingOrganization>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-				</managingOrganization>
+				<name value="SILVERDALE FAMILY PRACTICE"/>
 			</Location>
 		</resource>
 	</entry>
