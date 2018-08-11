@@ -76,30 +76,8 @@ class MeshChannel extends abstract.Channel{
   }
 
   // Publish event
-  publish(data, format, eventID, eventType) {
-    // Check arguments
-    if (data == undefined) {
-      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - data argument undefined.');
-    }
-    if (format == undefined) {
-      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - format argument undefined.')
-    }
-    switch (format) {
-      case constants.PUBLISH_XML:
-      case constants.PUBLISH_JSON:
-        break;
-      default:
-        throw new Error(`MeshChannel.publish(data, format, eventID, eventType) - format argument invalid. Value = ${format} expected xml | json .`);
-    }
-    if (eventID == undefined) {
-      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - eventID argument undefined.')
-    }
-    if (eventType == undefined) {
-      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - eventType argument undefined.')
-    }
-    if (!factory.EventBuilder.isValidEventType(eventType)) {
-      throw new Error('MeshChannel.publish(data, format, eventID, eventType) - invalid eventType argument.')
-    }
+  publish(data, format, eventID, eventType, eventNumber, callback) {
+    // No validation of arguments as will always be called by ChannelManager
 
     // Create the HTTP request configuration
     let httpConfig = {};
@@ -114,7 +92,7 @@ class MeshChannel extends abstract.Channel{
                           'Mex-MessageType': 'DATA',
                           'Mex-Version': '1.0'};
 
-    return OK;
+    callback(eventNumber, OK);
   }
 
 }

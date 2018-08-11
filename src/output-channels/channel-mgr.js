@@ -144,15 +144,12 @@ class ChannelManager {
         break;
 
       case constants.CHANNEL_MESH:
-        response = this.mesh.publish(event, format, eventID, eventType);
+        this.mesh.publish(event, format, eventID, eventType, eventNumber, callback);
         break;
 
       default:
         throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - invalid channel "' + channel + '"')
     }
-
-    //return response
-    //callback(eventNumber, response);
   }
 
 }
