@@ -2,9 +2,9 @@
   "name": "groucho",
   "version": "0.0.1",
   "description": "Health care interoperability test client",
-  "main": "app.js",
+  "main": "groucho.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node groucho.js",
     "test": "mocha **/*.test.js"
   },
   "repository": {

@@ -21,17 +21,17 @@ To confirm that the application has been installed correctly run the tests:
 ### Help
 Shows the available commands and associated options.
 
-**`node app.js --help`**
+**`node groucho.js --help`**
 
 ### Version
 Shows the application version.
 
-**`node app.js --version`**
+**`node groucho.js --version`**
 
 ### Inventory
 Shows information about the assets available.
 
-**`node app.js inventory`**
+**`node groucho.js inventory`**
 
 Example:
 ```
@@ -47,7 +47,7 @@ Number of files in /scripts: 12
 ### Publish
 Fabricate and publish events, as defined by a script, to a channel.
 
-**`node app.js publish --script=<script file> --channel=<channel name> [--verbose]`**
+**`node groucho.js publish --script=<script file> --channel=<channel name> [--verbose]`**
 
 The script is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The output channel is
 defined by **`<channel name>`**. It must be one of:
@@ -60,12 +60,12 @@ If **`--verbose`** is set, then progress messages will be displayed.
 
 Example:
 
-`node app.js publish --script=good.publish.json --channel=sink --verbose`
+`node groucho.js publish --script=good.publish.json --channel=sink --verbose`
 
 ### Point
 Create, update and delete record pointers, as defined by a script, to an index.
 
-**`node app.js publish --script=<script file> --index=<index name> [--verbose]`**
+**`node groucho.js publish --script=<script file> --index=<index name> [--verbose]`**
 
 The script is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The record index is
 defined by **`<index name>`**. It must be one of:
@@ -75,18 +75,18 @@ If **`--verbose`** is set, then progress messages will be displayed.
 
 Example:
 
-`node app.js index --script=good.index.json --index=loopback --verbose`
+`node groucho.js index --script=good.index.json --index=loopback --verbose`
 
 ### Listen
 Listen for incoming requests for FHIR records. The application will listen indefinitely until you terminate it.
 
-**`node app.js listen [--verbose]`**
+**`node groucho.js listen [--verbose]`**
 
 If **`--verbose`** is set, then progress messages will be displayed.
 
 Example:
 
-`node app.js listen --verbose`
+`node groucho.js listen --verbose`
 
 ## Scripts
 A script file contains a set of commands to fabricate events or pointers.

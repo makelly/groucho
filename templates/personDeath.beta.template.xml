@@ -28,7 +28,7 @@
 					<code value="PDS004"/>
 					<display value="PDS Person Death"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
 				</source>
@@ -101,13 +101,13 @@
 				<status value="completed"/>
 				<subject>
 					<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="JONES, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<sent value="2018-02-08"/>
 				<payload>
 				<contentReference>
 						<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
-						<display value="JONES, Jack"/>
+						<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 					</contentReference>
 				</payload>
 			</Communication>
@@ -142,22 +142,22 @@
 						</valueCodeableConcept>
 					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="6101231234"/>
+					<value value="{{patient.NHSNumber}}"/>
 				</identifier>
 				<name>
-					<family value="JONES"/>
-					<given value="Jack"/>
+					<family value="{{patient.familyName}}"/>
+					<given value="{{patient.givenName}}"/>
 					<period>
-						<start value="1918-02-01"/>
+						<start value="{{patient.dob}}"/>
 					</period>
 				</name>
-				<gender value="male"/>
+				<gender value="{{patient.gender}}"/>
 				<deceasedDateTime value="2017-11-01T15:00:00+00:00"/>
 				<address>
 					<use value="home"/>
 					<line value="4 Sandmoor Drive"/>
 					<city value="LEEDS"/>
-					<postalCode value="LS17 7DF"/>
+					<postalCode value="{{patient.postcode}}"/>
 				</address>
 				<generalPractitioner>
 					<reference value="urn:uuid:7b788347-493f-4e1b-9f0e-ed1ba218abb9"/>
@@ -239,7 +239,7 @@
 				<status value="completed"/>
 				<subject>
 					<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="JONES, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<sent value="2018-02-01"/>
 			</Communication>

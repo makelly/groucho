@@ -95,7 +95,7 @@
 			</HealthcareService>
 		</resource>
 	</entry>
-	<!--Child Details (Jack Dawkins)-->
+	<!--Child Details-->
 	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 		<resource>
@@ -115,24 +115,24 @@
 						</valueCodeableConcept>
 					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="9912003888"/>
+					<value value="{{patient.NHSNumber}}"/>
 				</identifier>
 				<name>
 					<use value="official"/>
-					<family value="DAWKINS"/>
-					<given value="Jack"/>
+					<family value="{{patient.familyName}}"/>
+					<given value="{{patient.givenName}}"/>
 				</name>
-				<gender value="male"/>
-				<birthDate value="2013-10-12">
+				<gender value="{{patient.gender}}"/>
+				<birthDate value="{{patient.dob}}">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
-						<valueDateTime value="2017-10-02T12:00:00+00:00"/>
+						<valueDateTime value="{{patient.tob}}"/>
 					</extension>
 				</birthDate>
 				<address>
 					<use value="home"/>
 					<line value="4 Sandmoor Drive"/>
 					<city value="DURHAM"/>
-					<postalCode value="DH1 2TF"/>
+					<postalCode value="{{patient.postcode}}"/>
 				</address>
 			</Patient>
 		</resource>
@@ -149,7 +149,7 @@
 				<status value="finished"/>
 				<subject>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<period>
 					<start value="2014-10-12"/>

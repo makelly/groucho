@@ -122,7 +122,7 @@
         "status": "completed",
         "subject": {
           "reference": "urn:uuid:ebfdafba-dc18-11e7-9296-cec278b6b50a",
-          "display": "PECKSNIFF, Mercy"
+          "display": "{{patient.familyName}}, {{patient.givenName}}"
         },
         "payload": [
           {
@@ -160,25 +160,25 @@
               }
             ],
             "system": "https://fhir.nhs.uk/Id/nhs-number",
-            "value": "9912003926"
+            "value": "{{patient.NHSNumber}}"
           }
         ],
         "name": [
           {
             "use": "usual",
-            "family": "PECKSNIFF",
+            "family": "{{patient.familyName}}",
             "given": [
-              "Mercy"
+              "{{patient.givenName}}"
             ]
           }
         ],
-        "gender": "female",
-        "birthDate": "2017-09-17",
+        "gender": "{{patient.gender}}",
+        "birthDate": "{{patient.dob}}",
         "_birthDate": {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-              "valueDateTime": "2017-09-17T20:00:00+00:00"
+              "valueDateTime": "{{patient.tob}}"
             }
           ]
         },
@@ -190,7 +190,7 @@
               "WELLINGTON STREET"
             ],
             "city": "LEEDS",
-            "postalCode": "LS1 4JT"
+            "postalCode": "{{patient.postcode}}"
           }
         ]
       }
@@ -245,7 +245,7 @@
         "description": "Severity Level: 001 - Warning Alert - Escalation Level: 002 - Manager of Service - Condition ID: 006 - Condition Description: Health Visiting Service - transfer of care required. - Reason for alert: Individual has an incorrect allocation with a Health Visiting Service based on their latest address - Service needed to action: Health Visiting - Action Required: Please arrange transfer of care to correct service - Action Required by Date: 2017-12-26T10:54:00+00:00",
         "focus": {
           "reference": "urn:uuid:ebfdafba-dc18-11e7-9296-cec278b6b50a",
-          "display": "PECKSNIFF, Mercy"
+          "display": "{{patient.familyName}}, {{patient.givenName}}"
         },
         "authoredOn": "2017-12-19T10:54:00+00:00",
         "performerType": [

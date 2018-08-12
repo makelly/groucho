@@ -101,7 +101,7 @@
 				<status value="completed"/>
 				<subject>
 					<reference value="urn:uuid:ebfdafba-dc18-11e7-9296-cec278b6b50a"/>
-					<display value="PECKSNIFF, Mercy"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<payload>
 					<contentReference>
@@ -131,17 +131,17 @@
 						</valueCodeableConcept>
 					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="9912003926"/>
+					<value value="{{patient.NHSNumber}}"/>
 				</identifier>
 				<name>
 					<use value="usual"/>
-					<family value="PECKSNIFF"/>
-					<given value="Mercy"/>
+					<family value="{{patient.familyName}}"/>
+					<given value="{{patient.givenName}}"/>
 				</name>
-				<gender value="female"/>
-				<birthDate value="2017-09-17">
+				<gender value="{{patient.gender}}"/>
+				<birthDate value="{{patient.dob}}">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
-						<valueDateTime value="2017-09-17T20:00:00+00:00"/>
+						<valueDateTime value="{{patient.tob}}"/>
 					</extension>
 				</birthDate>
 				<address>
@@ -149,7 +149,7 @@
 					<line value="25 WEST POINT"/>
 					<line value="WELLINGTON STREET"/>
 					<city value="LEEDS"/>
-					<postalCode value="LS1 4JT"/>
+					<postalCode value="{{patient.postcode}}"/>
 				</address>
 			</Patient>
 		</resource>
@@ -198,7 +198,7 @@
 				<!--FailsafeAlert-Patient-->
 				<focus>
 					<reference value="urn:uuid:ebfdafba-dc18-11e7-9296-cec278b6b50a"/>
-					<display value="PECKSNIFF, Mercy"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</focus>
 				<!--FailsafeAlert-Date and Time raised-->
 				<authoredOn value="2017-12-19T10:54:00+00:00"/>

@@ -7,11 +7,11 @@ const factory = require('./event-factory.js');
 
 const missingFile = 'missing';
 const invalidFile = 'invalid.data.json';
-const publisherFile = 'test.publisher.data.json';
-const providerFile = 'test.provider.data.json';
-const encounterFile = 'test.encounter.data.json';
-const patientFile = 'test.patient.data.json';
-const eventFile = 'test.event.data.json';
+const publisherFile = 'publisher.data.json';
+const providerFile = 'provider.data.json';
+const encounterFile = 'encounter.data.json';
+const patientFile = 'patient.data.json';
+const eventFile = 'event.data.json';
 const jsonTemplateFile = 'test.template.json';
 const xmlTemplateFile = 'test.template.xml';
 const jsonOutputFile = 'testresult.json';

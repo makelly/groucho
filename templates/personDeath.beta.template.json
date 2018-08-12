@@ -37,7 +37,7 @@
           "code": "PDS004",
           "display": "PDS Person Death"
         },
-        "timestamp": "2017-11-01T15:00:00+00:00",
+        "timestamp": "{{publishDate}}",
         "source": {
           "endpoint": "urn:nhs-uk:addressing:ods:X26"
         },
@@ -122,14 +122,14 @@
         "status": "completed",
         "subject": {
           "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
-          "display": "JONES, Jack"
+          "display": "{{patient.familyName}}, {{patient.givenName}}"
         },
         "sent": "2018-02-08",
         "payload": [
           {
             "contentReference": {
               "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
-              "display": "JONES, Jack"
+              "display": "{{patient.familyName}}, {{patient.givenName}}"
             }
           }
         ]
@@ -176,21 +176,21 @@
               }
             ],
             "system": "https://fhir.nhs.uk/Id/nhs-number",
-            "value": "6101231234"
+            "value": "{{patient.NHSNumber}}"
           }
         ],
         "name": [
           {
-            "family": "JONES",
+            "family": "{{patient.familyName}}",
             "given": [
-              "Jack"
+              "{{patient.givenName}}"
             ],
             "period": {
-              "start": "1918-02-01"
+              "start": "{{patient.dob}}"
             }
           }
         ],
-        "gender": "male",
+        "gender": "{{patient.gender}}",
         "deceasedDateTime": "2017-11-01T15:00:00+00:00",
         "address": [
           {
@@ -199,7 +199,7 @@
               "4 Sandmoor Drive"
             ],
             "city": "LEEDS",
-            "postalCode": "LS17 7DF"
+            "postalCode": "{{patient.postcode}}"
           }
         ],
         "generalPractitioner": [
@@ -300,7 +300,7 @@
         "status": "completed",
         "subject": {
           "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
-          "display": "JONES, Jack"
+          "display": "{{patient.familyName}}, {{patient.givenName}}"
         },
         "sent": "2018-02-01"
       }

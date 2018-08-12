@@ -2,14 +2,14 @@
   "title": "Bad publish script",
   "description": "Undefined name reference in FOR_EACH_ENCOUNTER",
   "version": "03/08/2018",
-  "publisher": "test.publisher.data.json",
+  "publisher": "publisher.data.json",
 
   "data": [
-    {"name": "providers", "list": ["test.provider.data.json"]},
-    {"name": "encounters", "list": ["test.encounter.data.json"]},
-    {"name": "patients", "list": ["test.smith.patient.data.json", "test.frederikson.patient.data.json", "test.crowther.patient.data.json"]},
-    {"name": "immunizations", "list": ["test.immunization01.event.data.json", "test.immunization02.event.data.json"]},
-    {"name": "medications", "list": ["test.medication01.event.data.json", "test.medication02.event.data.json"]}
+    {"name": "providers", "list": ["provider.data.json"]},
+    {"name": "encounters", "list": ["encounter.data.json"]},
+    {"name": "patients", "list": ["smith.patient.data.json", "frederikson.patient.data.json", "crowther.patient.data.json"]},
+    {"name": "immunizations", "list": ["immunization01.event.data.json", "immunization02.event.data.json"]},
+    {"name": "medications", "list": ["medication01.event.data.json", "medication02.event.data.json"]}
   ],
 
   "events": [

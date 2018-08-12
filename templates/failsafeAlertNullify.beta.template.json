@@ -123,7 +123,7 @@
         "status": "completed",
         "subject": {
           "reference": "urn:uuid:a5349bcc-a922-4655-a22d-d376b5d5bad0",
-          "display": "DAWKINS, Jack"
+          "display": "{{patient.familyName}}, {{patient.givenName}}"
         },
         "payload": [
           {
@@ -161,25 +161,25 @@
               }
             ],
             "system": "https://fhir.nhs.uk/Id/nhs-number",
-            "value": "9912003888"
+            "value": "{{patient.NHSNumber}}"
           }
         ],
         "name": [
           {
             "use": "usual",
-            "family": "DAWKINS",
+            "family": "{{patient.familyName}}",
             "given": [
-              "Jack"
+              "{{patient.givenName}}"
             ]
           }
         ],
-        "gender": "male",
-        "birthDate": "2017-10-02",
+        "gender": "{{patient.gender}}",
+        "birthDate": "{{patient.dob}}",
         "_birthDate": {
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-              "valueDateTime": "2017-10-02T20:12:00+00:00"
+              "valueDateTime": "{{patient.tob}}"
             }
           ]
         },
@@ -190,7 +190,7 @@
               "4 Sandmoor Drive"
             ],
             "city": "LEEDS",
-            "postalCode": "LS17 7DF"
+            "postalCode": "{{patient.postcode}}"
           }
         ]
       }

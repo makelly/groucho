@@ -115,24 +115,24 @@
 						</valueCodeableConcept>
 					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="9912003888"/>
+					<value value="{{patient.NHSNumber}}"/>
 				</identifier>
 				<name>
 					<use value="official"/>
-					<family value="DAWKINS"/>
-					<given value="Jack"/>
+					<family value="{{patient.familyName}}"/>
+					<given value="{{patient.givenName}}"/>
 				</name>
-				<gender value="male"/>
-				<birthDate value="2017-10-02">
+				<gender value="{{patient.gender}}"/>
+				<birthDate value="{{patient.dob}}">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
-						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+						<valueDateTime value="{{patient.tob}}"/>
 					</extension>
 				</birthDate>
 				<address>
 					<use value="home"/>
 					<line value="4 Sandmoor Drive"/>
 					<city value="LEEDS"/>
-					<postalCode value="DH1 2TF"/>
+					<postalCode value="{{patient.postcode}}"/>
 				</address>
 			</Patient>
 		</resource>

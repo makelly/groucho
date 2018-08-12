@@ -27,7 +27,7 @@
 					<code value="FM002"/>
 					<display value="National Population Failsafe Alert Nullify"/>
 				</event>
-				<timestamp value="2018-02-01T09:00:00+00:00"/>
+				<timestamp value="{{publishDate}}"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:RY6"/>
 				</source>
@@ -99,7 +99,7 @@
 				<status value="completed"/>
 				<subject>
 					<reference value="urn:uuid:a5349bcc-a922-4655-a22d-d376b5d5bad0"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="{{patient.familyName}}, {{patient.givenName}}"/>
 				</subject>
 				<payload>
 					<contentReference>
@@ -128,24 +128,24 @@
 						</valueCodeableConcept>
 					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="9912003888"/>
+					<value value="{{patient.NHSNumber}}"/>
 				</identifier>
 				<name>
 					<use value="usual"/>
-					<family value="DAWKINS"/>
-					<given value="Jack"/>
+					<family value="{{patient.familyName}}"/>
+					<given value="{{patient.givenName}}"/>
 				</name>
-				<gender value="male"/>
-				<birthDate value="2017-10-02">
+				<gender value="{{patient.gender}}"/>
+				<birthDate value="{{patient.dob}}">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
-						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+						<valueDateTime value="{{patient.tob}}"/>
 					</extension>
 				</birthDate>
 				<address>
 					<use value="home"/>
 					<line value="4 Sandmoor Drive"/>
 					<city value="LEEDS"/>
-					<postalCode value="LS17 7DF"/>
+					<postalCode value="{{patient.postcode}}"/>
 				</address>
 			</Patient>
 		</resource>
