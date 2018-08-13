@@ -71,7 +71,7 @@ class HealthShareChannel extends abstract.Channel {
     // No validation of arguments as will always be called by ChannelManager
 
     // Create url to call
-    let url = new URL('Bundle/' + eventID, this.config.url);
+    let url = new URL('ems/fhir/Bundle/' + eventID, this.config.url);
 
     // Create the HTTP request configuration
     let httpConfig = {};
