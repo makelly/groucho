@@ -36,7 +36,7 @@ const indexOptions = {
   type: 'string',
   demandOption: true,
   alias: 'i',
-  choices: ['loopback']
+  choices: ['loopback', 'file', 'nrls']
 };
 
 const verboseOptions = {

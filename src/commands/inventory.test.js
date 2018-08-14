@@ -11,4 +11,6 @@ describe('Class InventoryCommand tests', () => {
     expect(i).toExist();
   });
 
+  // No test for InventoryCommand.do()
+
 });

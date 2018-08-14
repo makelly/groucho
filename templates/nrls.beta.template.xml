@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocumentReference xmlns="http://hl7.org/fhir">
+	<id value="{{getUUID 'docref'}}"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/NRLS-DocumentReference-1"/>
+	</meta>
+	<status value="{{status}}"/>
+	<type>
+		<coding>
+			<system value="http://snomed.info/sct"/>
+			<code value="{{typeCode}}"/>
+			<display value="{{typeText}}"/>
+		</coding>
+	</type>
+	<subject>
+		<reference value="https://demographics.spineservices.nhs.uk/STU3/Patient/9876543210"/>
+	</subject>
+	<created value="{{createDate}}"/>
+	<indexed value="{{indexDate}}"/>
+	<author>
+		<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/{{author}}"/>
+	</author>
+	<custodian>
+		<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/{{custodian}}"/>
+	</custodian>
+	<content>
+		<attachment>
+			<contentType value="{{contentType}}"/>
+			<url value="{{contentUrl}}"/>
+			<title value="{{contentTitle}}"/>
+			<creation value="{{contentDate}}"/>
+		</attachment>
+	</content>
+</DocumentReference>

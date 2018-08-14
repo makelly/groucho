@@ -59,8 +59,16 @@ const CHANNEL_HEALTHSHARE = 'healthshare';
 const CHANNEL_MESH = 'mesh';
 
 const INDEX_LOOPBACK = 'loopback';
+const INDEX_FILE = 'file';
+const INDEX_NRLS = 'nrls';
 
 const PUBLISH_SCHEMA = 'publishscript.schema.json';
+const POINT_SCHEMA = 'pointscript.schema.json';
+
+const PTR_ANTENATAL = '424525001';
+const PTR_INTRAPARTUM = '386337006';
+const PTR_POSTNATAL = '133906008';
+const PTR_MATERNITY = '275305005';
 
 // Module exports
 module.exports = {
@@ -117,5 +125,12 @@ module.exports = {
   CHANNEL_HEALTHSHARE,
   CHANNEL_MESH,
   INDEX_LOOPBACK,
-  PUBLISH_SCHEMA
+  INDEX_FILE,
+  INDEX_NRLS,
+  PUBLISH_SCHEMA,
+  POINT_SCHEMA,
+  PTR_ANTENATAL,
+  PTR_INTRAPARTUM,
+  PTR_POSTNATAL,
+  PTR_MATERNITY
 }

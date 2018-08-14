@@ -5,11 +5,13 @@ const path = require('path');
 const jsonSchema = require('jsonschema');
 const colors = require('colors');
 const constants = require('../lib/constants.js');
-const factory = require('../event-factory/event-factory.js');
+const eventFactory = require('../event-factory/event-factory.js');
 const channelMgr = require('../output-channels/channel-mgr.js');
+const pointerFactory = require('../pointer-factory/pointer-factory.js');
+const indexMgr = require('../index-servers/index-mgr.js');
 
 // Function to display event publication result
-function printResult(eventNumber, result, description) {
+function printPublishResult(eventNumber, result, description) {
   console.log('Event number ' + eventNumber.toString().padStart(5).green + ' published. Result = ' + result.yellow + ' ' + description.grey);
 }
 
@@ -117,7 +119,7 @@ class ScriptInterpreter {
 
     // Check event types are valid
     for (let i = 0; i < script.events.length; i++) {
-      if (!factory.EventBuilder.isValidEventType(script.events[i].type)) {
+      if (!eventFactory.EventBuilder.isValidEventType(script.events[i].type)) {
         return ' event type "' + script.events[i].type + '" invalid';
       }
     }
@@ -193,12 +195,12 @@ class ScriptInterpreter {
           // For each event data file
           for (let eObj = 0; eObj < data.list.length; ++eObj) {
             // Build the template data
-            let templateData = factory.DataBuilder.build(scriptObj.publisher, providers.list[sp], encounters.list[enc], patients.list[p], data.list[eObj]);
+            let templateData = eventFactory.DataBuilder.build(scriptObj.publisher, providers.list[sp], encounters.list[enc], patients.list[p], data.list[eObj]);
             // Build the event
-            let event = factory.EventBuilder.build(scriptObj.events[eType].template, templateData);
+            let event = eventFactory.EventBuilder.build(scriptObj.events[eType].template, templateData);
             verbose ? console.log('Event number ' + eventCount.toString().padStart(5).green + ' built with eventID = ' + event.eventID.green) : null;
             // Publish the event
-            let response = mgr.publish(event.event, scriptObj.events[eType].format, channel, event.eventID, scriptObj.events[eType].type, eventCount, printResult);
+            let response = mgr.publish(event.event, scriptObj.events[eType].format, channel, event.eventID, scriptObj.events[eType].type, eventCount, printPublishResult);
             ++eventCount;
           }
         }
@@ -207,10 +209,91 @@ class ScriptInterpreter {
     verbose ? console.log('End run script...') : null;
   }
 
+  // Validate point script
+  // If there is a validate error will return a string otherwise returns nothing
+  validatePointScript(script) {
+    let v = new jsonSchema.Validator();
+    let schema = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, constants.POINT_SCHEMA), constants.FILE_ENCODING));
+    try {
+      v.validate(script, schema, {'throwError': true});
+    } catch(e) {
+      return e.message;
+    }
+
+    return;
+  }
+
+  // Run point script
+  runPointScript(script, index, verbose) {
+    // Load script and check it is JSON
+    verbose ? console.log('Loading script') : null;
+    let scriptObj;
+    try {
+      scriptObj = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.SCRIPTS_FOLDER, script), constants.FILE_ENCODING));
+    } catch(e) {
+      console.log('Error: Invalid script, not JSON');
+      return;
+    }
+
+    // Validate script
+    verbose ? console.log('Validating script') : null;
+    let error = this.validatePointScript(scriptObj);
+    if (error != undefined) {
+      console.log('Error: Invalid script, ' + error);
+      return;
+    }
+
+    // Check script
+//    verbose ? console.log('Checking script') : null;
+//    error = this.checkPublishScript(scriptObj);
+//    if (error != undefined) {
+//      console.log('Error: Invalid script, ' + error);
+//      return;
+//    }
+
+    // Ready to run
+    verbose ? console.log('Start run script...') : null;
+    let mgr = new indexMgr.IndexManager();
+    let pointerCount = 1;
+    // find the providers list
+//    let providers = scriptObj.data.find((obj) => { return obj.name == scriptObj.PUBLISH.FOR_EACH_PROVIDER; });
+    // find the encounters list
+//    let encounters = scriptObj.data.find((obj) => { return obj.name == scriptObj.PUBLISH.FOR_EACH_ENCOUNTER; });
+    // Find the patient list
+//    let patients = scriptObj.data.find((obj) => { return obj.name == scriptObj.PUBLISH.FOR_EACH_PATIENT; });
+
+    // For each service provider
+//    for (let sp = 0; sp < providers.list.length; ++sp) {
+      // The associated encounter is the one at the same index value in the encounters
+      // If there are less encounters than providers, the last encounter is used
+//      let enc = sp < encounters.list.length ? sp : encounters.list.length - 1;
+      // For each patient
+//      for (let p = 0; p < patients.list.length; ++p) {
+        // For each event type
+//        for (let eType = 0; eType < scriptObj.events.length; ++eType) {
+          // Find the event data list
+//          let data = scriptObj.data.find((obj) => { return obj.name == scriptObj.events[eType].data; });
+          // For each event data file
+//          for (let eObj = 0; eObj < data.list.length; ++eObj) {
+            // Build the template data
+//            let templateData = factory.DataBuilder.build(scriptObj.publisher, providers.list[sp], encounters.list[enc], patients.list[p], data.list[eObj]);
+            // Build the event
+//            let event = factory.EventBuilder.build(scriptObj.events[eType].template, templateData);
+//            verbose ? console.log('Event number ' + eventCount.toString().padStart(5).green + ' built with eventID = ' + event.eventID.green) : null;
+            // Publish the event
+//            let response = mgr.publish(event.event, scriptObj.events[eType].format, channel, event.eventID, scriptObj.events[eType].type, eventCount, printPublishResult);
+//            ++eventCount;
+//          }
+//        }
+//      }
+//    }
+    verbose ? console.log('End run script...') : null;
+  }
+
 }
 
 // Module exports
 module.exports = {
   ScriptInterpreter,
-  printResult
+  printPublishResult
 }

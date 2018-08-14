@@ -16,7 +16,7 @@ class SinkChannel extends abstract.Channel {
   // Publish event
   publish(data, format, eventID, eventType, eventNumber, callback) {
     // No validation of arguments as will always be called by ChannelManager
-
+    // Does nothing
     callback(eventNumber, OK, '');
   }
 

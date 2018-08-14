@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Point script schema",
+  "description": "A script schema used by Groucho",
+  "type": "object",
+
+  "properties": {
+
+    "title": {
+      "description": "The name of the script",
+      "type": "string"
+    },
+
+    "description": {
+      "description": "Short description of the script",
+      "type": "string"
+    },
+
+    "version": {
+      "description": "Script version",
+      "type": "string"
+    },
+
+    "publisher": {
+      "description": "The publisher data file",
+      "type": "string"
+    },
+
+    "data": {
+      "description": "The publisher data file",
+      "type": "array",
+      "items": {
+        "type": "object",
+
+        "properties": {
+
+          "name": {
+            "description": "Name of the list of data files",
+            "type": "string"
+          },
+
+          "list" : {
+            "description": "The list of data files",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "required": ["name", "list"]
+
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+
+    "events": {
+      "description": "Events to publish for the encounter",
+      "type": "array",
+      "items": {
+        "type": "object",
+
+        "properties": {
+
+          "template": {
+            "description": "Name of the event template",
+            "type": "string"
+          },
+
+          "type": {
+            "description": "The event type",
+            "type": "string"
+          },
+
+          "format": {
+            "description": "Template format, xml or json",
+            "type": "string",
+            "enum": ["xml", "json"]
+          },
+
+          "data": {
+            "description": "List contaning the event data files",
+            "type": "string"
+          }
+
+        },
+        "required": ["template", "type", "format", "data"]
+
+      },
+      "minItems": 1
+    },
+
+    "PUBLISH": {
+      "description": "The publishing control statements",
+      "type": "object",
+
+      "properties": {
+
+        "FOR_EACH_PATIENT": {
+          "description": "List containing the patient data",
+          "type": "string"
+        },
+
+        "FOR_EACH_PROVIDER": {
+          "description": "List containing the provider data",
+          "type": "string"
+        },
+
+        "FOR_EACH_ENCOUNTER": {
+          "description": "List containing the encounter data",
+          "type": "string"
+        }
+      },
+      "required": ["FOR_EACH_PATIENT", "FOR_EACH_PROVIDER", "FOR_EACH_ENCOUNTER"]
+    }
+  },
+  "required": ["publisher", "data", "events", "PUBLISH"]
+}

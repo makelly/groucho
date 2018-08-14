@@ -120,4 +120,6 @@ describe('Class HealthShareChannel tests', () => {
     expect(hs).toExist();
   });
 
+  // No test for HealthShareChannel.publish()
+
 });

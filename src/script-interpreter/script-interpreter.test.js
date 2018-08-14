@@ -122,6 +122,10 @@ describe('Class ScriptInterpreter tests', () => {
     expect(error).toNotExist();
   });
 
-  // no test for runPublishScript
+  // TODO - test validatePointScript
+
+  // No test for ScriptInterpreter.runPublishScript()
+  // No test for ScriptInterpreter.runPointScript()
+  // No test for PrintPublishScript()
 
 });

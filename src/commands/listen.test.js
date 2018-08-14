@@ -25,4 +25,6 @@ describe('Class ListenCommand tests', () => {
     expect(lc).toExist();
   });
 
+  // No test for ListenCommand.do()
+  
 });

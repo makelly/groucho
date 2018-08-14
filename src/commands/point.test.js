@@ -40,4 +40,6 @@ describe('Class PointCommand tests', () => {
     expect(pc).toExist();
   });
 
+  // No test for PointCommand.do()
+
 });

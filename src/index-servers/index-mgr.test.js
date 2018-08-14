@@ -19,9 +19,12 @@ describe('Class IndexManager tests', () => {
 
   it('should isValidIndexName(name) == false', () => {
     let v = index.IndexManager.isValidIndexName('garbage');
-    
+
     expect(v).toBe(false);
   });
+
+  // No test for IndexManager.create()
+  // No test for IndexManager.remove()
 
 });
 

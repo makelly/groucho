@@ -18,6 +18,7 @@ class ChannelConfigChecker {
 
   // Constructor
   constructor() {
+    // Empty
   }
 
   // Check expected config files exist
@@ -146,9 +147,6 @@ class ChannelManager {
       case constants.CHANNEL_MESH:
         this.mesh.publish(event, format, eventID, eventType, eventNumber, callback);
         break;
-
-      default:
-        throw new Error('ChannelManager.publish(event, format, channel, eventID, eventType) - invalid channel "' + channel + '"')
     }
   }
 

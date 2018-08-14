@@ -23,4 +23,6 @@ describe('Class FileChannel tests', () => {
     expect(file).toExist();
   });
 
+  // No test for FileChannel.publish()
+
 });

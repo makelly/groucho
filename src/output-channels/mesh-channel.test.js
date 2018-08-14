@@ -81,4 +81,6 @@ describe('Class MeshChannel tests', () => {
     expect(token).toExist();
   });
 
+  // No test for MeshChannel.publish()
+
 });

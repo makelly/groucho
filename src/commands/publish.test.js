@@ -41,4 +41,6 @@ describe('Class PublishCommand tests', () => {
     expect(pc).toExist();
   });
 
+  // No test for PublishCommand.do()
+
 });

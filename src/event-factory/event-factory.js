@@ -1,43 +1,12 @@
 // event-factory.js - Fabricate events
 
-const uuidv4 = require('uuid/v4');
 const fs = require('fs');
 const path = require('path');
 const hbs = require('handlebars');
 const constants = require('../lib/constants.js');
+const uuidModule = require('../lib/uuid.js');
 
 const EVENTID = 'bundle';
-
-// Class to create and manage UUIDs
-class UUID {
-
-  // Constructor
-  constructor() {
-    this.map = new Map();
-  }
-
-  // Get uuid for specific key
-  // If not in map then create it
-  getUUID(key) {
-    let uuid = this.map.get(key);
-    if (uuid == undefined) {
-      uuid = uuidv4();
-      this.map.set(key, uuid);
-    }
-    return uuid;
-  }
-
-  // Clear map
-  clear() {
-    this.map.clear();
-  }
-
-  // Get size
-  getSize() {
-    return this.map.size;
-  }
-
-}
 
 // Class to build the data conext needed for a template
 class DataBuilder {
@@ -137,7 +106,7 @@ class EventBuilder {
   // Build the event
   static build(templateFileName, data) {
     try {
-      let uuid = new UUID();
+      let uuid = new uuidModule.UUID();
 
       // Register handlebars helpers
       hbs.registerHelper('publishDate', () => {
@@ -171,7 +140,6 @@ class EventBuilder {
 
 // Module exports
 module.exports = {
-  UUID,
   DataBuilder,
   EventBuilder
 }
