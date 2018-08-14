@@ -3,6 +3,7 @@
 const logSymbols = require('log-symbols');
 const colors = require('colors');
 const channelModule = require('../output-channels/channel-mgr.js');
+const indexModule = require('../index-servers/index-mgr.js');
 const constants = require('../lib/constants.js');
 const scriptModule = require('../script-interpreter/script-interpreter.js');
 
@@ -34,8 +35,18 @@ class InventoryCommand {
         console.log(space7 + 'Missing file.'.red);
       }
     }
+    // Indexes
+    result = indexModule.IndexConfigChecker.check();
+    for (let i = 0; i < result.length; i++) {
+      if (result[i][0]) {
+        console.log(space2 + logSymbols.success.green + space2 + result[i][1]);
+      } else {
+        console.log(space2 + logSymbols.error.red + space2 + result[i][1]);
+        console.log(space7 + 'Missing file.'.red);
+      }
+    }
     // Other configuration files go here
-    // TBD
+    // TODO
 
     // Count number of files in /data
     console.log('Number of files in /' + constants.DATA_FOLDER + ': ' + scriptModule.ScriptInterpreter.countData());

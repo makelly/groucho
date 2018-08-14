@@ -42,9 +42,11 @@ Configuration files in /config:
   √  file-channel.json
   √  healthshare-channel.json
   √  mesh-channel.json
-Number of files in /data: 14
-Number of files in /templates: 84
-Number of files in /scripts: 12
+  √  file-index.json
+  √  nrls-index.json
+Number of files in /data: 17
+Number of files in /templates: 85
+Number of files in /scripts: 14
 ```
 ### Publish
 Fabricate and publish events, as defined by a script, to a channel.
@@ -122,10 +124,21 @@ Configuration files live in the directory `/config`
 
 | Channel | Description | Configuration |
 |---------|-------------| --------------|
-| Sink | Discards event. Useful for testing. | None needed |
-| File | Write event to a file in a designated directory. | [here](docs/FILE-CHANNEL.md) |
-| HealthShare | Send event, via an API, to an instance of an InterSystems HealthShare EMS. | [here](docs/HEALTHSHARE-CHANNEL.md) |
-| MESH | Send event via the Message Exchange for Social Care and Health (MESH) messaging service. | [here](docs/MESH-CHANNEL.md) |
+| sink | Discards event. Useful for testing. | None needed |
+| file | Write event to a file in a designated directory. | [here](docs/FILE-CHANNEL.md) |
+| healthshare | Send event, via an API, to an instance of an InterSystems HealthShare EMS. | [here](docs/HEALTHSHARE-CHANNEL.md) |
+| mesh | Send event via the Message Exchange for Social Care and Health (MESH) messaging service. | [here](docs/MESH-CHANNEL.md) |
+
+## Indexes
+Groucho supports multiple indexes in which pointers can be created and removed. Each index configured by editing values in an associated configuration file. Configuration files are defined using JSON.
+
+Configuration files live in the directory `/config`
+
+| Index | Description | Configuration |
+|---------|-------------| --------------|
+| loopback | Discards pointers. Useful for testing. | None needed |
+| file | Write pointer to a file in a designated directory. | [here](docs/FILE-INDEX.md) |
+| nrls | Create or remove pointer, via an API, on the National Record Locator Service (NRLS). | [here](docs/NRLS-INDEX.md) |
 
 ## Logging
 - [ ] UNDER CONSTRUCTION :construction:
