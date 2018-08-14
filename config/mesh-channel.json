@@ -1,8 +1,9 @@
 {
-  "url": "https://127.0.0.1",
+  "url": "http://localhost",
   "senderMailboxID": "SENDER",
   "recipientMailboxID": "RECIPIENT",
   "workflowID": "WFID",
   "senderMailboxPassword": "PASSWORD",
-  "sharedKey": "HMAC-SHA256"
+  "sharedKey": "HMAC-SHA256",
+  "cert": "certificate.crt"
 }

@@ -10,7 +10,6 @@ const BASIC = 'basic';
 const OAUTH2 = 'oauth2';
 const OK = 'OK';
 const FAIL = 'FAIL ';
-const PROMISE = 'PROMISE';
 
 // Class to send event using InterSystems HealthShare EMS API
 class HealthShareChannel extends abstract.Channel {
@@ -93,7 +92,7 @@ class HealthShareChannel extends abstract.Channel {
         // Check response status
         if (response.status == 200) {
           // OK
-          callback(eventNumber, OK, 'content-location: ' + response.headers['content-location'] + ' Etag: ' + response.headers.etag);
+          callback(eventNumber, OK, 'content-location: ' + response.headers['content-location'] + ' etag: ' + response.headers.etag);
         } else {
           // Something has gone wrong
           callback(eventNumber, FAIL, 'status: ' + response.status);

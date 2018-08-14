@@ -11,6 +11,7 @@ const abstract = require('./channel.js');
 
 const MAX_NONCE_COUNT = 1000;
 const OK = 'OK';
+const FAIL = 'FAIL';
 
 // Class to send event using MESH
 class MeshChannel extends abstract.Channel{
@@ -79,10 +80,11 @@ class MeshChannel extends abstract.Channel{
   publish(data, format, eventID, eventType, eventNumber, callback) {
     // No validation of arguments as will always be called by ChannelManager
 
+    // Create url to call
+    let url = new URL('messageexchange/' + this.config.senderMailboxID + '/outbox', this.config.url);
+
     // Create the HTTP request configuration
     let httpConfig = {};
-    httpConfig.headers = {};
-    // Content-Type
     httpConfig.headers = {'Content-Type': 'application/octet-stream',
                           'Authorization': this.makeToken(),
                           'Mex-From': this.config.senderMailboxID,
@@ -91,10 +93,31 @@ class MeshChannel extends abstract.Channel{
                           'Mex-FileName': eventID,
                           'Mex-MessageType': 'DATA',
                           'Mex-Version': '1.0'};
+    // key: fs.readFileSync('client1-key.pem'),
+    // cert: fs.readFileSync('client1-crt.pem'),
+    // ca: fs.readFileSync('ca-crt.pem') };
 
-    callback(eventNumber, OK, '');
+    // Call MESH
+    axios.post(url.href, data, httpConfig).then((response) => {
+      // Check response status
+      if (response.status == 202) {
+        // OK
+        callback(eventNumber, OK, 'body: ' + JSON.stringify(response.data));
+
+      } else if (response.status == 403) {
+        // 403 error
+        callback(eventNumber, FAIL, 'status: ' + response.status);
+      } else if (response.status == 417) {
+        // 417 error
+        callback(eventNumber, FAIL, 'status: ' + response.status + ' body:' + JSON.stringify(response.data));
+      } else {
+        // Unknown error
+        callback(eventNumber, FAIL, 'status: ' + response.status);
+      }
+    }).catch((e) => {
+      callback(eventNumber, FAIL, e.message);
+    });
   }
-
 }
 
 // Module exports
