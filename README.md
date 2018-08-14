@@ -67,7 +67,7 @@ Example:
 `node groucho.js publish --script=good.publish.json --channel=sink --verbose`
 
 ### Point
-Create, update and delete record pointers, as defined by a script, to an index.
+Create and delete record pointers, as defined by a script, to an index.
 
 **`node groucho.js publish --script=<script file> --index=<index name> [--verbose]`**
 
