@@ -1,8 +1,10 @@
 # Groucho
 Groucho is a command-line tool to test:
 * Fabricating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS)
-* Creating, updating and deleting record pointers in a Record Location Service (RLS)
+* Creating and deleting record pointers in a Record Location Service (RLS)
 * Listening for requests from clients to return FHIR records and serving the responses
+
+*"A child of five would understand this. Send someone to fetch a child of five."* Groucho Marx.
 
 ## Installation
 This is a Node application, therefore you need to first install [Node](https://nodejs.org/en/) on your computer.
