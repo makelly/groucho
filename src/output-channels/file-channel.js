@@ -47,15 +47,15 @@ class FileChannel extends abstract.Channel {
     let args = {};
     args.dir = this.config.fullPath;
     args.template = 'evt-' + eventType + '-XXXXXX.';
-    let fname = tmp.tmpNameSync(args) + format;
+    let fname = path.join(this.config.fullPath, tmp.tmpNameSync(args) + format);
     // Write file
     try {
-      fs.writeFileSync(path.join(this.config.fullPath, fname), data);
+      fs.writeFileSync(fname, data);
     } catch(e) {
       throw new Error('FileChannel.publish(data, format, eventID) - write file ' + e.message);
     }
 
-    callback(eventNumber, OK);
+    callback(eventNumber, OK, fname);
   }
 
 }

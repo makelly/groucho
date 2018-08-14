@@ -9,8 +9,8 @@ const factory = require('../event-factory/event-factory.js');
 const channelMgr = require('../output-channels/channel-mgr.js');
 
 // Function to display event publication result
-function printResult(eventNumber, result) {
-  console.log('Event number ' + eventNumber.toString().padStart(5).green + ' published to channel with result ' + result.yellow);
+function printResult(eventNumber, result, description) {
+  console.log('Event number ' + eventNumber.toString().padStart(5).green + ' published. Result = ' + result.yellow + ' ' + description.grey);
 }
 
 // Class to interpret and run scripts

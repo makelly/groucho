@@ -78,9 +78,9 @@ class HealthShareChannel extends abstract.Channel {
     httpConfig.headers = {};
     if (format == constants.PUBLISH_XML) {
       // Content-Type
-      httpConfig.headers = {'Content-Type': 'application/xml+fhir'};
+      httpConfig.headers = {'content-type': 'application/xml+fhir'};
     } else {
-      httpConfig.headers = {'Content-Type': 'application/json+fhir'};
+      httpConfig.headers = {'content-type': 'application/json+fhir'};
     }
     if (this.config.authentication == BASIC) {
       // Set basic authentication
@@ -93,17 +93,17 @@ class HealthShareChannel extends abstract.Channel {
         // Check response status
         if (response.status == 200) {
           // OK
-          callback(eventNumber, OK);
+          callback(eventNumber, OK, 'content-location: ' + response.headers['content-location'] + ' Etag: ' + response.headers.etag);
         } else {
           // Something has gone wrong
-          callback(eventNumber, FAIL + response.data);
+          callback(eventNumber, FAIL, 'status: ' + response.status);
         }
       }).catch((e) => {
-          callback(eventNumber, FAIL + e.message);
+          callback(eventNumber, FAIL, e.message);
       });
     } else {
       // OAUTH2 - Not implemented yet
-      callback(eventNumber, FAIL + ' oauth2 not implemented yet');
+      callback(eventNumber, FAIL, 'oauth2 not implemented yet');
     }
   }
 

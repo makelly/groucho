@@ -92,7 +92,7 @@ class MeshChannel extends abstract.Channel{
                           'Mex-MessageType': 'DATA',
                           'Mex-Version': '1.0'};
 
-    callback(eventNumber, OK);
+    callback(eventNumber, OK, '');
   }
 
 }
