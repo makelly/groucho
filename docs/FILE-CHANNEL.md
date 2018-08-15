@@ -1,4 +1,6 @@
 # File Output Channel
+Save event in a file.
+
 Saved files use the following naming convention: `evt-<Event type>-<random 6 digits and/or letters>.<json | xml>`
 
 Examples: `evt-CH015-RpQ4yj.json` `evt-CH019-V9EPDf.xml`

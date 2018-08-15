@@ -28,7 +28,7 @@ const channelOptions = {
   type: 'string',
   demandOption: true,
   alias: 'c',
-  choices: ['sink', 'file', 'healthshare', 'mesh']
+  choices: ['sink', 'file', 'healthshare', 'mesh', 'nems']
 };
 
 const indexOptions = {

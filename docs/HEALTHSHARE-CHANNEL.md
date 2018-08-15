@@ -1,4 +1,6 @@
 # HealthShare Output Channel
+Send an event to an InterSystems HealthShare EMS. This uses a REST API.
+
 The configuration file is named `healthshare-channel.json`
 
 Configuration file contents:

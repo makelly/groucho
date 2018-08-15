@@ -1,7 +1,7 @@
 # Groucho
 Groucho is a command-line tool to test:
 * Fabricating and sending (publishing) FHIR events to a receiver, such as an Events Management Service (EMS)
-* Creating and deleting record pointers in a Record Location Service (RLS)
+* Creating, updating and deleting record pointers in a Record Location Service (RLS)
 * Listening for requests from clients to return FHIR records and serving the responses
 
 *"A child of five would understand this. Send someone to fetch a child of five."* Groucho Marx.
@@ -42,6 +42,7 @@ Configuration files in /config:
   √  file-channel.json
   √  healthshare-channel.json
   √  mesh-channel.json
+  √  nems-channel.json
   √  file-index.json
   √  nrls-index.json
 Number of files in /data: 17
@@ -59,6 +60,7 @@ defined by **`<channel name>`**. It must be one of:
 + **`file`**
 + **`healthshare`**
 + **`mesh`**
++ **`nems`**
 
 If **`--verbose`** is set, then progress messages will be displayed.
 
@@ -67,13 +69,15 @@ Example:
 `node groucho.js publish --script=good.publish.json --channel=sink --verbose`
 
 ### Point
-Create and delete record pointers, as defined by a script, to an index.
+Create, update and delete record pointers, as defined by a script, to an index.
 
 **`node groucho.js publish --script=<script file> --index=<index name> [--verbose]`**
 
 The script is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The record index is
 defined by **`<index name>`**. It must be one of:
 + **`loopback`**
++ **`file`**
++ **`nrls`**
 
 If **`--verbose`** is set, then progress messages will be displayed.
 
@@ -82,7 +86,7 @@ Example:
 `node groucho.js index --script=good.index.json --index=loopback --verbose`
 
 ### Listen
-Listen for incoming requests for FHIR records. The application will listen indefinitely until you terminate it.
+Listen for incoming requests for FHIR records. The application will listen indefinitely until you terminate it by `CTRL C`.
 
 **`node groucho.js listen [--verbose]`**
 
@@ -102,7 +106,7 @@ A list of scripts is provided [here](docs/SCRIPTS.md).
 How to create scripts is described [here](docs/CREATE-SCRIPTS.md).
 
 ## Templates
-A template file is a FHIR event message bundle, in XML or JSON format, that has elements marked up that will be replaced by data values. The [Handlebars templating language](http://handlebarsjs.com/), which is an extension to the well known Mustache templating language, is used to markup elements.
+A template file is a FHIR event message bundle or a record pointer, in XML or JSON format, that has elements marked up that will be replaced by data values. The [Handlebars templating language](http://handlebarsjs.com/), which is an extension to the well known Mustache templating language, is used to markup elements.
 
 Template files live in the directory `/templates`
 
@@ -118,7 +122,7 @@ Data files live in the directory `/data`
 A list of data files is provided [here](docs/DATA.md).
 
 ## Output Channels
-Groucho supports multiple output channels through which events can be published. Each output channel is configured by editing values in an associated configuration file. Configuration files are defined using JSON.
+Groucho supports multiple output channels through which events can be published to. Each output channel is configured by editing values in an associated configuration file. Configuration files are defined using JSON.
 
 Configuration files live in the directory `/config`
 
@@ -127,10 +131,11 @@ Configuration files live in the directory `/config`
 | sink | Discards event. Useful for testing. | None needed |
 | file | Write event to a file in a designated directory. | [here](docs/FILE-CHANNEL.md) |
 | healthshare | Send event, via an API, to an instance of an InterSystems HealthShare EMS. | [here](docs/HEALTHSHARE-CHANNEL.md) |
-| mesh | Send event via the Message Exchange for Social Care and Health (MESH) messaging service. | [here](docs/MESH-CHANNEL.md) |
+| mesh | Send event, via the Message Exchange for Social Care and Health (MESH) messaging service, to a recipient MESH mailbox. | [here](docs/MESH-CHANNEL.md) |
+| nems | Send event, via an API, to the National Events Management Service (NEMS). | [here](docs/NEMS-CHANNEL.md) |
 
 ## Indexes
-Groucho supports multiple indexes in which pointers can be created and removed. Each index configured by editing values in an associated configuration file. Configuration files are defined using JSON.
+Groucho supports multiple indexes in which pointers can be created and removed. Each index is configured by editing values in an associated configuration file. Configuration files are defined using JSON.
 
 Configuration files live in the directory `/config`
 
@@ -141,4 +146,4 @@ Configuration files live in the directory `/config`
 | nrls | Create or remove pointer, via an API, on the National Record Locator Service (NRLS). | [here](docs/NRLS-INDEX.md) |
 
 ## Logging
-- [ ] UNDER CONSTRUCTION :construction:
+TODO

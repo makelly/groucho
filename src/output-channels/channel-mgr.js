@@ -6,12 +6,14 @@ const sinkOut = require('./sink-channel.js');
 const fileOut = require('./file-channel.js');
 const healthshareOut = require('./healthshare-channel.js');
 const meshOut = require('./mesh-channel.js');
+const nemsOut = require('./nems-channel.js');
 const constants = require('../lib/constants.js');
 const factory = require('../event-factory/event-factory.js');
 
 const FILE_FILENAME = 'file-channel.json';
 const HEALTHSHARE_FILENAME = 'healthshare-channel.json';
 const MESH_FILENAME = 'mesh-channel.json';
+const NEMS_FILENAME = 'nems-channel.json';
 
 // Class to check existance of configuration files
 class ChannelConfigChecker {
@@ -27,6 +29,7 @@ class ChannelConfigChecker {
     result.push([fs.existsSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, FILE_FILENAME)), FILE_FILENAME]);
     result.push([fs.existsSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, HEALTHSHARE_FILENAME)), HEALTHSHARE_FILENAME]);
     result.push([fs.existsSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, MESH_FILENAME)), MESH_FILENAME]);
+    result.push([fs.existsSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, NEMS_FILENAME)), NEMS_FILENAME]);
 
     return result;
   }
@@ -43,6 +46,7 @@ class ChannelConfig {
       this.file = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, FILE_FILENAME), constants.FILE_ENCODING));
       this.healthshare = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, HEALTHSHARE_FILENAME), constants.FILE_ENCODING));
       this.mesh = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, MESH_FILENAME), constants.FILE_ENCODING));
+      this.nems = JSON.parse(fs.readFileSync(path.join(__dirname, '../..', constants.CONFIG_FOLDER, NEMS_FILENAME), constants.FILE_ENCODING));
     } catch(e) {
       throw new Error('Constructor error - ' + e.message);
     }
@@ -64,6 +68,7 @@ class ChannelManager {
       this.file = new fileOut.FileChannel(cfg.file);
       this.healthshare = new healthshareOut.HealthShareChannel(cfg.healthshare);
       this.mesh = new meshOut.MeshChannel(cfg.mesh);
+      this.nems = new nemsOut.NemsChannel(cfg.nems);
     } catch(e) {
       throw new Error('ChannelConfig.constructor() - ' + e.message);
     }
@@ -76,6 +81,7 @@ class ChannelManager {
       case constants.CHANNEL_FILE:
       case constants.CHANNEL_HEALTHSHARE:
       case constants.CHANNEL_MESH:
+      case constants.CHANNEL_NEMS:
         return true;
         break;
 
@@ -146,6 +152,10 @@ class ChannelManager {
 
       case constants.CHANNEL_MESH:
         this.mesh.publish(event, format, eventID, eventType, eventNumber, callback);
+        break;
+
+      case constants.CHANNEL_NEMS:
+        this.nems.publish(event, format, eventID, eventType, eventNumber, callback);
         break;
     }
   }

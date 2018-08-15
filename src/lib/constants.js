@@ -57,6 +57,7 @@ const CHANNEL_SINK = 'sink';
 const CHANNEL_FILE = 'file';
 const CHANNEL_HEALTHSHARE = 'healthshare';
 const CHANNEL_MESH = 'mesh';
+const CHANNEL_NEMS = 'nems';
 
 const INDEX_LOOPBACK = 'loopback';
 const INDEX_FILE = 'file';
@@ -124,6 +125,7 @@ module.exports = {
   CHANNEL_FILE,
   CHANNEL_HEALTHSHARE,
   CHANNEL_MESH,
+  CHANNEL_NEMS,
   INDEX_LOOPBACK,
   INDEX_FILE,
   INDEX_NRLS,
