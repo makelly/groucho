@@ -122,7 +122,7 @@ Data files live in the directory `/data`
 A list of data files is provided [here](docs/DATA.md).
 
 ## Output Channels
-Groucho supports multiple output channels through which events can be published to. Each output channel is configured by editing values in an associated configuration file. Configuration files are defined using JSON.
+Groucho supports multiple output channels through which events can be published. Each output channel is configured by editing values in an associated configuration file. Configuration files are defined using JSON.
 
 Configuration files live in the directory `/config`
 
