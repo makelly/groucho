@@ -1,0 +1,26 @@
+{
+  "title": "Good publish script",
+  "description": "This is an example of a good, no errors, script for publishing events",
+  "version": "03/08/2018",
+  "publisher": "publisher.data.json",
+
+  "data": [
+    {"name": "providers", "list": ["provider.data.json"]},
+    {"name": "encounters", "list": ["encounter.data.json"]},
+    {"name": "patients", "list": ["smith.patient.data.json", "frederikson.patient.data.json", "crowther.patient.data.json", "jabbar.patient.data.json", "fatma.patient.data.json",
+      "bakr.patient.data.json", "dawkins.patient.data.json", "pecksniff.patient.data.json"]},
+    {"name": "immunizations", "list": ["immunization01.event.data.json", "immunization02.event.data.json"]},
+    {"name": "medications", "list": ["medication01.event.data.json", "medication02.event.data.json", "medication03.event.data.json"]}
+  ],
+
+  "events": [
+    {"template": "immunization.beta.template.json", "type": "CH015", "format": "json", "data": "immunizations"},
+    {"template": "medication.beta.template.xml", "type": "CH019", "format": "xml", "data": "medications"}
+  ],
+
+  "PUBLISH": {
+    "FOR_EACH_PATIENT": "patients",
+    "FOR_EACH_PROVIDER": "providers",
+    "FOR_EACH_ENCOUNTER": "encounters"
+  }
+}
