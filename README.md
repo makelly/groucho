@@ -71,7 +71,7 @@ Example:
 ### Point
 Create, update and delete record pointers, as defined by a script, to an index.
 
-**`node groucho.js publish --script=<script file> --index=<index name> [--verbose]`**
+**`node groucho.js point --script=<script file> --index=<index name> [--verbose]`**
 
 The script is defined by **`<script file>`**. It must be located in the script directory `/scripts`. The record index is
 defined by **`<index name>`**. It must be one of:
@@ -83,7 +83,7 @@ If **`--verbose`** is set, then progress messages will be displayed.
 
 Example:
 
-`node groucho.js index --script=good.index.json --index=loopback --verbose`
+`node groucho.js point --script=good.index.json --index=loopback --verbose`
 
 ### Listen
 Listen for incoming requests for FHIR records. The application will listen indefinitely until you terminate it by `CTRL C`.
@@ -101,7 +101,13 @@ A script file contains a set of commands to fabricate events or pointers.
 
 Script files live in the directory `/scripts`
 
-A list of scripts is provided [here](docs/SCRIPTS.md).
+Publish script files use the following naming convention: `<name>.<version if required>.publish.json`
+
+Point script files use the following naming convention: `<name>.<version if required>.point.json`
+
+Examples: `good.publish.json   good.point.json`
+
+A list of scripts is provided in [`/scripts/inventory.txt`](scripts/inventory.txt)
 
 How to create scripts is described [here](docs/CREATE-SCRIPTS.md).
 
@@ -110,16 +116,30 @@ A template file is a FHIR event message bundle or a record pointer, in XML or JS
 
 Template files live in the directory `/templates`
 
-A list of templates is provided [here](docs/TEMPLATES.md).
+Template files use the following naming convention: `<event name>.<version if required>.template.<json | xml>`
+
+Examples: `physicalExamination.beta.template.json   physicalExamination.beta.template.xml`
+
+A list of templates is provided in [`/templates/inventory.txt`](templates/inventory.txt)
 
 Details of the Handlebars expressions used is provided [here](docs/HANDLEBARS.md).
 
 ## Data
-A data file holds the data values that are inserted into a template, in JSON format.
+A data file holds the data values, in JSOM format, that are inserted into a template.
 
 Data files live in the directory `/data`
 
-A list of data files is provided [here](docs/DATA.md).
+Data files use the following naming convention:
+
+| Type of Data | Naming Convention | Example |
+|-----------------|-----------------------|---------------------|
+| Publisher | `<name>.<version if required>.publisher.data.json` | `LGI.publisher.data.json` |
+| Provider |  `<name>.<version if required>.provider.data.json` | `LGI.provider.data.json` |
+| Encounter |  `<name>.<version if required>.encounter.data.json` | `LGIMonday.encounter.data.json` |
+| Patient |  `<name>.<version if required>.patient.data.json` | `GMarx.patient.data.json` |
+| Event |  `<name>.<version if required>.event.data.json` | `physicalExamination.event.data.json` |
+
+A list of data files is provided in [`/data/inventory.txt`](data/inventory.txt)
 
 ## Output Channels
 Groucho supports multiple output channels through which events can be published. Each output channel is configured by editing values in an associated configuration file. Configuration files are defined using JSON.
@@ -141,9 +161,9 @@ Configuration files live in the directory `/config`
 
 | Index | Description | Configuration |
 |---------|-------------| --------------|
-| loopback | Discards pointers. Useful for testing. | None needed |
+| loopback | Discards pointer. Useful for testing. | None needed |
 | file | Write pointer to a file in a designated directory. | [here](docs/FILE-INDEX.md) |
-| nrls | Create or remove pointer, via an API, on the National Record Locator Service (NRLS). | [here](docs/NRLS-INDEX.md) |
+| nrls | Create, update or remove pointer, via an API, on the National Record Locator Service (NRLS). | [here](docs/NRLS-INDEX.md) |
 
 ## Logging
 TODO

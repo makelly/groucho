@@ -1,0 +1,89 @@
+List of template files in /templates
+
+Digital Child Health Events - These are events that could be published by direct care systems.
+
+additionalDemographics.beta.template.json - Additional Demographics. STU3 FHIR Beta release.
+additionalDemographics.beta.template.xml - Additional Demographics. STU3 FHIR Beta release.
+admissionDetails.beta.template.json - Admission Details. STU3 FHIR Beta release.
+admissionDetails.beta.template.xml - Admission Details. STU3 FHIR Beta release.
+allergiesAndAdverseReactions.beta.template.json - Allergies and Adverse Reactions. STU3 FHIR Beta release.
+allergiesAndAdverseReactions.beta.template.xml - Allergies and Adverse Reactions. STU3 FHIR Beta release.
+assessmentScales.beta.template.json - Assessment Scales. STU3 FHIR Beta release.
+assessmentScales.beta.template.xml - Assessment Scales. STU3 FHIR Beta release.
+birthDetails.beta.template.json - Birth Details. STU3 FHIR Beta release.
+birthDetails.beta.template.xml - Birth Details. STU3 FHIR Beta release.
+bloodSpotSampleTaken.beta.template.json - Blood Spot Sample Taken. STU3 FHIR Beta release.
+bloodSpotSampleTaken.beta.template.xml - Blood Spot Sample Taken. STU3 FHIR Beta release.
+bloodSpotCardReceived.beta.template.json - Blood Spot Card Received. STU3 FHIR Beta release.
+bloodSpotCardReceived.beta.template.xml - Blood Spot Card Received. STU3 FHIR Beta release.
+bloodSpotTestOutcome.beta.template.json - Blood Spot Test Outcome. STU3 FHIR Beta release.
+bloodSpotTestOutcome.beta.template.xml - Blood Spot Test Outcome. STU3 FHIR Beta release.
+clinicalRiskFactors.beta.template.json - Clinical Risk Factors. STU3 FHIR Beta release.
+clinicalRiskFactors.beta.template.xml - Clinical Risk Factors. STU3 FHIR Beta release.
+conditions.beta.template.json - Conditions / Diagnoses. STU3 FHIR Beta release.
+conditions.beta.template.xml - Conditions / Diagnoses. STU3 FHIR Beta release.
+developmentalSkills.beta.template.json - Developmental Skills. STU3 FHIR Beta release.
+developmentalSkills.beta.template.xml - Developmental Skills. STU3 FHIR Beta release.
+dischargeDetails.beta.template.json - Discharge Details. STU3 FHIR Beta release.
+dischargeDetails.beta.template.xml - Discharge Details. STU3 FHIR Beta release.
+earlyYearsProgress.beta.template.json - Early Years Progress. STU3 FHIR Beta release.
+earlyYearsProgress.beta.template.xml - Early Years Progress. STU3 FHIR Beta release.
+educationalHistory.beta.template.json - Educational History. STU3 FHIR Beta release.
+educationalHistory.beta.template.xml - Educational History. STU3 FHIR Beta release.
+emergencyCareAttendance.beta.template.json - Emergency Care Attendance. STU3 FHIR Beta release.
+emergencyCareAttendance.beta.template.xml - Emergency Care Attendance. STU3 FHIR Beta release.
+examinationFindings.beta.template.json - Examination Findings. STU3 FHIR Beta release.
+examinationFindings.beta.template.xml - Examination Findings. STU3 FHIR Beta release.
+familyHistory.beta.template.json - Family History. STU3 FHIR Beta release.
+familyHistory.beta.template.xml - Family History. STU3 FHIR Beta release.
+feedingStatus.beta.template.json - Feeding Status. STU3 FHIR Beta release.
+feedingStatus.beta.template.xml - Feeding Status. STU3 FHIR Beta release.
+immunization.beta.template.json - Immunisation Administration. STU3 FHIR Beta release.
+immunization.beta.template.xml - Immunisation Administration. STU3 FHIR Beta release.
+individualRequirements.beta.template.json - Individual Requirements. STU3 FHIR Beta release.
+individualRequirements.beta.template.xml - Individual Requirements. STU3 FHIR Beta release.
+informationandAdviceGiven.beta.template.json - Information and Advice Given. STU3 FHIR Beta release.
+informationandAdviceGiven.beta.template.xml - Information and Advice Given. STU3 FHIR Beta release.
+legalInformation.beta.template.json - Legal Information. STU3 FHIR Beta release.
+legalInformation.beta.template.xml - Legal Information. STU3 FHIR Beta release.
+measurements.beta.template.json - Measurements. STU3 FHIR Beta release.
+measurements.beta.template.xml - Measurements. STU3 FHIR Beta release.
+medication.beta.template.json - Medication. STU3 FHIR Beta release.
+medication.beta.template.xml - Medication. STU3 FHIR Beta release.
+newbornHearing.beta.template.json - Newborn Hearing. STU3 FHIR Beta release.
+newbornHearing.beta.template.xml - Newborn Hearing. STU3 FHIR Beta release.
+parentGuardianorPersonalComment.beta.template.json - Parent, Guardian or Personal Comment. STU3 FHIR Beta release.
+parentGuardianorPersonalComment.beta.template.xml - Parent, Guardian or Personal Comment. STU3 FHIR Beta release.
+personalContacts.beta.template.json - Personal Contacts. STU3 FHIR Beta release.
+personalContacts.beta.template.xml - Personal Contacts. STU3 FHIR Beta release.
+physicalExamination.beta.template.json - Physical Examination. STU3 FHIR Beta release.
+physicalExamination.beta.template.xml - Physical Examination. STU3 FHIR Beta release.
+planandRequestedActions.beta.template.json - Plan and Requested Actions. STU3 FHIR Beta release.
+planandRequestedActions.beta.template.xml - Plan and Requested Actions. STU3 FHIR Beta release.
+professionalComment.beta.template.json - Professional Comment. STU3 FHIR Beta release.
+professionalComment.beta.template.xml - Professional Comment. STU3 FHIR Beta release.
+professionalContacts.beta.template.json - Professional Contacts. STU3 FHIR Beta release.
+professionalContacts.beta.template.xml - Professional Contacts. STU3 FHIR Beta release.
+referral.beta.template.json - Referral. STU3 FHIR Beta release.
+referral.beta.template.xml - Referral. STU3 FHIR Beta release.
+safetyAlerts.beta.template.json - Safety Alerts. STU3 FHIR Beta release.
+safetyAlerts.beta.template.xml - Safety Alerts. STU3 FHIR Beta release.
+socialContextHousehold.beta.template.json - Social Context Household. STU3 FHIR Beta release.
+socialContextHousehold.beta.template.xml - Social Context Household. STU3 FHIR Beta release.
+socialContextPerson.beta.template.json - Social Context Person. STU3 FHIR Beta release.
+socialContextPerson.beta.template.xml - Social Context Person. STU3 FHIR Beta release.
+failsafeAlertNullify.beta.template.json - National Failsafe Alert Nullify Request. STU3 FHIR Beta release.
+failsafeAlertNullify.beta.template.xml - National Failsafe Alert Nullify Request. STU3 FHIR Beta release.
+
+National Service Events - These are events that would be published by national services. These can be used to allow Groucho to act as a proxy publisher of these events for testing purposes.
+
+failsafeAlert.beta.template.json - Failsafe alert from national failsafe service.  STU3 FHIR Beta release.
+failsafeAlert.beta.template.xml - Failsafe alert from national failsafe service.  STU3 FHIR Beta release.
+birthNotification.beta.template.json - Birth notification from national Personal Demographics Service (PDS).  STU3 FHIR Beta release.
+birthNotification.beta.template.xml - Birth notification from national Personal Demographics Service (PDS).  STU3 FHIR Beta release.
+changeOfAddress.beta.template.json - Change of address from national Personal Demographics Service (PDS).  STU3 FHIR Beta release.
+changeOfAddress.beta.template.xml - Change of address from national Personal Demographics Service (PDS).  STU3 FHIR Beta release.
+changeOfGP.beta.template.json - Change of GP from national Personal Demographics Service (PDS).  STU3 FHIR Beta release.
+changeOfGP.beta.template.xml - Change of GP from national Personal Demographics Service (PDS).  STU3 FHIR Beta release.
+personDeath.beta.template.json - Death notification from national Personal Demographics Service (PDS).  STU3 FHIR Beta release.
+personDeath.beta.template.xml - Death notification from national Personal Demographics Service (PDS).  STU3 FHIR Beta release.
